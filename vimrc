@@ -113,6 +113,7 @@ NeoBundleLazy 'joedicastro/vim-markdown'
 NeoBundleLazy 'joedicastro/vim-markdown-extra-preview'
 " reStructuredText in vim. Your personal Wiki in RST
 NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}} 
+NeoBundleLazy 'Rykka/clickable.vim', {'autoload': {'filetypes': ['rst']}} 
 
 " A diff tool for directories
 NeoBundleLazy 'joedicastro/DirDiff.vim', { 'autoload': { 'commands' : 'DirDiff'}}
@@ -340,16 +341,6 @@ endfunction
 
 nmap <silent><Leader>ew :call ToggleWrap()<CR>
 
-" Get off the cursor keys
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
-" nnoremap <left> <nop>
-" nnoremap <right> <nop>
-" inoremap <up> <nop>
-" inoremap <down> <nop>
-" inoremap <left> <nop>
-" inoremap <right> <nop>
-
 " Colorscheme
 syntax enable                  " enable the syntax highlight
 set background=dark            " set a dark background
@@ -552,9 +543,6 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
-" Make the Y behavior similar to D & C
-nnoremap Y y$
-
 " PLUGINS
 
 " Airline
@@ -752,6 +740,7 @@ nnoremap <silent><Leader>ea :call ToggleNeoComplete()<CR>
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html,markdown setlocal list
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
@@ -935,20 +924,38 @@ autocmd FileType sql DBCheckModeline
 nmap <Leader>n ::NERDTreeToggle<CR>
 nmap <Leader>rr :lnext<CR>
 nmap <Leader>ss :lprev<CR>
-nmap <Leader>e :%s/<C-r><C-w>//g<Left><Left>
+nmap <Leader>e :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
 vmap <Leader>e :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
 nmap <Leader>w :w<CR>
-set hlsearch
-" Make space more useful
 nnoremap <space> za
 noremap - ddp
 noremap _ ddkkp
 noremap -c ddO
+vnoremap \ U
+inoremap <c-d> <esc>dd
+nnoremap <c-u> viwU
+inoremap <c-u> <esc>viwUwi
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
+vnoremap <leader>' <esc>`<i'<esc>`>a'<esc>
+inoremap jk <esc>
+nnoremap Y y$
+autocmd BufRead,BufNewFile *.html setlocal nowrap
+
+" inoremap <esc> <nop>
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
 
 let g:AutoCloseExpandSpace = 0 " Make iabbrev work again
-
 let g:pymode_rope_autoimport = 0  " Danger !!!
 " let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime', 'itertools']
 " let g:pymode_debug = 1
@@ -958,7 +965,12 @@ inoreabbrev @@ jose.eduardo.gd@gmail.com
 inoreabbrev ccop Copyright, all rights reserved.
 inoreabbrev ssig -- <cr>Jose Garcia (Jose Kilo)<cr>jose.eduardo.gd@gmail.com
 inoreabbrev ttest def test_(self):<cr>self.assertEqual('', '')
-
+autocmd FileType html :inoreabbrev <buffer> --- &mdash;
+autocmd FileType python :inoreabbrev <buffer> iif if:<left>
+autocmd FileType python :inoreabbrev <buffer> wwh while:<left>
+autocmd FileType python :inoreabbrev <buffer> ffo for i in:<left>
+autocmd FileType python iabbrev <buffer> re return
+autocmd FileType python iabbrev <buffer> return NOPENOPENOPE
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
@@ -973,6 +985,5 @@ if 'VIRTUAL_ENV' in os.environ:
     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
     execfile(activate_this, dict(__file__=activate_this))
     sys.stdout = open(os.devnull, 'w')
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'saperia.settings.dev')
-    os.environ['SAPERIA_LOGGING_LEVEL'] = str(logging.CRITICAL)
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', '')
 EOF
