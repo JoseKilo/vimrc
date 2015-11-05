@@ -721,7 +721,7 @@ let g:neocomplete#data_directory = $HOME.'/.vim/tmp/neocomplete'
 " disable the auto select feature by default to speed up writing without
 " obstacles (is optimal for certain situations)
 let g:neocomplete#enable_auto_select = 0
-                                        
+
 " toggle the auto select feature
 function! ToggleNeoComplete()
   if !g:neocomplete#disable_auto_complete && g:neocomplete#enable_auto_select
@@ -736,7 +736,7 @@ function! ToggleNeoComplete()
   endif
 endfunction
 nnoremap <silent><Leader>ea :call ToggleNeoComplete()<CR>
-   
+
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -969,8 +969,17 @@ autocmd FileType html :inoreabbrev <buffer> --- &mdash;
 autocmd FileType python :inoreabbrev <buffer> iif if:<left>
 autocmd FileType python :inoreabbrev <buffer> wwh while:<left>
 autocmd FileType python :inoreabbrev <buffer> ffo for i in:<left>
-autocmd FileType python iabbrev <buffer> re return
-autocmd FileType python iabbrev <buffer> return NOPENOPENOPE
+autocmd FileType python inoreabbrev <buffer> retu return
+autocmd FileType python inoreabbrev <buffer> return NOPENOPENOPE
+onoremap p i(
+onoremap in( :<c-u>normal! f(vi(<cr>
+onoremap il( :<c-u>normal! F)vi(<cr>
+onoremap an( :<c-u>normal! f(va(<cr>
+onoremap al( :<c-u>normal! F)va(<cr>
+onoremap in{ :<c-u>normal! f{vi{<cr>
+onoremap il{ :<c-u>normal! F}vi{<cr>
+onoremap an{ :<c-u>normal! f{va{<cr>
+onoremap al{ :<c-u>normal! F}va{<cr>
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
