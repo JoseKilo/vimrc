@@ -910,8 +910,9 @@ map <Leader>z :ZoomWinTabToggle<CR>
 " FILETYPES
 au BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
 augroup json_autocmd
-  autocmd FileType json set foldmethod=syntax
-  autocmd FileType json set foldlevel=99
+    autocmd!
+    autocmd FileType json set foldmethod=syntax
+    autocmd FileType json set foldlevel=99
 augroup END
 au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
 au FileType python setlocal foldlevel=1000
@@ -943,7 +944,6 @@ vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
 vnoremap <leader>' <esc>`<i'<esc>`>a'<esc>
 inoremap jk <esc>
 nnoremap Y y$
-autocmd BufRead,BufNewFile *.html setlocal nowrap
 
 " inoremap <esc> <nop>
 " nnoremap <up> <nop>
@@ -965,12 +965,21 @@ inoreabbrev @@ jose.eduardo.gd@gmail.com
 inoreabbrev ccop Copyright, all rights reserved.
 inoreabbrev ssig -- <cr>Jose Garcia (Jose Kilo)<cr>jose.eduardo.gd@gmail.com
 inoreabbrev ttest def test_(self):<cr>self.assertEqual('', '')
-autocmd FileType html :inoreabbrev <buffer> --- &mdash;
-autocmd FileType python :inoreabbrev <buffer> iif if:<left>
-autocmd FileType python :inoreabbrev <buffer> wwh while:<left>
-autocmd FileType python :inoreabbrev <buffer> ffo for i in:<left>
+
+augroup filetype_html
+    autocmd!
+    autocmd BufRead,BufNewFile *.html setlocal nowrap
+    autocmd FileType html :inoreabbrev <buffer> --- &mdash;
+augroup END
+augroup filetype_python
+    autocmd!
+    autocmd FileType python :inoreabbrev <buffer> iif if:<left>
+    autocmd FileType python :inoreabbrev <buffer> wwh while:<left>
+    autocmd FileType python :inoreabbrev <buffer> ffo for i in:<left>
 autocmd FileType python inoreabbrev <buffer> retu return
-autocmd FileType python inoreabbrev <buffer> return NOPENOPENOPE
+    autocmd FileType python iabbrev <buffer> return NOPENOPENOPE
+augroup END
+
 onoremap p i(
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap il( :<c-u>normal! F)vi(<cr>
