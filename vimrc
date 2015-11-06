@@ -75,7 +75,7 @@ NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen',
 NeoBundle 'joedicastro/unite-cmdmatch'
 
 " Unite plugin that provides spell suggestions
-NeoBundle 'kopischke/unite-spell-suggest'
+NeoBundle 'jbking/unite-spell-suggest'
 
 " Dark themes
 " Improved terminal version of molokai, almost identical to the GUI one
@@ -411,9 +411,9 @@ autocmd! BufWritePost vimrc source %
 
 " Spelling
 " turn on the spell checking and set the Spanish language
-nmap <Leader>ss :setlocal spell spelllang=es<CR>
+nmap <Leader>ss :setlocal spell! spelllang=es<CR>
 " turn on the spell checking and set the English language
-nmap <Leader>se :setlocal spell spelllang=en<CR>
+nmap <Leader>se :setlocal spell! spelllang=en<CR>
 " turn off the spell checking
 nmap <Leader>so :setlocal nospell <CR>
 " jump to the next bad spell word
