@@ -315,6 +315,9 @@ set autoindent                 " set on the auto-indent
 set textwidth=80
 set colorcolumn=81
 
+" Autocompletion
+set complete=.,w,b,u,t,i,kspell
+
 function! ToggleWrap()
     let s:nowrap_cc_bg = [22, '#005f00']
     redir => s:curr_cc_hi
@@ -343,6 +346,10 @@ nmap <silent><Leader>ew :call ToggleWrap()<CR>
 
 " Colorscheme
 syntax enable                  " enable the syntax highlight
+augroup color_all
+    autocmd!
+    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+augroup END
 set background=dark            " set a dark background
 set t_Co=256                   " 256 colors for the terminal
 if has('gui_running')
@@ -388,6 +395,7 @@ function! ToggleRelativeAbsoluteNumber()
       set norelativenumber
   endif
 endfunction
+set relativenumber
 
 " Show hidden chars
 nmap <Leader>eh :set list!<CR>
@@ -908,17 +916,20 @@ let g:winresizer_keycode_finish = 27
 map <Leader>z :ZoomWinTabToggle<CR>
 
 " FILETYPES
-au BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
 augroup json_autocmd
     autocmd!
     autocmd FileType json set foldmethod=syntax
     autocmd FileType json set foldlevel=99
 augroup END
+augroup markdown_autocmd
+    autocmd!
+    autocmd FileType markdown NeoBundleSource vim-markdown
+    autocmd FileType markdown NeoBundleSource vim-markdown-extra-preview
+augroup END
+au BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
 au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
 au FileType python setlocal foldlevel=1000
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
-autocmd FileType markdown NeoBundleSource vim-markdown
-autocmd FileType markdown NeoBundleSource vim-markdown-extra-preview
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType sql DBCheckModeline
 
@@ -942,7 +953,7 @@ nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
 vnoremap <leader>' <esc>`<i'<esc>`>a'<esc>
-inoremap jk <esc>
+" inoremap jk <esc>
 nnoremap Y y$
 
 " inoremap <esc> <nop>
@@ -976,8 +987,13 @@ augroup filetype_python
     autocmd FileType python :inoreabbrev <buffer> iif if:<left>
     autocmd FileType python :inoreabbrev <buffer> wwh while:<left>
     autocmd FileType python :inoreabbrev <buffer> ffo for i in:<left>
-autocmd FileType python inoreabbrev <buffer> retu return
+    autocmd InsertLeave * match
+    autocmd FileType python inoreabbrev <buffer> retu return
     autocmd FileType python iabbrev <buffer> return NOPENOPENOPE
+augroup END
+augroup filetype_all
+    autocmd!
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 augroup END
 
 onoremap p i(
@@ -989,6 +1005,8 @@ onoremap in{ :<c-u>normal! f{vi{<cr>
 onoremap il{ :<c-u>normal! F}vi{<cr>
 onoremap an{ :<c-u>normal! f{va{<cr>
 onoremap al{ :<c-u>normal! F}va{<cr>
+onoremap ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
+onoremap ah :<c-u>execute "normal! ?^==\\+\r:nohlsearch\rg_vk0"<cr>
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
