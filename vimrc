@@ -987,9 +987,13 @@ augroup filetype_python
     autocmd FileType python :inoreabbrev <buffer> iif if:<left>
     autocmd FileType python :inoreabbrev <buffer> wwh while:<left>
     autocmd FileType python :inoreabbrev <buffer> ffo for i in:<left>
-    autocmd InsertLeave * match
-    autocmd FileType python inoreabbrev <buffer> retu return
-    autocmd FileType python iabbrev <buffer> return NOPENOPENOPE
+    autocmd FileType python :inoreabbrev <buffer> rrr return
+    autocmd FileType python :inoreabbrev <buffer> return NOPENOPENOPE
+augroup END
+augroup filetype_markdown
+    autocmd!
+    autocmd FileType markdown,rst :onoremap <buffer> ih :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rkvg_"<cr>
+    autocmd FileType markdown,rst :onoremap <buffer> ah :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
 augroup END
 augroup filetype_all
     autocmd!
@@ -1005,8 +1009,10 @@ onoremap in{ :<c-u>normal! f{vi{<cr>
 onoremap il{ :<c-u>normal! F}vi{<cr>
 onoremap an{ :<c-u>normal! f{va{<cr>
 onoremap al{ :<c-u>normal! F}va{<cr>
-onoremap ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
-onoremap ah :<c-u>execute "normal! ?^==\\+\r:nohlsearch\rg_vk0"<cr>
+onoremap in@ :<c-u>execute "normal! /\\S\\+@\\S\\+\r:nohlsearch\rvt@"<cr>
+onoremap an@ :<c-u>execute "normal! /\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
+onoremap ip@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt@"<cr>
+onoremap ap@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
