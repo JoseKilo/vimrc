@@ -928,7 +928,7 @@ augroup markdown_autocmd
 augroup END
 au BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
 au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
-au FileType python setlocal foldlevel=1000
+au FileType python setlocal foldlevel=99
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType sql DBCheckModeline
