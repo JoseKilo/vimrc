@@ -1014,6 +1014,8 @@ onoremap an@ :<c-u>execute "normal! /\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
 onoremap ip@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt@"<cr>
 onoremap ap@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
 
+nnoremap <leader>rr pkddyy
+
 " Add the virtualenv's site-packages to vim path
 py << EOF
 import os
