@@ -395,6 +395,8 @@ function! ToggleRelativeAbsoluteNumber()
       set norelativenumber
   endif
 endfunction
+
+set number
 set relativenumber
 
 " Show hidden chars
