@@ -1017,6 +1017,14 @@ onoremap ip@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt@"<cr>
 onoremap ap@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
 
 nnoremap <leader>rr pkddyy
+nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cword>")) . " ."<cr>:copen<cr>
+
+nnoremap <leader>a :set operatorfunc=GrepOperator<cr>g@
+vnoremap <leader>a :<c-u>call GrepOperator(visualmode())<cr>
+
+function! GrepOperator(type)
+    echom a:type
+endfunction
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
