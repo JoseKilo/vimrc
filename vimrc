@@ -474,7 +474,7 @@ nnoremap <silent> <Leader>q :ToggleQuickfix<CR>
 
 " Text statistics
 " get the total of lines, words, chars and bytes (and for the current position)
-map <Leader>es g<C-G>
+" map <Leader>es g<C-G>
 
 " get the word frequency in the text
 function! WordFrequency() range
@@ -999,7 +999,7 @@ augroup filetype_markdown
 augroup END
 augroup filetype_all
     autocmd!
-    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd InsertLeave * match ExtraWhitespace /\v\s+$/
 augroup END
 
 onoremap p i(
@@ -1017,6 +1017,8 @@ onoremap ip@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt@"<cr>
 onoremap ap@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
 
 nnoremap <leader>rr pkddyy
+nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
+nnoremap <leader>/ :nohlsearch<cr>
 nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cword>")) . " ."<cr>:copen<cr>
 
 nnoremap <leader>a :set operatorfunc=GrepOperator<cr>g@
