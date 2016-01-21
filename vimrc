@@ -61,7 +61,7 @@ NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources':
             \ ['quickfix', 'location_list']}}
 NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
 NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
-NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources': 
+NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':
             \['file_mru', 'directory_mru']}}
 
 " File explorer
@@ -1019,10 +1019,23 @@ onoremap ap@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
 nnoremap <leader>rr pkddyy
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>/ :nohlsearch<cr>
-nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cword>")) . " ."<cr>:copen<cr>
+nnoremap <leader>ag :silent execute "grep! -R " . shellescape(expand("<cword>")) . " rbx tests"<cr>:copen 5<cr>:redraw!<cr>
+nnoremap <leader>an :cnext<cr>
+nnoremap <leader>ap :cprevious<cr>
+nnoremap <leader>ao :copen 5<cr>
+nnoremap <leader>ac :cclose<cr>
+nnoremap <leader>tt :silent execute "!python manage.py test --settings=rbx.settings.test %"<cr>:redraw!<cr>
 
-nnoremap <leader>a :set operatorfunc=<SID>GrepOperator<cr>g@
-vnoremap <leader>a :<c-u>call <SID>GrepOperator(visualmode())<cr>
+nnoremap <leader>aaa :set operatorfunc=<SID>GrepOperator<cr>g@
+vnoremap <leader>aaa :<c-u>call <SID>GrepOperator(visualmode())<cr>
+nnoremap <leader>m :set operatorfunc=<SID>SearchOperator<cr>g@
+vnoremap <leader>m :<c-u>call <SID>Search()<cr>
+
+function! s:Search()
+    let saved_unnamed_register = @@
+    execute "normal! y/<c-r>\"<cr>"
+    let @@ = saved_unnamed_register
+endfunction
 
 function! s:GrepOperator(type)
 
