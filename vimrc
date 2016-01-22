@@ -1025,6 +1025,7 @@ nnoremap <leader>ap :cprevious<cr>
 nnoremap <leader>ao :copen 5<cr>
 nnoremap <leader>ac :cclose<cr>
 nnoremap <leader>tt :silent execute "!python manage.py test --settings=rbx.settings.test %"<cr>:redraw!<cr>
+nnoremap <leader>nn :set nonumber norelativenumber<cr>
 
 nnoremap <leader>aaa :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <leader>aaa :<c-u>call <SID>GrepOperator(visualmode())<cr>
@@ -1049,8 +1050,9 @@ function! s:GrepOperator(type)
         return
     endif
 
-    silent execute "grep! -R " . shellescape(@@) . " ."
+    silent execute "grep! -R " . shellescape(@@) . " . --exclude-dir=$VIRTUAL_ENV --exclude-dir=.[a-zA-Z0-9]* --exclude=*.pyc"
     copen
+    redraw!
 
     let @@ = saved_unnamed_register
 
