@@ -1024,11 +1024,34 @@ nnoremap <leader>an :cnext<cr>
 nnoremap <leader>ap :cprevious<cr>
 nnoremap <leader>ao :copen 5<cr>
 nnoremap <leader>ac :cclose<cr>
-nnoremap <leader>tt :silent execute "!python manage.py test --settings=rbx.settings.test %"<cr>:redraw!<cr>
+nnoremap <leader>tt :silent execute "!python manage.py test -s -x --settings=saperia.settings.test %"<cr>:redraw!<cr>
 nnoremap <leader>nn :set nonumber norelativenumber<cr>
 
-nnoremap <leader>aaa :set operatorfunc=<SID>GrepOperator<cr>g@
-vnoremap <leader>aaa :<c-u>call <SID>GrepOperator(visualmode())<cr>
+nnoremap <leader>q :call <SID>QuickfixToggle()<cr>
+let g:quickfix_is_open = 0
+
+function! s:QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+
+nnoremap <leader>ff :call <SID>FoldColumnToggle()<cr>
+
+function! s:FoldColumnToggle()
+    if &foldcolumn
+        setlocal foldcolumn=0
+    else
+        setlocal foldcolumn=4
+    endif
+endfunction
+
 nnoremap <leader>m :set operatorfunc=<SID>SearchOperator<cr>g@
 vnoremap <leader>m :<c-u>call <SID>Search()<cr>
 
@@ -1037,6 +1060,9 @@ function! s:Search()
     execute "normal! y/<c-r>\"<cr>"
     let @@ = saved_unnamed_register
 endfunction
+
+nnoremap <leader>aaa :set operatorfunc=<SID>GrepOperator<cr>g@
+vnoremap <leader>aaa :<c-u>call <SID>GrepOperator(visualmode())<cr>
 
 function! s:GrepOperator(type)
 
@@ -1056,6 +1082,67 @@ function! s:GrepOperator(type)
 
     let @@ = saved_unnamed_register
 
+endfunction
+
+" Functional
+
+function! Sorted(l)
+    let new_list = deepcopy(a:l)
+    call sort(new_list)
+    return new_list
+endfunction
+
+function! Reversed(l)
+    let new_list = deepcopy(a:l)
+    call reverse(new_list)
+    return new_list
+endfunction
+
+function! Append(l, val)
+    let new_list = deepcopy(a:l)
+    call add(new_list, a:val)
+    return new_list
+endfunction
+
+function! Assoc(l, i, val)
+    let new_list = deepcopy(a:l)
+    call new_list[a:i] = a:val
+    return new_list
+endfunction
+
+function! Pop(l, i)
+    let new_list = deepcopy(a:l)
+    call remove(new_list, a:i)
+    return new_list
+endfunction
+
+function! Mapped(fn, l)
+    let new_list = deepcopy(a:l)
+    call map(new_list, string(a:fn) . '(v:val)')
+    return new_list
+endfunction
+
+function! Filtered(fn, l)
+    let new_list = deepcopy(a:l)
+    call filter(new_list, string(a:fn) . '(v:val)')
+    return new_list
+endfunction
+
+function! Removed(fn, l)
+    let new_list = deepcopy(a:l)
+    call filter(new_list, '!' . string(a:fn) . '(v:val)')
+    return new_list
+endfunction
+
+function! Reduced(fn, l)
+    let new_list = deepcopy(a:l)
+    if len(a:l) ==# 0
+        return []
+    elseif len(a:l) ==# 1
+        return new_list[0]
+    else
+        return a:fn(new_list[0], Reduced(a:fn, new_list[1:]))
+    endif
 endfunction
 
 " Add the virtualenv's site-packages to vim path
