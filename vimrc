@@ -670,6 +670,7 @@ nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").' <Bar>
             \Unite -no-quit quickfix'<CR>
 
 nnoremap <Leader>ggc :silent! Ggrep -i<Space>
+nnoremap <leader>ga :silent! Git add %<cr>:redraw!<cr>
 
 " for the diffmode
 noremap <Leader>du :diffupdate<CR>
@@ -793,6 +794,8 @@ let g:pymode_rope_regenerate_on_write = 0
 let g:pymode_rope_autoimport = 0  " Seriously, DON'T
 " let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime'])
 " let g:pymode_rope_autoimport_import_after_complete = 1
+let g:pymode_doc = 0
+set completeopt=menu
 
 " Syntastic
 nmap <silent><Leader>N :SyntasticCheck<CR>
@@ -1019,12 +1022,12 @@ onoremap ap@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
 nnoremap <leader>rr pkddyy
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>/ :nohlsearch<cr>
-nnoremap <leader>ag :silent execute "grep! -R " . shellescape(expand("<cword>")) . " rbx tests"<cr>:copen 5<cr>:redraw!<cr>
+nnoremap <leader>ag :silent execute "grep! -R " . shellescape(expand("<cword>")) . " $SRC"<cr>:copen 5<cr>:redraw!<cr>
 nnoremap <leader>an :cnext<cr>
 nnoremap <leader>ap :cprevious<cr>
 nnoremap <leader>ao :copen 5<cr>
 nnoremap <leader>ac :cclose<cr>
-nnoremap <leader>tt :silent execute "!python manage.py test -s -x --settings=saperia.settings.test %"<cr>:redraw!<cr>
+nnoremap <leader>tt :silent execute "!python manage.py test -s -x --settings=$DJANGO_SETTINGS %"<cr>:redraw!<cr>
 nnoremap <leader>nn :set nonumber norelativenumber<cr>
 
 nnoremap <leader>q :call <SID>QuickfixToggle()<cr>
@@ -1144,6 +1147,10 @@ function! Reduced(fn, l)
         return a:fn(new_list[0], Reduced(a:fn, new_list[1:]))
     endif
 endfunction
+
+if filereadable(".vimrc")
+    source .vimrc
+endif
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
