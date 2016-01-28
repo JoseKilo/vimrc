@@ -112,8 +112,8 @@ NeoBundleLazy 'joedicastro/vim-markdown'
 " Makes a Markdown Extra preview into the browser
 NeoBundleLazy 'joedicastro/vim-markdown-extra-preview'
 " reStructuredText in vim. Your personal Wiki in RST
-NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}} 
-NeoBundleLazy 'Rykka/clickable.vim', {'autoload': {'filetypes': ['rst']}} 
+NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}
+NeoBundleLazy 'Rykka/clickable.vim', {'autoload': {'filetypes': ['rst']}}
 
 " A diff tool for directories
 NeoBundleLazy 'joedicastro/DirDiff.vim', { 'autoload': { 'commands' : 'DirDiff'}}
@@ -827,16 +827,13 @@ nnoremap <silent>[menu]8 :UniteWithCursorWord -silent -no-split -auto-preview
             \ line<CR>
 " yankring
 nnoremap <silent><Leader>i :Unite -silent history/yank<CR>
-" grep
-nnoremap <silent><Leader>aa :Unite -silent grep<CR>
-nnoremap <silent><Leader>a :UniteWithCursorWord -silent grep<CR>
 " help
 nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>
 " tasks
 nnoremap <silent><Leader>; :Unite -silent -toggle
             \ grep:%::FIXME\|TODO\|NOTE\|XXX\|COMBAK\|@todo<CR>
 " outlines (also ctags)
-nnoremap <silent><Leader>t :Unite -silent -vertical -winwidth=40
+nnoremap <silent><Leader>tl :Unite -silent -vertical -winwidth=40
             \ -direction=topleft -toggle outline<CR>
 " junk files
 nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
@@ -868,7 +865,6 @@ let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
 
 if executable('ag')
     let g:unite_source_grep_command='ag'
-    " -a  ???
     let g:unite_source_grep_default_opts='--nocolor --nogroup -S -i --line-numbers --ignore-dir migrations --ignore-dir env --ignore-dir .venv --ignore-dir static --ignore-dir media --ignore-dir ".*" --ignore-dir fixtures --ignore-dir mekami-web'
     let g:unite_source_grep_recursive_opt='-r'
     let g:unite_source_grep_search_word_highlight = 1
@@ -930,6 +926,11 @@ augroup markdown_autocmd
     autocmd!
     autocmd FileType markdown NeoBundleSource vim-markdown
     autocmd FileType markdown NeoBundleSource vim-markdown-extra-preview
+    autocmd FileType markdown set foldlevel=99
+augroup END
+augroup rst_autocmd
+    autocmd!
+    autocmd FileType rst set foldlevel=99
 augroup END
 au BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
 au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
@@ -977,7 +978,7 @@ let g:pymode_rope_autoimport = 0  " Danger !!!
 " let g:pymode_debug = 1
 let pymode_rope_regenerate_on_write = 0
 
-inoreabbrev @@ jose.eduardo.gd@gmail.com
+inoreabbrev @@@ jose.eduardo.gd@gmail.com
 inoreabbrev ccop Copyright, all rights reserved.
 inoreabbrev ssig -- <cr>Jose Garcia (Jose Kilo)<cr>jose.eduardo.gd@gmail.com
 inoreabbrev ttest def test_(self):<cr>self.assertEqual('', '')
@@ -1022,13 +1023,22 @@ onoremap ap@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
 nnoremap <leader>rr pkddyy
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>/ :nohlsearch<cr>
-nnoremap <leader>ag :silent execute "grep! -R " . shellescape(expand("<cword>")) . " $SRC"<cr>:copen 5<cr>:redraw!<cr>
-nnoremap <leader>an :cnext<cr>
-nnoremap <leader>ap :cprevious<cr>
-nnoremap <leader>ao :copen 5<cr>
-nnoremap <leader>ac :cclose<cr>
-nnoremap <leader>tt :silent execute "!python manage.py test -s -x --settings=$DJANGO_SETTINGS %"<cr>:redraw!<cr>
+nnoremap <leader>tt :execute "!python manage.py test -s -x --settings=$DJANGO_SETTINGS %"<cr>:redraw!<cr>
+nnoremap <leader>ttt :execute "!python manage.py test -s -x --settings=$DJANGO_SETTINGS"<cr>:redraw!<cr>
 nnoremap <leader>nn :set nonumber norelativenumber<cr>
+
+nnoremap <leader>t :call <SID>testCurrentTest()<cr>
+
+function! s:testCurrentTest()
+    let saved_unnamed_register = @@
+    execute "normal! ?class\rwyiw\<c-o>"
+    let class_name = @@
+    execute "normal! ?def test_\rwyiw\<c-o>"
+    let test_name = @@
+    execute "!python manage.py test -s -x --settings=$DJANGO_SETTINGS %:" . class_name . "." . test_name
+    redraw!
+    let @@ = saved_unnamed_register
+endfunction
 
 nnoremap <leader>q :call <SID>QuickfixToggle()<cr>
 let g:quickfix_is_open = 0
@@ -1064,6 +1074,13 @@ function! s:Search()
     let @@ = saved_unnamed_register
 endfunction
 
+nnoremap <silent><Leader>aa :Unite -silent grep<CR>
+nnoremap <silent><Leader>a :UniteWithCursorWord -silent grep<CR>
+nnoremap <leader>ag :silent execute "grep! -R " . shellescape(expand("<cword>")) . " $SRC"<cr>:copen 5<cr>:redraw!<cr>
+nnoremap <leader>an :cnext<cr>
+nnoremap <leader>ap :cprevious<cr>
+nnoremap <leader>ao :copen 5<cr>
+nnoremap <leader>ac :cclose<cr>
 nnoremap <leader>aaa :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <leader>aaa :<c-u>call <SID>GrepOperator(visualmode())<cr>
 
