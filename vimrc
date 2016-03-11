@@ -981,6 +981,11 @@ augroup filetype_html
     autocmd!
     autocmd BufRead,BufNewFile *.html setlocal nowrap
     autocmd FileType html :inoreabbrev <buffer> --- &mdash;
+    set expandtab                  " spaces instead of tabs
+    set tabstop=2                  " a tab = two spaces
+    set shiftwidth=2               " number of spaces for auto-indent
+    set softtabstop=2              " a soft-tab of two spaces
+    set autoindent                 " set on the auto-indent
 augroup END
 augroup filetype_python
     autocmd!
