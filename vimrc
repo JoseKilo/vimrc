@@ -1159,7 +1159,7 @@ function! Reduced(fn, l)
     endif
 endfunction
 
-if filereadable(".vimrc")
+if filereadable(".vimrc") && $PWD != $HOME
     source .vimrc
 endif
 
