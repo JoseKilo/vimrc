@@ -798,12 +798,26 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_check_on_open = 1
 " let g:syntastic_python_pylint_exe = "pylint2"
 let g:syntastic_mode_map = { 'mode': 'active',
-            \ 'active_filetypes': ['python'],
+            \ 'active_filetypes': ['python', 'css', 'json', 'javascript'],
             \ 'passive_filetypes': ['po'] }
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol  = '⚡'
 let g:syntastic_style_warning_symbol  = '⚡'
+
+" let g:syntastic_javascript_jshint_exec = 'jshint'
+" let g:syntastic_javascript_jscs_exec = 'jscs'
+" let g:syntastic_css_csslint_exec = 'csslint'
+
+" check json files with jshint
+let g:syntastic_filetype_map = { "json": "javascript", }
+let g:syntastic_javascript_checkers = []
+if filereadable(".jscsrc")
+    call add(g:syntastic_javascript_checkers, "jscs")
+endif
+if filereadable(".jshintrc")
+    call add(g:syntastic_javascript_checkers, "jshint")
+endif
 
 " Unite
 " files
@@ -995,6 +1009,11 @@ augroup filetype_js
     set shiftwidth=4               " number of spaces for auto-indent
     set softtabstop=4              " a soft-tab of four spaces
     set autoindent                 " set on the auto-indent
+    set foldmethod=syntax
+    set foldlevelstart=99
+    let javaScript_fold=1
+    set syntax=javascript
+    syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 augroup END
 augroup filetype_python
     autocmd!
@@ -1179,6 +1198,8 @@ endif
 
 let g:netrw_liststyle=3
 nnoremap <Leader>ee :vsplit<CR>:Explore<CR>
+
+noremap <Leader>y :'<,'>w !xclip
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
