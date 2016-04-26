@@ -74,3 +74,17 @@ define([
     return $2;
 });
 endsnippet
+
+snippet describe "define webpack test case" !b
+define([
+], function () {
+    describe('$1', function () {
+
+        beforeEach(function () {
+        });
+
+        it('$2', function () {
+        });
+    });
+});
+endsnippet

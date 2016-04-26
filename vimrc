@@ -216,8 +216,6 @@ NeoBundleLazy 'vimez/vim-tmux', { 'autoload' : { 'filetypes' : 'conf'}}
 
 NeoBundle 'mattn/webapi-vim'
 
-NeoBundleLazy 'joedicastro/dbext.vim', { 'autoload' : { 'filetypes' : 'sql'}}
-
 call neobundle#end()
 
 " First-time plugins installation
@@ -440,17 +438,6 @@ nmap <silent> <Leader>w :update<CR>
 " Delete trailing whitespaces
 nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
-" Use Ranger as a file explorer
-fun! RangerChooser()
-    exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
-    if filereadable('/tmp/chosenfile')
-        exec 'edit ' . system('cat /tmp/chosenfile')
-        call system('rm /tmp/chosenfile')
-    endif
-    redraw!
-endfun
-map <Leader>x :call RangerChooser()<CR>
-
 " Toggle the Quickfix window
 function! s:QuickfixToggle()
     for i in range(1, winnr('$'))
@@ -554,7 +541,7 @@ set noshowmode
 let g:airline_theme='powerlineish'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#whitespace#enabled =                                                   0
 let g:airline#extensions#hunks#non_zero_only = 1
 " let g:airline#extensions#tabline#enabled = 2
 " let g:airline#extensions#tabline#fnamemod = ':t'
@@ -577,56 +564,6 @@ augroup plugin_commentary
     au FileType puppet setlocal commentstring=#\ %s
     au FileType xquery setlocal commentstring=(:\ %s\ :)
 augroup END
-
-" DBext
-let g:dbext_default_type = 'SQLITE'
-let g:dbext_default_user = ""
-let g:dbext_default_passwd = ""
-let g:dbext_default_display_cmd_line = 0
-let g:dbext_default_prompt_for_parameters=0
-let g:dbext_default_history_file = $HOME.'./vim/tmp/dbext_sql_history.txt'
-let g:dbext_default_usermaps = 0
-let g:dbext_map_or_cmd = 'cmd'
-vnoremap <Leader>Se :DBExecVisualSQL<CR>
-vnoremap <leader>St :DBSelectFromTable<CR>
-vnoremap <Leader>Sdt :DBDescribeTable<CR>
-vnoremap <Leader>Sdp :DBDescribeProcedure<CR>
-vnoremap <Leader>Slt :DBListTable<CR>
-vnoremap <Leader>Slp :DBListProcedure<CR>
-vnoremap <Leader>Slv :DBListView<CR>
-vnoremap <Leader>Slc :DBListColumn<CR>
-nnoremap <Leader>Se :DBExecSQLUnderCursor<CR>
-nnoremap <Leader>SE :DBExecSQLTopX<CR>
-nnoremap <Leader>Sea :1,$DBExecRangeSQL<CR>
-nnoremap <Leader>Sel :.,.DBExecRangeSQL<CR>
-nnoremap <Leader>Sep :'<,'>DBExecRangeSQL<CR>
-nnoremap <Leader>St :DBSelectFromTable<CR>
-nnoremap <Leader>ST :DBSelectFromTableTopX<CR>
-nnoremap <Leader>Stw :DBSelectFromTableWithWhere<CR>
-nnoremap <Leader>Sta :DBSelectFromTableAskName<CR>
-nnoremap <Leader>Sd :DBDescribeTable<CR>
-nnoremap <Leader>Sda :DBDescribeTableAskName<CR>
-nnoremap <Leader>Sdp :DBDescribeProcedure<CR>
-nnoremap <Leader>Sdpa :DBDescribeProcedureAskName<CR>
-nnoremap <Leader>Slt :DBListTable<CR>
-nnoremap <Leader>Slp :DBListProcedure<CR>
-nnoremap <Leader>Slv :DBListView<CR>
-nnoremap <Leader>Slc :DBListColumn<CR>
-nnoremap <Leader>Svr :DBListVar<CR>
-nmap <silent> <Leader>Sal :.,.DBVarRangeAssign<CR>
-nmap <silent> <Leader>Saa :1,$DBVarRangeAssign<CR>
-nmap <silent> <Leader>Sap :'<,'>DBVarRangeAssign<CR>
-xmap <silent> <Leader>Sa :DBVarRangeAssign<CR>
-nnoremap <Leader>Sh :DBHistory<CR>
-nnoremap <Leader>So :DBOrientation<CR>
-nnoremap <Leader>Sbp <Plug>DBPromptForBufferParameters<CR>
-
-" SQLite
-let g:dbext_default_SQLITE_bin = 'sqlite3'
-" let g:dbext_default_SQLITE_cmd_header        = ".mode column\n.headers ON\n"
-" let g:dbext_default_SQLITE_cmd_terminator    = ';'
-" let g:dbext_default_SQLITE_cmd_terminator    = ';'
-" let g:dbext_default_SQLITE_extra             = ''
 
 " delimitmate
 let delimitMate_expand_space = 1
@@ -988,7 +925,7 @@ let pymode_rope_regenerate_on_write = 0
 
 inoreabbrev @@@ jose.eduardo.gd@gmail.com
 inoreabbrev ccop Copyright, all rights reserved.
-inoreabbrev ssig -- <cr>Jose Garcia (Jose Kilo)<cr>jose.eduardo.gd@gmail.com
+inoreabbrev ssig --<cr>Jose Garcia (Jose Kilo)<cr>jose.eduardo.gd@gmail.com
 inoreabbrev ttest def test_(self):<cr>self.assertEqual('', '')
 
 augroup filetype_html
@@ -1069,21 +1006,6 @@ function! s:testCurrentTest()
     let @@ = saved_unnamed_register
 endfunction
 
-nnoremap <leader>q :call <SID>QuickfixToggle()<cr>
-let g:quickfix_is_open = 0
-
-function! s:QuickfixToggle()
-    if g:quickfix_is_open
-        cclose
-        let g:quickfix_is_open = 0
-        execute g:quickfix_return_to_window . "wincmd w"
-    else
-        let g:quickfix_return_to_window = winnr()
-        copen
-        let g:quickfix_is_open = 1
-    endif
-endfunction
-
 nnoremap <leader>ff :call <SID>FoldColumnToggle()<cr>
 
 function! s:FoldColumnToggle()
@@ -1111,7 +1033,7 @@ nnoremap <leader>ap :cprevious<cr>
 nnoremap <leader>ao :copen 5<cr>
 nnoremap <leader>ac :cclose<cr>
 nnoremap <leader>aaa :set operatorfunc=<SID>GrepOperator<cr>g@
-vnoremap <leader>aaa :<c-u>call <SID>GrepOperator(visualmode())<cr>
+vnoremap <leader>xyz :<c-u>call <SID>GrepOperator(visualmode())<cr>
 
 function! s:GrepOperator(type)
 
@@ -1200,8 +1122,8 @@ endif
 
 let g:netrw_liststyle=3
 nnoremap <Leader>ee :vsplit<CR>:Explore<CR>
-
-noremap <Leader>y :'<,'>w !xclip
+noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
+noremap <Leader>r :checkt<CR>
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
