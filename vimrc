@@ -1013,6 +1013,8 @@ augroup filetype_js
     set foldlevelstart=99
     let javaScript_fold=1
     set syntax=javascript
+    set textwidth=120
+    set colorcolumn=121
     syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 augroup END
 augroup filetype_python

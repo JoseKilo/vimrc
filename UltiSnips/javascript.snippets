@@ -17,3 +17,60 @@ if ($1) {
     ${2}
 }
 endsnippet
+
+snippet cc "console log" !b
+console.log('C$1');
+endsnippet
+
+snippet dd "debugger" !b
+debugger;
+endsnippet
+
+snippet define "define webpack module" !b
+define([
+], function () {
+
+    /**
+     * A module to ...
+     * @exports $1
+     */
+
+    function $2 () {}
+
+    $2.prototype = {
+        /**
+         * ...
+         *
+         * @memberOf module:...
+         *
+         * @param {string} vble... description...
+         *
+         * @returns {object} description...
+         */
+        $3: function (vble) {
+        }
+    };
+
+    return $2;
+});
+endsnippet
+
+snippet definefunction "define webpack module function" !b
+define([
+], function () {
+    /**
+     * @exports $1
+     *
+     * @description
+     * A module which ...
+     *
+	 * @param {string} vble... description...
+	 *
+	 * @returns {object} description...
+     */
+    function $2 (vble) {
+    }
+
+    return $2;
+});
+endsnippet
