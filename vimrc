@@ -1016,13 +1016,12 @@ function! s:FoldColumnToggle()
     endif
 endfunction
 
-nnoremap <leader>m :set operatorfunc=<SID>SearchOperator<cr>g@
 vnoremap <leader>m :<c-u>call <SID>Search()<cr>
 
 function! s:Search()
-    let saved_unnamed_register = @@
-    execute "normal! y/<c-r>\"<cr>"
-    let @@ = saved_unnamed_register
+    let saved_register = @@
+    execute "normal! `<v`>y/\<c-r>\"\r"
+    let @@ = saved_register
 endfunction
 
 nnoremap <silent><Leader>aa :Unite -silent grep<CR>
