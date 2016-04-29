@@ -402,8 +402,8 @@ vnoremap \ za
 
 " Cut/Paste
 " to/from the clipboard
-map <Leader>y "*y
-map <Leader>p "*p
+noremap <Leader>y "*y
+noremap <Leader>p "*p
 
 " toggle paste mode
 map <Leader>P :set invpaste<CR>
@@ -960,7 +960,6 @@ augroup filetype_python
     autocmd FileType python :inoreabbrev <buffer> wwh while:<left>
     autocmd FileType python :inoreabbrev <buffer> ffo for i in:<left>
     autocmd FileType python :inoreabbrev <buffer> rrr return
-    autocmd FileType python :inoreabbrev <buffer> return NOPENOPENOPE
 augroup END
 augroup filetype_markdown
     autocmd!
