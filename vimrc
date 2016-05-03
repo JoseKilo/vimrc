@@ -896,8 +896,8 @@ noremap _ ddkkp
 noremap -c ddO
 vnoremap \ U
 inoremap <c-d> <esc>dd
-nnoremap <c-u> viwU
-inoremap <c-u> <esc>viwUwi
+" nnoremap <c-u> viwU
+" inoremap <c-u> <esc>viwUwi
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
