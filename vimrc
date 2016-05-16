@@ -882,7 +882,6 @@ au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
 au FileType python setlocal foldlevel=99
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd FileType sql DBCheckModeline
 
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>rr :lnext<CR>
@@ -960,6 +959,7 @@ augroup filetype_python
     autocmd FileType python :inoreabbrev <buffer> wwh while:<left>
     autocmd FileType python :inoreabbrev <buffer> ffo for i in:<left>
     autocmd FileType python :inoreabbrev <buffer> rrr return
+    set colorcolumn=81
 augroup END
 augroup filetype_markdown
     autocmd!
