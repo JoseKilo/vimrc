@@ -884,8 +884,8 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 nnoremap <Leader>n :NERDTreeToggle<CR>
-nnoremap <Leader>rr :lnext<CR>
-nnoremap <Leader>ss :lprev<CR>
+" nnoremap <Leader>rr :lnext<CR>
+" nnoremap <Leader>ss :lprev<CR>
 nnoremap <Leader>e :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
 vnoremap <Leader>e :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
 nnoremap <Leader>w :w<CR>
@@ -959,6 +959,11 @@ augroup filetype_python
     autocmd FileType python :inoreabbrev <buffer> wwh while:<left>
     autocmd FileType python :inoreabbrev <buffer> ffo for i in:<left>
     autocmd FileType python :inoreabbrev <buffer> rrr return
+    set colorcolumn=81
+augroup END
+augroup filetype_txt
+    autocmd!
+    set textwidth=80
     set colorcolumn=81
 augroup END
 augroup filetype_markdown
@@ -1122,6 +1127,8 @@ let g:netrw_liststyle=3
 nnoremap <Leader>ee :vsplit<CR>:Explore<CR>
 noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
 noremap <Leader>r :checkt<CR>
+
+noremap <Leader>wc :echo system('wc -w ' . shellescape(expand('%')))<CR>
 
 if &term =~ '^screen'
     " tmux will send xterm-style keys when its xterm-keys option is on
