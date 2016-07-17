@@ -201,8 +201,12 @@ NeoBundle 'kchmck/vim-coffee-script',{'autoload' : {
             \ 'filetypes' : ['coffee']
             \ }}
 
+NeoBundleLazy 'leafgarland/typescript-vim', {'autoload':
+            \ {'filetypes': ['typescript']}}
+
 " A better looking status line
 NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 " Zooms a window
 NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :
             \{'commands' : 'ZoomWinTabToggle'}}
@@ -215,6 +219,9 @@ NeoBundle 'benmills/vimux'
 NeoBundleLazy 'vimez/vim-tmux', { 'autoload' : { 'filetypes' : 'conf'}}
 
 NeoBundle 'mattn/webapi-vim'
+
+" Speed up Vim by updating folds only when called-for
+NeoBundle 'Konfekt/FastFold'
 
 call neobundle#end()
 
@@ -534,8 +541,6 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
-" PLUGINS
-
 " Airline
 set noshowmode
 let g:airline_theme='powerlineish'
@@ -645,6 +650,10 @@ autocmd FileType github-dashboard call airline#add_statusline_func('GHDashboard'
 nnoremap <Leader>u :GundoToggle<CR>
 let g:gundo_preview_bottom = 1
 
+" NerdTree
+nnoremap <Leader>n :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.pyc$', '\~$']
+
 " indentLine
 map <silent> <Leader>L :IndentLinesToggle<CR>
 let g:indentLine_enabled = 0
@@ -693,6 +702,7 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 
 let g:neocomplete#sources#omni#input_patterns.python='[^. \t]\.\w*'
+" let g:neocomplete#fallback_mappings = ["\<C-x>\<C-o>", "\<C-x>\<C-n>"]
 
 " Neobundle
 let g:neobundle#log_filename = $HOME.'/.vim/tmp/neobundle.log'
@@ -736,14 +746,12 @@ let g:syntastic_check_on_open = 1
 " let g:syntastic_python_pylint_exe = "pylint2"
 let g:syntastic_mode_map = { 'mode': 'active',
             \ 'active_filetypes': ['python', 'css', 'json', 'javascript'],
-            \ 'passive_filetypes': ['po'] }
+            \ 'passive_filetypes': ['po', 'typescript'] }
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol  = '⚡'
 let g:syntastic_style_warning_symbol  = '⚡'
 
-" let g:syntastic_javascript_jshint_exec = 'jshint'
-" let g:syntastic_javascript_jscs_exec = 'jscs'
 " let g:syntastic_css_csslint_exec = 'csslint'
 
 " check json files with jshint
@@ -810,7 +818,7 @@ let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
 
 if executable('ag')
     let g:unite_source_grep_command='ag'
-    let g:unite_source_grep_default_opts='--nocolor --nogroup -S -i --line-numbers --ignore-dir migrations --ignore-dir env --ignore-dir .venv --ignore-dir static --ignore-dir media --ignore-dir ".*" --ignore-dir fixtures --ignore-dir mekami-web'
+    let g:unite_source_grep_default_opts='--nocolor --nogroup -S -i --line-numbers --ignore-dir node_modules --ignore-dir migrations --ignore-dir $VIRTUAL_ENV --ignore-dir static --ignore-dir media --ignore-dir ".*" --ignore-dir fixtures --ignore-dir mekami-web'
     let g:unite_source_grep_recursive_opt='-r'
     let g:unite_source_grep_search_word_highlight = 1
 endif
@@ -883,7 +891,6 @@ au FileType python setlocal foldlevel=99
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
-nnoremap <Leader>n :NERDTreeToggle<CR>
 " nnoremap <Leader>rr :lnext<CR>
 " nnoremap <Leader>ss :lprev<CR>
 nnoremap <Leader>e :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
@@ -893,18 +900,19 @@ nnoremap <space> za
 noremap - ddp
 noremap _ ddkkp
 noremap -c ddO
-vnoremap \ U
 inoremap <c-d> <esc>dd
 " nnoremap <c-u> viwU
 " inoremap <c-u> <esc>viwUwi
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
-vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
-vnoremap <leader>' <esc>`<i'<esc>`>a'<esc>
-" inoremap jk <esc>
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lell
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lell
+nnoremap <leader>` viw<esc>a`<esc>hbi`<esc>lell
+vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>l
+vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>l
+vnoremap <leader>` <esc>`<i`<esc>`>la`<esc>l
 nnoremap Y y$
+vnoremap <leader>s y:! "<c-r>""<home><right>
 
 " inoremap <esc> <nop>
 " nnoremap <up> <nop>
@@ -930,12 +938,17 @@ inoreabbrev ttest def test_(self):<cr>self.assertEqual('', '')
 augroup filetype_html
     autocmd!
     autocmd BufRead,BufNewFile *.html setlocal nowrap
-    autocmd FileType html :inoreabbrev <buffer> --- &mdash;
-    set expandtab                  " spaces instead of tabs
-    set tabstop=2                  " a tab = two spaces
-    set shiftwidth=2               " number of spaces for auto-indent
-    set softtabstop=2              " a soft-tab of two spaces
-    set autoindent                 " set on the auto-indent
+    autocmd FileType html,htmldjango.html  :inoreabbrev <buffer> --- &mdash;
+    autocmd FileType html,htmldjango.html set tabstop=2
+    autocmd FileType html,htmldjango.html set shiftwidth=2
+    autocmd FileType html,htmldjango.html set softtabstop=2
+augroup END
+augroup filetype_typescript
+    autocmd!
+    autocmd FileType typescript set tabstop=2
+    autocmd FileType typescript set shiftwidth=2
+    autocmd FileType typescript set softtabstop=2
+    autocmd FileType typescript let g:netrw_list_hide= '.*\.js,.*\.map$'
 augroup END
 augroup filetype_js
     autocmd!
@@ -995,7 +1008,6 @@ nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>/ :nohlsearch<cr>
 nnoremap <leader>tt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS %"<cr>:redraw!<cr>
 nnoremap <leader>ttt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS"<cr>:redraw!<cr>
-nnoremap <leader>nn :set nonumber norelativenumber<cr>
 
 nnoremap <leader>t :call <SID>testCurrentTest()<cr>
 
@@ -1035,7 +1047,7 @@ nnoremap <leader>an :cnext<cr>
 nnoremap <leader>ap :cprevious<cr>
 nnoremap <leader>ao :copen 5<cr>
 nnoremap <leader>ac :cclose<cr>
-nnoremap <leader>aaa :set operatorfunc=<SID>GrepOperator<cr>g@
+nnoremap <leader>xyz :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <leader>xyz :<c-u>call <SID>GrepOperator(visualmode())<cr>
 
 function! s:GrepOperator(type)
@@ -1057,6 +1069,11 @@ function! s:GrepOperator(type)
     let @@ = saved_unnamed_register
 
 endfunction
+
+let g:netrw_liststyle=3
+nnoremap <Leader>ee :vsplit<CR>:Explore<CR>
+noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
+noremap <Leader>r :checkt<CR>
 
 " Functional
 
@@ -1124,6 +1141,7 @@ if filereadable(".vimrc") && $PWD != $HOME
 endif
 
 let g:netrw_liststyle=3
+let g:netrw_list_hide= '.*\.pyc$'
 nnoremap <Leader>ee :vsplit<CR>:Explore<CR>
 noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
 noremap <Leader>r :checkt<CR>
