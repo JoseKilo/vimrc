@@ -44,26 +44,17 @@ NeoBundle 'Shougo/unite.vim'
 " Unite sources
 NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
 NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
-NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources':
-            \ 'colorscheme'}}
+NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources': 'colorscheme'}}
 NeoBundleLazy 'ujihisa/unite-locate', {'autoload':{'unite_sources':'locate'}}
-NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources' :
-            \ ['history/command', 'history/search']}}
-NeoBundleLazy 'osyo-manga/unite-filetype', { 'autoload' : {'unite_sources' :
-            \ 'filetype', }}
-NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources':
-            \ ['quickfix', 'location_list']}}
+NeoBundleLazy 'thinca/vim-unite-history', {'autoload' : { 'unite_sources' : ['history/command', 'history/search']}}
+NeoBundleLazy 'osyo-manga/unite-filetype', {'autoload': {'unite_sources': 'filetype'}}
+NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources': ['quickfix', 'location_list']}}
 NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
 NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
-NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':
-            \['file_mru', 'directory_mru']}}
+NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources': ['file_mru', 'directory_mru']}}
 
 " File explorer
 NeoBundle 'vim-scripts/The-NERD-tree'
-
-" Junk files
-NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen',
-            \ 'unite_sources':['junkfile','junkfile/new']}}
 
 " Unite plugin that provides command line completition
 NeoBundle 'majkinetor/unite-cmdmatch'
@@ -74,30 +65,22 @@ NeoBundle 'jbking/unite-spell-suggest'
 " Dark themes
 " Improved terminal version of molokai, almost identical to the GUI one
 NeoBundle 'joedicastro/vim-molokai256'
-
-NeoBundle 'tomasr/molokai'
-NeoBundleLazy 'sjl/badwolf', { 'autoload' :
-        \ { 'unite_sources' : 'colorscheme', }}
-NeoBundleLazy 'nielsmadan/harlequin', { 'autoload' :
-        \ { 'unite_sources' : 'colorscheme', }}
+NeoBundle 'sjl/badwolf', {'autoload' : {'unite_sources' : 'colorscheme'}}
+NeoBundle 'nielsmadan/harlequin', {'autoload' : {'unite_sources' : 'colorscheme'}}
 
 " Light themes
-NeoBundleLazy 'vim-scripts/summerfruit256.vim', { 'autoload' :
-        \ { 'unite_sources' : 'colorscheme', }}
-NeoBundleLazy 'joedicastro/vim-github256', { 'autoload' :
-        \ { 'unite_sources' : 'colorscheme', }}
+NeoBundleLazy 'vim-scripts/summerfruit256.vim', {'autoload' : { 'unite_sources' : 'colorscheme'}}
+NeoBundleLazy 'joedicastro/vim-github256', {'autoload' : { 'unite_sources' : 'colorscheme'}}
 
 " Make terminal themes from GUI themes
-NeoBundleLazy 'godlygeek/csapprox', { 'autoload' :
-        \ { 'commands' : ['CSApprox', 'CSApproxSnapshot']}}
+NeoBundleLazy 'godlygeek/csapprox', {'autoload' : { 'commands' : ['CSApprox', 'CSApproxSnapshot']}}
 
 " Admin Git
 NeoBundle 'tpope/vim-fugitive'
 " Show git repository changes in the current file
 NeoBundle 'airblade/vim-gitgutter'
 " Git viewer
-NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'],
-            \ 'autoload':{'commands':'Gitv'}}
+NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}}
 
 " Markdown Syntax
 NeoBundleLazy 'plasticboy/vim-markdown'
@@ -108,6 +91,8 @@ NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}
 NeoBundleLazy 'Rykka/clickable.vim', {'autoload': {'filetypes': ['rst']}}
 " Support for Ansible yml files
 NeoBundleLazy 'chase/vim-ansible-yaml'
+" Support for Dockerfile
+NeoBundleLazy 'ekalinin/Dockerfile.vim'
 
 " A diff tool for directories
 NeoBundleLazy 'joedicastro/DirDiff.vim', { 'autoload': { 'commands' : 'DirDiff'}}
@@ -127,7 +112,7 @@ NeoBundleLazy 'Yggdroot/indentLine', {'autoload': {'filetypes': ['python']}}
 " Show reports from coverage.py
 NeoBundleLazy 'alfredodeza/coveragepy.vim', {'autoload': {'filetypes': ['python']}}
 " Sort imports
- NeoBundle 'fisadev/vim-isort', {'autoload': {'filetypes': ['python']}}
+NeoBundle 'fisadev/vim-isort', {'autoload': {'filetypes': ['python']}}
 
 " Powerful and advanced Snippets tool
 NeoBundle 'SirVer/ultisnips'
@@ -137,8 +122,7 @@ NeoBundle 'honza/vim-snippets'
 NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
 " Remove 'po' and leave the list empty if it fails
 NeoBundleLazy 'vim-scripts/po.vim--gray', {'autoload': {'filetypes': ['po']}}
-NeoBundleLazy 'joedicastro/vim-pentadactyl', {
-            \ 'autoload': {'filetypes': ['pentadactyl']}}
+NeoBundleLazy 'joedicastro/vim-pentadactyl', {'autoload': {'filetypes': ['pentadactyl']}}
 NeoBundle 'scrooloose/syntastic'
 
 " Open a url into the browser or another files with an external app
@@ -161,13 +145,11 @@ NeoBundle 'Rykka/easydigraph.vim'
 " browse the vim undo tree
 NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
 " to insert lorem ipsum blocks
-NeoBundleLazy 'vim-scripts/loremipsum', { 'autoload' :
-            \ { 'commands' : 'Loremipsum'}}
+NeoBundleLazy 'vim-scripts/loremipsum', {'autoload' : { 'commands' : 'Loremipsum'}}
 " reveals all the character info, Unicode included
 NeoBundle 'tpope/vim-characterize'
 " transpose lines and text blocks
-NeoBundleLazy 'salsifis/vim-transpose', { 'autoload' :
-            \ { 'commands' : 'Transpose'}}
+NeoBundleLazy 'salsifis/vim-transpose', {'autoload' : { 'commands' : 'Transpose'}}
 " marks admin
 NeoBundle 'kshenoy/vim-signature'
 " text-objects
@@ -203,24 +185,20 @@ NeoBundle 'kchmck/vim-coffee-script',{'autoload' : {
             \ 'filetypes' : ['coffee']
             \ }}
 
-NeoBundleLazy 'leafgarland/typescript-vim', {'autoload':
-            \ {'filetypes': ['typescript']}}
+NeoBundleLazy 'leafgarland/typescript-vim', {'autoload': {'filetypes': ['typescript']}}
 
 " A better looking status line
 NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 " Zooms a window
-NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :
-            \{'commands' : 'ZoomWinTabToggle'}}
+NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' : {'commands' : 'ZoomWinTabToggle'}}
 " easily window resizing
 NeoBundle 'jimsei/winresizer'
 
 " Easily interacts with Tmux from Vim
 NeoBundle 'benmills/vimux'
 " Tmux config file syntax
-NeoBundleLazy 'vimez/vim-tmux', { 'autoload' : { 'filetypes' : 'conf'}}
-
-NeoBundle 'mattn/webapi-vim'
+NeoBundleLazy 'vimez/vim-tmux', {'autoload' : {'filetypes' : 'conf'}}
 
 " Speed up Vim by updating folds only when called-for
 NeoBundle 'Konfekt/FastFold'
@@ -778,8 +756,7 @@ nnoremap <silent><Leader>; :Unite -silent -toggle
 " outlines (also ctags)
 nnoremap <silent><Leader>tl :Unite -silent -vertical -winwidth=40
             \ -direction=topleft -toggle outline<CR>
-" junk files
-nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
+
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
@@ -812,8 +789,6 @@ if executable('ag')
     let g:unite_source_grep_recursive_opt='-r'
     let g:unite_source_grep_search_word_highlight = 1
 endif
-
-let g:junkfile#directory=expand($HOME."/.vim/tmp/junk")
 
 " Utl
 map <Leader>j :Utl <CR><Bar>:redraw!<CR>
