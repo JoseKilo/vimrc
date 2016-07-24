@@ -272,8 +272,14 @@ set showmatch                   " show pairs match
 set hlsearch                    " highlight search results
 set smartcase                   " smart case ignore
 set ignorecase                  " ignore case letters
+" Turn off highlighting when dropping into insert mode, and turn back on again
+" when leaving
+autocmd InsertEnter * :setlocal nohlsearch
+autocmd InsertLeave * :setlocal hlsearch
+nnoremap <leader>/ :nohlsearch<cr>
 
 " History and permanent undo levels
+set undolevels=1000
 set history=1000
 set undofile
 set undoreload=1000
@@ -311,7 +317,7 @@ set expandtab                  " spaces instead of tabs
 set tabstop=4                  " a tab = four spaces
 set shiftwidth=4               " number of spaces for auto-indent
 set softtabstop=4              " a soft-tab of four spaces
-set autoindent                 " set on the auto-indent
+set autoindent nosmartindent   " set on the auto-indent
 " set formatoptions=qrn1ct
 set textwidth=80
 set colorcolumn=81
@@ -365,10 +371,6 @@ set guifont=Dejavu\ Sans\ Mono\ for\ Powerline\ 11
 " Resize the divisions if the Vim window size changes
 au VimResized * exe "normal! \<c-w>="
 
-" New windows
-nnoremap <Leader>v <C-w>v
-nnoremap <Leader>h <C-w>s
-
 " Fast window moves
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -401,13 +403,14 @@ set number
 set relativenumber
 
 " Show hidden chars
-nmap <Leader>eh :set list!<CR>
 set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
+nmap <Leader>h :set list!<CR>
 
 " Folding
 set foldmethod=marker
 nnoremap \ za
 vnoremap \ za
+set foldlevel=99
 
 " Cut/Paste
 " to/from the clipboard
@@ -421,6 +424,11 @@ map <Leader>P :set invpaste<CR>
 autocmd! BufWritePost vimrc source %
 
 " Spelling
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal spell
+autocmd FileType mkd setlocal spell
+autocmd FileType rst setlocal spell
+
 " turn on the spell checking and set the Spanish language
 nmap <Leader>ss :setlocal spell! spelllang=es<CR>
 " turn on the spell checking and set the English language
@@ -855,21 +863,14 @@ map <Leader>z :ZoomWinTabToggle<CR>
 augroup json_autocmd
     autocmd!
     autocmd FileType json set foldmethod=syntax
-    autocmd FileType json set foldlevel=99
 augroup END
 augroup markdown_autocmd
     autocmd!
     autocmd FileType markdown NeoBundleSource vim-markdown
     autocmd FileType markdown NeoBundleSource vim-markdown-extra-preview
-    autocmd FileType markdown set foldlevel=99
-augroup END
-augroup rst_autocmd
-    autocmd!
-    autocmd FileType rst set foldlevel=99
 augroup END
 au BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
 au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
-au FileType python setlocal foldlevel=99
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
@@ -935,13 +936,13 @@ augroup END
 augroup filetype_js
     autocmd!
     autocmd BufRead,BufNewFile *.js setlocal nowrap
+    set smarttab
     set expandtab                  " spaces instead of tabs
     set tabstop=4                  " a tab = four spaces
     set shiftwidth=4               " number of spaces for auto-indent
     set softtabstop=4              " a soft-tab of four spaces
     set autoindent                 " set on the auto-indent
     set foldmethod=syntax
-    set foldlevelstart=99
     let javaScript_fold=1
     set syntax=javascript
     set textwidth=120
@@ -987,7 +988,6 @@ onoremap ap@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
 
 nnoremap <leader>rr pkddyy
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
-nnoremap <leader>/ :nohlsearch<cr>
 nnoremap <leader>tt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS %"<cr>:redraw!<cr>
 nnoremap <leader>ttt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS"<cr>:redraw!<cr>
 
@@ -1051,11 +1051,6 @@ function! s:GrepOperator(type)
     let @@ = saved_unnamed_register
 
 endfunction
-
-let g:netrw_liststyle=3
-nnoremap <Leader>ee :vsplit<CR>:Explore<CR>
-noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
-noremap <Leader>r :checkt<CR>
 
 " Functional
 
@@ -1127,6 +1122,14 @@ let g:netrw_list_hide= '.*\.pyc$'
 nnoremap <Leader>ee :vsplit<CR>:Explore<CR>
 noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
 noremap <Leader>r :checkt<CR>
+
+set path=**                     " Search the files under the run location.
+set suffixesadd=.py             " Look for Python files.
+set shell=bash
+
+set nrformats-=octal            " Turn off octal increment / decrement so that
+                                " numbers with leading zeros won't go from 007
+                                " to 010
 
 noremap <Leader>wc :echo system('wc -w ' . shellescape(expand('%')))<CR>
 
