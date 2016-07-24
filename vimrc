@@ -66,7 +66,7 @@ NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen',
             \ 'unite_sources':['junkfile','junkfile/new']}}
 
 " Unite plugin that provides command line completition
-NeoBundle 'joedicastro/unite-cmdmatch'
+NeoBundle 'majkinetor/unite-cmdmatch'
 
 " Unite plugin that provides spell suggestions
 NeoBundle 'jbking/unite-spell-suggest'
@@ -98,16 +98,16 @@ NeoBundle 'airblade/vim-gitgutter'
 " Git viewer
 NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'],
             \ 'autoload':{'commands':'Gitv'}}
-" Browse GitHub events in Vim
-NeoBundle 'joedicastro/vim-github-dashboard'
 
 " Markdown Syntax
-NeoBundleLazy 'joedicastro/vim-markdown'
+NeoBundleLazy 'plasticboy/vim-markdown'
 " Makes a Markdown Extra preview into the browser
-NeoBundleLazy 'joedicastro/vim-markdown-extra-preview'
+NeoBundleLazy 'waylan/vim-markdown-extra-preview'
 " reStructuredText in vim. Your personal Wiki in RST
 NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}
 NeoBundleLazy 'Rykka/clickable.vim', {'autoload': {'filetypes': ['rst']}}
+" Support for Ansible yml files
+NeoBundleLazy 'chase/vim-ansible-yaml'
 
 " A diff tool for directories
 NeoBundleLazy 'joedicastro/DirDiff.vim', { 'autoload': { 'commands' : 'DirDiff'}}
@@ -150,6 +150,8 @@ NeoBundle 'delimitMate.vim'
 NeoBundle 'tpope/vim-speeddating'
 " to surround vim objects with a pair of identical chars
 NeoBundle 'tpope/vim-surround'
+" enhances netrw
+NeoBundle 'tpope/vim-vinegar'
 " extend repetitions by the 'dot' key
 NeoBundle 'tpope/vim-repeat'
 " toggle comments
@@ -625,26 +627,6 @@ let g:Gitv_WipeAllOnClose = 1
 let g:Gitv_DoNotMapCtrlKey = 1
 " let g:Gitv_WrapLines = 1
 autocmd FileType git set nofoldenable
-
-" GitHub dashboard
-nnoremap <Leader>gD :exe 'GHD! '.input("Username: ")<CR>
-nnoremap <Leader>gA :exe 'GHA! '.input("Username or repository: ")<CR>
-function! GHDashboard (...)
-  if &filetype == 'github-dashboard'
-    " first variable is the statusline builder
-    let builder = a:1
-    call builder.add_section('airline_a', 'GitHub ')
-    call builder.add_section('airline_b',
-                \ ' %{get(split(get(split(github_dashboard#statusline(), " "),
-                \ 1, ""), ":"), 0, "")} ')
-    call builder.add_section('airline_c',
-                \ ' %{get(split(get(split(github_dashboard#statusline(), " "),
-                \ 2, ""), "]"), 0, "")} ')
-    " tell the core to use the contents of the builder
-    return 1
-  endif
-endfunction
-autocmd FileType github-dashboard call airline#add_statusline_func('GHDashboard')
 
 " Gundo
 nnoremap <Leader>u :GundoToggle<CR>
