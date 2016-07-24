@@ -886,7 +886,7 @@ noremap -c ddO
 inoremap <c-d> <esc>dd
 " nnoremap <c-u> viwU
 " inoremap <c-u> <esc>viwUwi
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lell
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lell
@@ -1130,6 +1130,11 @@ set shell=bash
 set nrformats-=octal            " Turn off octal increment / decrement so that
                                 " numbers with leading zeros won't go from 007
                                 " to 010
+
+nnoremap <C-j> :tabe 
+
+" Ansible support via 'chase/vim-ansible-yaml'
+let g:ansible_options = {'ignore_blank_lines': 0}
 
 noremap <Leader>wc :echo system('wc -w ' . shellescape(expand('%')))<CR>
 
