@@ -73,7 +73,7 @@ NeoBundleLazy 'vim-scripts/summerfruit256.vim', {'autoload' : { 'unite_sources' 
 NeoBundleLazy 'joedicastro/vim-github256', {'autoload' : { 'unite_sources' : 'colorscheme'}}
 
 " Make terminal themes from GUI themes
-NeoBundleLazy 'godlygeek/csapprox', {'autoload' : { 'commands' : ['CSApprox', 'CSApproxSnapshot']}}
+" NeoBundleLazy 'godlygeek/csapprox', {'autoload' : { 'commands' : ['CSApprox', 'CSApproxSnapshot']}}
 
 " Admin Git
 NeoBundle 'tpope/vim-fugitive'
@@ -122,11 +122,7 @@ NeoBundle 'honza/vim-snippets'
 NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
 " Remove 'po' and leave the list empty if it fails
 NeoBundleLazy 'vim-scripts/po.vim--gray', {'autoload': {'filetypes': ['po']}}
-NeoBundleLazy 'joedicastro/vim-pentadactyl', {'autoload': {'filetypes': ['pentadactyl']}}
 NeoBundle 'scrooloose/syntastic'
-
-" Open a url into the browser or another files with an external app
-NeoBundle 'vim-scripts/utl.vim'
 
 " Autocompletion of (, [, {, ', ", ...
 NeoBundle 'delimitMate.vim'
@@ -146,10 +142,8 @@ NeoBundle 'Rykka/easydigraph.vim'
 NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
 " to insert lorem ipsum blocks
 NeoBundleLazy 'vim-scripts/loremipsum', {'autoload' : { 'commands' : 'Loremipsum'}}
-" reveals all the character info, Unicode included
+" reveals all the character info, Unicode included => ga
 NeoBundle 'tpope/vim-characterize'
-" transpose lines and text blocks
-NeoBundleLazy 'salsifis/vim-transpose', {'autoload' : { 'commands' : 'Transpose'}}
 " marks admin
 NeoBundle 'kshenoy/vim-signature'
 " text-objects
@@ -161,29 +155,9 @@ NeoBundle 'kana/vim-textobj-underscore' " a_, i_
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'bps/vim-textobj-python'
 
-" A smart and powerful Color Management tool. Needs to be loaded to be able
-" to use the mappings
-NeoBundleLazy 'Rykka/colorv.vim', {'autoload' : {
-            \ 'commands' : [
-                             \ 'ColorV', 'ColorVView', 'ColorVPreview',
-                             \ 'ColorVPicker', 'ColorVEdit', 'ColorVEditAll',
-                             \ 'ColorVInsert', 'ColorVList', 'ColorVName',
-                             \ 'ColorVScheme', 'ColorVSchemeFav',
-                             \ 'ColorVSchemeNew', 'ColorVTurn2'],
-            \ }}
+NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'xhttml', 'css']}}
 
-NeoBundleLazy 'othree/html5.vim', {'autoload':
-            \ {'filetypes': ['html', 'xhttml', 'css']}}
-
-NeoBundleLazy 'mattn/emmet-vim', {'autoload':
-            \ {'filetypes': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']}}
-
-NeoBundle 'kchmck/vim-coffee-script',{'autoload' : {
-            \ 'commands' : [
-                             \ 'CoffeeCompile', 'CoffeeLint', 'CoffeeMake',
-                             \ 'CoffeeRun', 'CoffeeWatch'],
-            \ 'filetypes' : ['coffee']
-            \ }}
+NeoBundleLazy 'mattn/emmet-vim', {'autoload': {'filetypes': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']}}
 
 NeoBundleLazy 'leafgarland/typescript-vim', {'autoload': {'filetypes': ['typescript']}}
 
@@ -540,13 +514,6 @@ let g:airline#extensions#hunks#non_zero_only = 1
 " let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline#extensions#tabline#buffer_min_count = 1
 
-" CoffeeScript
-map <Leader>rw :CoffeeWatch vert<CR>
-
-" ColorV
-let g:colorv_cache_file=$HOME.'/.vim/tmp/vim_colorv_cache'
-let g:colorv_cache_fav=$HOME.'/.vim/tmp/vim_colorv_cache_fav'
-
 " Commentary
 nmap <Leader>c <Plug>CommentaryLine
 xmap <Leader>c <Plug>Commentary
@@ -789,14 +756,6 @@ if executable('ag')
     let g:unite_source_grep_recursive_opt='-r'
     let g:unite_source_grep_search_word_highlight = 1
 endif
-
-" Utl
-map <Leader>j :Utl <CR><Bar>:redraw!<CR>
-let g:utl_cfg_hdl_scm_http_system = "silent !firefox %u &"
-let g:utl_cfg_hdl_mt_application_pdf = 'silent :!zathura %p &'
-let g:utl_cfg_hdl_mt_image_jpeg = 'silent :!sxiv %p &'
-let g:utl_cfg_hdl_mt_image_gif = 'silent :!sxiv %p &'
-let g:utl_cfg_hdl_mt_image_png = 'silent :!sxiv %p &'
 
 " Vim-markdown-extra-preview
 " map <LocalLeader>mp :Me<CR>
