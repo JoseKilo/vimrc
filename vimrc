@@ -84,8 +84,6 @@ NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'autoload':{
 
 " Markdown Syntax
 NeoBundleLazy 'plasticboy/vim-markdown'
-" Makes a Markdown Extra preview into the browser
-NeoBundleLazy 'waylan/vim-markdown-extra-preview'
 " reStructuredText in vim. Your personal Wiki in RST
 NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}
 NeoBundleLazy 'Rykka/clickable.vim', {'autoload': {'filetypes': ['rst']}}
@@ -751,17 +749,11 @@ let g:unite_source_file_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
 let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
 
 if executable('ag')
-    let g:unite_source_grep_command='ag'
-    let g:unite_source_grep_default_opts='--nocolor --nogroup -S -i --line-numbers --ignore-dir node_modules --ignore-dir migrations --ignore-dir $VIRTUAL_ENV --ignore-dir static --ignore-dir media --ignore-dir ".*" --ignore-dir fixtures --ignore-dir mekami-web'
-    let g:unite_source_grep_recursive_opt='-r'
-    let g:unite_source_grep_search_word_highlight = 1
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts='--nocolor --nogroup -S -i --line-numbers --ignore-dir node_modules --ignore-dir migrations --ignore-dir $VIRTUAL_ENV --ignore-dir static --ignore-dir media --ignore-dir ".*" --ignore-dir fixtures --ignore-dir mekami-web --ignore-dir doc*'
+    let g:unite_source_grep_recursive_opt = ''
+    let g:unite_source_search_word_highlight = 1
 endif
-
-" Vim-markdown-extra-preview
-" map <LocalLeader>mp :Me<CR>
-" map <LocalLeader>mr :Mer<CR>
-" let g:VMEPextensions = ['extra', 'codehilite']
-" let g:VMEPhtmlreader= '/usr/bin/chromium'
 
 " vimux
 let g:VimuxUseNearestPane = 1
@@ -797,7 +789,6 @@ augroup END
 augroup markdown_autocmd
     autocmd!
     autocmd FileType markdown NeoBundleSource vim-markdown
-    autocmd FileType markdown NeoBundleSource vim-markdown-extra-preview
 augroup END
 au BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
 au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
@@ -825,7 +816,7 @@ vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>l
 vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>l
 vnoremap <leader>` <esc>`<i`<esc>`>la`<esc>l
 nnoremap Y y$
-vnoremap <leader>s y:! "<c-r>""<home><right>
+" vnoremap <leader>s y:! "<c-r>""<home><right>
 
 " inoremap <esc> <nop>
 " nnoremap <up> <nop>
@@ -952,35 +943,8 @@ function! s:Search()
     let @@ = saved_register
 endfunction
 
-nnoremap <silent><Leader>aa :Unite -silent grep<CR>
-nnoremap <silent><Leader>a :UniteWithCursorWord -silent grep<CR>
-nnoremap <leader>ag :silent execute "grep! -R " . shellescape(expand("<cword>")) . " $SRC"<cr>:copen 5<cr>:redraw!<cr>
-nnoremap <leader>an :cnext<cr>
-nnoremap <leader>ap :cprevious<cr>
-nnoremap <leader>ao :copen 5<cr>
-nnoremap <leader>ac :cclose<cr>
-nnoremap <leader>xyz :set operatorfunc=<SID>GrepOperator<cr>g@
-vnoremap <leader>xyz :<c-u>call <SID>GrepOperator(visualmode())<cr>
-
-function! s:GrepOperator(type)
-
-    let saved_unnamed_register = @@
-
-    if a:type ==# 'v'
-        execute "normal! `<v`>y"
-    elseif a:type ==# 'char'
-        execute "normal! `[v`]y"
-    else
-        return
-    endif
-
-    silent execute "grep! -R " . shellescape(@@) . " . --exclude-dir=$VIRTUAL_ENV --exclude-dir=.[a-zA-Z0-9]* --exclude=*.pyc"
-    copen
-    redraw!
-
-    let @@ = saved_unnamed_register
-
-endfunction
+nnoremap <silent><Leader>s :Unite -silent grep:.<CR>
+nnoremap <silent><Leader>a :UniteWithCursorWord -silent grep:.<CR>
 
 if filereadable(".vimrc") && $PWD != $HOME
     source .vimrc
