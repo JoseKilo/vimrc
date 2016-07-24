@@ -45,13 +45,10 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
 NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
 NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources': 'colorscheme'}}
-NeoBundleLazy 'ujihisa/unite-locate', {'autoload':{'unite_sources':'locate'}}
-NeoBundleLazy 'thinca/vim-unite-history', {'autoload' : { 'unite_sources' : ['history/command', 'history/search']}}
 NeoBundleLazy 'osyo-manga/unite-filetype', {'autoload': {'unite_sources': 'filetype'}}
 NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources': ['quickfix', 'location_list']}}
 NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
 NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
-NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources': ['file_mru', 'directory_mru']}}
 
 " File explorer
 NeoBundle 'vim-scripts/The-NERD-tree'
@@ -496,11 +493,6 @@ augroup shebang_chmod
         \ endif
 augroup END
 
-" Load matchit by default
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
-endif
-
 " Airline
 set noshowmode
 let g:airline_theme='powerlineish'
@@ -640,10 +632,6 @@ let g:neocomplete#sources#omni#input_patterns.python='[^. \t]\.\w*'
 " Neobundle
 let g:neobundle#log_filename = $HOME.'/.vim/tmp/neobundle.log'
 
-" neomru
-let g:neomru#file_mru_path = $HOME.'/.vim/tmp/neomru/file'
-let g:neomru#directory_mru_path = $HOME.'/.vim/tmp/neomru/directory'
-
 " Po.vim
 let g:po_translator = "Jose Garcia (JoseKilo)<jose.eduardo.gd@gmail.com>"
 
@@ -698,34 +686,32 @@ if filereadable(".jshintrc")
 endif
 
 " Unite
-" files
-nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>
+nnoremap <silent><Leader>o :Unite -silent -start-insert file_rec/async:!<CR>
 nnoremap <silent><Leader>O :Unite -silent -start-insert file_rec/git<CR>
-nnoremap <silent><Leader>m :Unite -silent file_mru<CR>
-" buffers
 nnoremap <silent><Leader>b :Unite -silent buffer<CR>
-" tabs
-nnoremap <silent><Leader>B :Unite -silent tab<CR>
-" buffer search
-nnoremap <silent><Leader>f :Unite -silent -no-split -start-insert -auto-preview
-            \ line<CR>
-nnoremap <silent>[menu]8 :UniteWithCursorWord -silent -no-split -auto-preview
-            \ line<CR>
-" yankring
-nnoremap <silent><Leader>i :Unite -silent history/yank<CR>
-" help
+nnoremap <silent><Leader>p :Unite -silent tab<CR>
 nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>
-" tasks
-nnoremap <silent><Leader>; :Unite -silent -toggle
-            \ grep:%::FIXME\|TODO\|NOTE\|XXX\|COMBAK\|@todo<CR>
+nnoremap <silent> <leader>? :Unite -toggle -auto-resize -auto-highlight -input=TODO grep:.<CR>
 " outlines (also ctags)
 nnoremap <silent><Leader>tl :Unite -silent -vertical -winwidth=40
             \ -direction=topleft -toggle outline<CR>
 
+nnoremap <silent><Leader>s :Unite -silent grep:.<CR>
+nnoremap <silent><Leader>a :UniteWithCursorWord -silent grep:.<CR>
+
+nnoremap <silent><Leader>sss :UniteWithCursorWord -silent file_rec/async:! grep:.<CR>
+
+if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts='--nocolor --nogroup -S -i --line-numbers --ignore-dir node_modules --ignore-dir migrations --ignore-dir $VIRTUAL_ENV --ignore-dir static --ignore-dir media --ignore-dir ".*" --ignore-dir fixtures --ignore-dir mekami-web --ignore-dir doc*'
+    let g:unite_source_grep_recursive_opt = ''
+    let g:unite_source_search_word_highlight = 1
+endif
+
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
-            \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/'], '\|'))
+call unite#custom#source('file,file_rec,file_rec/async,file_rec/git,grep',
+            \ 'ignore_pattern', join([$VIRTUAL_ENV, '\.git/', 'tmp/', 'bundle/'], '\|'))
 
 let g:default_context = {
     \ 'winheight' : 15,
@@ -745,15 +731,6 @@ let g:unite_force_overwrite_statusline = 0
 let g:unite_split_rule = 'botright'
 let g:unite_data_directory = $HOME.'/.vim/tmp/unite'
 let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
-let g:unite_source_file_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
-let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
-
-if executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts='--nocolor --nogroup -S -i --line-numbers --ignore-dir node_modules --ignore-dir migrations --ignore-dir $VIRTUAL_ENV --ignore-dir static --ignore-dir media --ignore-dir ".*" --ignore-dir fixtures --ignore-dir mekami-web --ignore-dir doc*'
-    let g:unite_source_grep_recursive_opt = ''
-    let g:unite_source_search_word_highlight = 1
-endif
 
 " vimux
 let g:VimuxUseNearestPane = 1
@@ -942,9 +919,6 @@ function! s:Search()
     execute "normal! `<v`>y/\<c-r>\"\r"
     let @@ = saved_register
 endfunction
-
-nnoremap <silent><Leader>s :Unite -silent grep:.<CR>
-nnoremap <silent><Leader>a :UniteWithCursorWord -silent grep:.<CR>
 
 if filereadable(".vimrc") && $PWD != $HOME
     source .vimrc
