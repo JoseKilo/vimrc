@@ -765,10 +765,6 @@ endif
 
 " vimux
 let g:VimuxUseNearestPane = 1
-map <Leader>rr :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python2 '.bufname("%"))<CR>
-map <Leader>r3 :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python3 '.bufname("%"))<CR>
-map <Leader>rt :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time python2 '.bufname("%"))<CR>
-map <Leader>rp :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time pypy '.bufname("%"))<CR>
 map <Leader>rc :VimuxPromptCommand<CR>
 map <Leader>rl :VimuxRunLastCommand<CR>
 map <Leader>rs :VimuxInterruptRunner<CR>
