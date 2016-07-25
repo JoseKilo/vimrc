@@ -769,18 +769,18 @@ augroup END
 augroup filetype_js
     autocmd!
     autocmd BufRead,BufNewFile *.js setlocal nowrap
-    set smarttab
-    set expandtab                  " spaces instead of tabs
-    set tabstop=4                  " a tab = four spaces
-    set shiftwidth=4               " number of spaces for auto-indent
-    set softtabstop=4              " a soft-tab of four spaces
-    set autoindent                 " set on the auto-indent
-    set foldmethod=syntax
-    let javaScript_fold=1
-    set syntax=javascript
-    set textwidth=120
-    set colorcolumn=121
-    syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+    autocmd BufRead,BufNewFile *.js setlocal smarttab
+    autocmd BufRead,BufNewFile *.js setlocal expandtab
+    autocmd BufRead,BufNewFile *.js setlocal tabstop=4
+    autocmd BufRead,BufNewFile *.js setlocal shiftwidth=4
+    autocmd BufRead,BufNewFile *.js setlocal softtabstop=4
+    autocmd BufRead,BufNewFile *.js setlocal autoindent
+    autocmd BufRead,BufNewFile *.js setlocal foldmethod=syntax
+    autocmd BufRead,BufNewFile *.js setlocal javaScript_fold=1
+    autocmd BufRead,BufNewFile *.js setlocal syntax=javascript
+    autocmd BufRead,BufNewFile *.js setlocal textwidth=120
+    autocmd BufRead,BufNewFile *.js setlocal colorcolumn=121
+    autocmd BufRead,BufNewFile *.js syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 augroup END
 augroup filetype_python
     autocmd!
