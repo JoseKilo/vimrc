@@ -821,10 +821,16 @@ onoremap ap@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
 
 nnoremap <leader>rr pkddyy
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
-nnoremap <leader>tt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS %"<cr>:redraw!<cr>
-nnoremap <leader>ttt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS"<cr>:redraw!<cr>
+nnoremap <leader>tt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS % 2> .error.txt"<cr>:call <SID>loadTestErrors()<cr>
+nnoremap <leader>ttt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS 2> .error.txt"<cr>:call <SID>loadTestErrors()<cr>
 
 nnoremap <leader>t :call <SID>testCurrentTest()<cr>
+
+function! s:loadTestErrors()
+    redraw!
+    cfile .error.txt
+    copen
+endfunction
 
 function! s:testCurrentTest()
     let saved_unnamed_register = @@
@@ -832,8 +838,9 @@ function! s:testCurrentTest()
     let class_name = @@
     execute "normal! ?def test_\rwyiw\<c-o>"
     let test_name = @@
-    execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS %:" . class_name . "." . test_name
+    execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS %:" . class_name . "." . test_name " 2> .error.txt"
     redraw!
+    loadTestErrors()
     let @@ = saved_unnamed_register
 endfunction
 
