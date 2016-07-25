@@ -320,12 +320,6 @@ set guifont=Dejavu\ Sans\ Mono\ for\ Powerline\ 11
 " Resize the divisions if the Vim window size changes
 au VimResized * exe "normal! \<c-w>="
 
-" Fast window moves
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
 " Fast window & buffer close and kill
 nnoremap <Leader>k <C-w>c
 nnoremap <silent><Leader>K :bd<CR>
@@ -369,14 +363,11 @@ noremap <Leader>p "*p
 " toggle paste mode
 map <Leader>P :set invpaste<CR>
 
-" Autoload configuration when this file changes ($MYVIMRC)
-autocmd! BufWritePost vimrc source %
-
 " Spelling
-autocmd FileType gitcommit setlocal spell
-autocmd FileType markdown setlocal spell
-autocmd FileType mkd setlocal spell
-autocmd FileType rst setlocal spell
+autocmd FileType gitcommit setlocal setlocal spell! spelllang=en
+autocmd FileType markdown setlocal setlocal spell! spelllang=en
+autocmd FileType mkd setlocal setlocal spell! spelllang=en
+autocmd FileType rst setlocal setlocal spell! spelllang=en
 
 " turn on the spell checking and set the Spanish language
 nmap <Leader>ss :setlocal spell! spelllang=es<CR>
@@ -404,50 +395,6 @@ nmap <silent> <Leader>w :update<CR>
 " Delete trailing whitespaces
 nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
-" Toggle the Quickfix window
-function! s:QuickfixToggle()
-    for i in range(1, winnr('$'))
-        let bnum = winbufnr(i)
-        if getbufvar(bnum, '&buftype') == 'quickfix'
-            cclose
-            lclose
-            return
-        endif
-    endfor
-    copen
-endfunction
-command! ToggleQuickfix call <SID>QuickfixToggle()
-nnoremap <silent> <Leader>q :ToggleQuickfix<CR>
-
-" Text statistics
-" get the total of lines, words, chars and bytes (and for the current position)
-" map <Leader>es g<C-G>
-
-" get the word frequency in the text
-function! WordFrequency() range
-  let all = split(join(getline(a:firstline, a:lastline)), '\A\+')
-  let frequencies = {}
-  for word in all
-    let frequencies[word] = get(frequencies, word, 0) + 1
-  endfor
-  let lst = []
-  for [key,value] in items(frequencies)
-    call add(lst, value."\t".key."\n")
-  endfor
-  call sort(lst)
-  echo join(lst)
-endfunction
-command! -range=% WordFrequency <line1>,<line2>call WordFrequency()
-map <Leader>ef :Unite output:WordFrequency<CR>
-
-" Count lines of code
-function! LinesOfCode()
-    echo system('cloc --quiet '.bufname("%"))
-endfunction
-
-" Toggle the search results highlighting
-map <silent><Leader>eq :set invhlsearch<CR>
-
 " Move between Vim and Tmux windows
 if exists('$TMUX')
   function! TmuxOrSplitSwitch(wincmd, tmuxdir)
@@ -474,9 +421,6 @@ else
   map <C-l> <C-w>l
 endif
 
-" Quick exiting without save
-nnoremap <Leader>`` :qa!<CR>
-
 " Execution permissions by default to shebang (#!) files
 augroup shebang_chmod
   autocmd!
@@ -500,11 +444,8 @@ set noshowmode
 let g:airline_theme='powerlineish'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#whitespace#enabled =                                                   0
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#hunks#non_zero_only = 1
-" let g:airline#extensions#tabline#enabled = 2
-" let g:airline#extensions#tabline#fnamemod = ':t'
-" let g:airline#extensions#tabline#buffer_min_count = 1
 
 " Commentary
 nmap <Leader>c <Plug>CommentaryLine
@@ -896,23 +837,7 @@ function! s:testCurrentTest()
     let @@ = saved_unnamed_register
 endfunction
 
-nnoremap <leader>ff :call <SID>FoldColumnToggle()<cr>
-
-function! s:FoldColumnToggle()
-    if &foldcolumn
-        setlocal foldcolumn=0
-    else
-        setlocal foldcolumn=4
-    endif
-endfunction
-
-vnoremap <leader>m :<c-u>call <SID>Search()<cr>
-
-function! s:Search()
-    let saved_register = @@
-    execute "normal! `<v`>y/\<c-r>\"\r"
-    let @@ = saved_register
-endfunction
+vnoremap // y/<C-R>"<CR>"
 
 if filereadable(".vimrc") && $PWD != $HOME
     source .vimrc
