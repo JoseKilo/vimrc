@@ -87,7 +87,7 @@ NeoBundleLazy 'Rykka/clickable.vim', {'autoload': {'filetypes': ['rst']}}
 " Support for Ansible yml files
 NeoBundleLazy 'chase/vim-ansible-yaml'
 " Support for Dockerfile
-NeoBundleLazy 'ekalinin/Dockerfile.vim'
+NeoBundleLazy 'ekalinin/Dockerfile.vim', {'autoload': {'filetypes': ['Dockerfile']}}
 
 " A diff tool for directories
 NeoBundleLazy 'joedicastro/DirDiff.vim', { 'autoload': { 'commands' : 'DirDiff'}}
