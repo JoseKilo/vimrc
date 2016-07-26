@@ -639,8 +639,8 @@ nnoremap <silent> <leader>? :Unite -toggle -auto-resize -auto-highlight -input=T
 nnoremap <silent><Leader>tl :Unite -silent -vertical -winwidth=40
             \ -direction=topleft -toggle outline<CR>
 
-nnoremap <silent><Leader>s :Unite -silent grep:.<CR>
-nnoremap <silent><Leader>a :UniteWithCursorWord -silent grep:.<CR>
+nnoremap <silent><Leader>s :Unite -silent -start-insert grep:.<CR>
+nnoremap <silent><Leader>a :UniteWithCursorWord -silent -start-insert grep:.<CR>
 
 nnoremap <silent><Leader>sss :UniteWithCursorWord -silent file_rec/async:! grep:.<CR>
 
