@@ -776,7 +776,7 @@ augroup filetype_js
     autocmd BufRead,BufNewFile *.js setlocal softtabstop=4
     autocmd BufRead,BufNewFile *.js setlocal autoindent
     autocmd BufRead,BufNewFile *.js setlocal foldmethod=syntax
-    autocmd BufRead,BufNewFile *.js setlocal javaScript_fold=1
+    autocmd BufRead,BufNewFile *.js let javaScript_fold=1
     autocmd BufRead,BufNewFile *.js setlocal syntax=javascript
     autocmd BufRead,BufNewFile *.js setlocal textwidth=120
     autocmd BufRead,BufNewFile *.js setlocal colorcolumn=121
