@@ -616,9 +616,7 @@ nnoremap <silent><Leader>b :Unite -silent buffer<CR>
 nnoremap <silent><Leader>p :Unite -silent tab<CR>
 nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>
 nnoremap <silent> <leader>? :Unite -toggle -auto-resize -auto-highlight -input=TODO grep:.<CR>
-" outlines (also ctags)
-nnoremap <silent><Leader>tl :Unite -silent -vertical -winwidth=40
-            \ -direction=topleft -toggle outline<CR>
+nnoremap <silent><Leader>i :Unite -silent outline<CR>
 
 nnoremap <silent><Leader>s :Unite -silent -start-insert grep:.<CR>
 nnoremap <silent><Leader>a :UniteWithCursorWord -silent -start-insert grep:.<CR>
