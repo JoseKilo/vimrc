@@ -364,10 +364,10 @@ noremap <Leader>p "*p
 map <Leader>P :set invpaste<CR>
 
 " Spelling
-autocmd FileType gitcommit setlocal setlocal spell! spelllang=en
-autocmd FileType markdown setlocal setlocal spell! spelllang=en
-autocmd FileType mkd setlocal setlocal spell! spelllang=en
-autocmd FileType rst setlocal setlocal spell! spelllang=en
+autocmd FileType gitcommit setlocal spell! spelllang=en
+autocmd FileType markdown setlocal spell! spelllang=en
+autocmd FileType mkd setlocal spell! spelllang=en
+autocmd FileType rst setlocal spell! spelllang=en
 
 " turn on the spell checking and set the Spanish language
 nmap <Leader>ss :setlocal spell! spelllang=es<CR>
