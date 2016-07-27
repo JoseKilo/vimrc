@@ -42,13 +42,11 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/unite.vim'
 
 " Unite sources
-NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
-NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
-NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources': 'colorscheme'}}
-NeoBundleLazy 'osyo-manga/unite-filetype', {'autoload': {'unite_sources': 'filetype'}}
-NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources': ['quickfix', 'location_list']}}
-NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
-NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
+NeoBundle 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
+NeoBundle 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
+NeoBundle 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources': ['quickfix', 'location_list']}}
+NeoBundle 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
+NeoBundle 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
 
 " File explorer
 NeoBundle 'vim-scripts/The-NERD-tree'
@@ -59,18 +57,10 @@ NeoBundle 'majkinetor/unite-cmdmatch'
 " Unite plugin that provides spell suggestions
 NeoBundle 'jbking/unite-spell-suggest'
 
-" Dark themes
-" Improved terminal version of molokai, almost identical to the GUI one
+" Color scheme
 NeoBundle 'joedicastro/vim-molokai256'
 NeoBundle 'sjl/badwolf', {'autoload' : {'unite_sources' : 'colorscheme'}}
 NeoBundle 'nielsmadan/harlequin', {'autoload' : {'unite_sources' : 'colorscheme'}}
-
-" Light themes
-NeoBundleLazy 'vim-scripts/summerfruit256.vim', {'autoload' : { 'unite_sources' : 'colorscheme'}}
-NeoBundleLazy 'joedicastro/vim-github256', {'autoload' : { 'unite_sources' : 'colorscheme'}}
-
-" Make terminal themes from GUI themes
-" NeoBundleLazy 'godlygeek/csapprox', {'autoload' : { 'commands' : ['CSApprox', 'CSApproxSnapshot']}}
 
 " Admin Git
 NeoBundle 'tpope/vim-fugitive'
@@ -81,9 +71,6 @@ NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'autoload':{
 
 " Markdown Syntax
 NeoBundleLazy 'plasticboy/vim-markdown'
-" reStructuredText in vim. Your personal Wiki in RST
-NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}
-NeoBundleLazy 'Rykka/clickable.vim', {'autoload': {'filetypes': ['rst']}}
 " Support for Ansible yml files
 NeoBundleLazy 'chase/vim-ansible-yaml'
 " Support for Dockerfile
@@ -151,18 +138,12 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'bps/vim-textobj-python'
 
 NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'xhttml', 'css']}}
-
 NeoBundleLazy 'mattn/emmet-vim', {'autoload': {'filetypes': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']}}
-
 NeoBundleLazy 'leafgarland/typescript-vim', {'autoload': {'filetypes': ['typescript']}}
 
 " A better looking status line
 NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
-" Zooms a window
-NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' : {'commands' : 'ZoomWinTabToggle'}}
-" easily window resizing
-NeoBundle 'jimsei/winresizer'
 
 " Easily interacts with Tmux from Vim
 NeoBundle 'benmills/vimux'
@@ -698,9 +679,6 @@ let g:winresizer_start_key = '<C-C><C-W>'
 " let g:winresizer_finish_with_escape = 1
 let g:winresizer_keycode_finish = 27
 
-" zoomwintab
-map <Leader>z :ZoomWinTabToggle<CR>
-
 " FILETYPES
 augroup json_autocmd
     autocmd!
@@ -870,6 +848,9 @@ nnoremap <C-j> :tabe
 let g:ansible_options = {'ignore_blank_lines': 0}
 
 noremap <Leader>wc :echo system('wc -w ' . shellescape(expand('%')))<CR>
+
+" let g:unite_source_rec_max_cache_files = 0
+" call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
 
 if &term =~ '^screen'
     " tmux will send xterm-style keys when its xterm-keys option is on
