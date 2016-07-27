@@ -108,7 +108,7 @@ NeoBundle 'scrooloose/syntastic'
 
 " Autocompletion of (, [, {, ', ", ...
 NeoBundle 'delimitMate.vim'
-" Smart and fast date changer
+" Smart and fast date changer <c-a> <c-x>
 NeoBundle 'tpope/vim-speeddating'
 " to surround vim objects with a pair of identical chars
 NeoBundle 'tpope/vim-surround'
@@ -147,8 +147,6 @@ NeoBundle 'vim-airline/vim-airline-themes'
 
 " Easily interacts with Tmux from Vim
 NeoBundle 'benmills/vimux'
-" Tmux config file syntax
-NeoBundleLazy 'vimez/vim-tmux', {'autoload' : {'filetypes' : 'conf'}}
 
 " Speed up Vim by updating folds only when called-for
 NeoBundle 'Konfekt/FastFold'
