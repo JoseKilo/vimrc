@@ -623,7 +623,7 @@ nnoremap <silent><Leader>sss :UniteWithCursorWord -silent file_rec/async:! grep:
 
 if executable('ag')
     let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts='--nocolor --nogroup -S -i --line-numbers --ignore-dir node_modules --ignore-dir migrations --ignore-dir $VIRTUAL_ENV --ignore-dir static --ignore-dir media --ignore-dir ".*" --ignore-dir fixtures --ignore-dir mekami-web --ignore-dir doc*'
+    let g:unite_source_grep_default_opts='--nocolor --nogroup -S -i --line-numbers --ignore-dir node_modules --ignore-dir migrations --ignore-dir $VIRTUAL_ENV --ignore-dir static --ignore-dir media --ignore-dir fixtures --ignore-dir mekami-web'
     let g:unite_source_grep_recursive_opt = ''
     let g:unite_source_search_word_highlight = 1
 endif
