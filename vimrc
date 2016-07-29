@@ -498,7 +498,6 @@ nnoremap <Leader>u :GundoToggle<CR>
 let g:gundo_preview_bottom = 1
 
 " NerdTree
-nnoremap <Leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$']
 
 " indentLine
@@ -696,8 +695,9 @@ au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
-nnoremap <Leader>e :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
-vnoremap <Leader>e :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
+nnoremap <Leader>m :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
+vnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
+nnoremap <Leader>f :%s///g<Left><Left>
 nnoremap <Leader>w :w<CR>
 nnoremap <space> za
 nnoremap <leader>ev :e $MYVIMRC<cr>
@@ -833,7 +833,7 @@ endif
 
 let g:netrw_liststyle=3
 let g:netrw_list_hide= '.*\.pyc$'
-nnoremap <Leader>ee :vsplit<CR>:Explore<CR>
+nnoremap <Leader>j :vsplit<CR>:Explore<CR>
 noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
 noremap <Leader>r :checkt<CR>
 
