@@ -638,6 +638,8 @@ if !empty($VIRTUAL_ENV)
 endif
 call unite#custom#source('file,file_rec,file_rec/async,file_rec/git,grep',
             \ 'ignore_pattern', join(unite_ignore_pattern, '\|'))
+call unite#custom#source('file,file_rec,file_rec/async,file_rec/git,grep',
+            \ 'ignore_globs', ['./.*', './.*/'])
 
 let g:default_context = {
     \ 'winheight' : 15,
