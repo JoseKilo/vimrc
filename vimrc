@@ -854,6 +854,9 @@ let g:ansible_options = {'ignore_blank_lines': 0}
 
 noremap <Leader>wc :echo system('wc -w ' . shellescape(expand('%')))<CR>
 
+" Allow to repeat in visual mode
+vnoremap . :norm.<CR>
+
 " let g:unite_source_rec_max_cache_files = 0
 " call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
 
