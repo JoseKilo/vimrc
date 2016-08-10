@@ -348,22 +348,9 @@ autocmd FileType markdown setlocal spell! spelllang=en
 autocmd FileType mkd setlocal spell! spelllang=en
 autocmd FileType rst setlocal spell! spelllang=en
 
-" turn on the spell checking and set the Spanish language
 nmap <Leader>ss :setlocal spell! spelllang=es<CR>
-" turn on the spell checking and set the English language
 nmap <Leader>se :setlocal spell! spelllang=en<CR>
-" turn off the spell checking
-nmap <Leader>so :setlocal nospell <CR>
-" jump to the next bad spell word
-nmap <Leader>sn ]s
-" suggest words
-" nmap <Leader>sp z=
-nmap <Leader>sp :Unite spell_suggest<CR>
-" jump to the next bad spell word and suggests a correct one
-" nmap <Leader>sc ]sz=
-nmap <Leader>sc ]s :Unite spell_suggest<CR>
-" add word to the dictionary
-nmap <Leader>sa zg
+" ]s and [s to move. z= to suggest. zg to add a word
 
 " Save as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
