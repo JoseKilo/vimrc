@@ -451,7 +451,6 @@ nnoremap <Leader>gl :exe "silent Glog <Bar> Unite -no-quit
 nnoremap <Leader>gL :exe "silent Glog -- <Bar> Unite -no-quit
             \ quickfix"<CR>:redraw!<CR>
 nnoremap <Leader>gt :!tig<CR>:redraw!<CR>
-nnoremap <Leader>gS :exe "silent !shipit"<CR>:redraw!<CR>
 nnoremap <Leader>gg :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>Unite
             \ quickfix -no-quit<CR>
 nnoremap <Leader>ggm :exe 'silent Glog --grep='.input("Pattern: ").' <Bar>
@@ -544,18 +543,10 @@ let g:neobundle#log_filename = $HOME.'/.vim/tmp/neobundle.log'
 let g:po_translator = "Jose Garcia (JoseKilo)<jose.eduardo.gd@gmail.com>"
 
 " PythonMode
-nmap <silent><Leader>n :PymodeLint<CR>
 let g:pymode_breakpoint_bind = '<Leader>B'
 let g:pymode_lint = 0  " Use Syntastic instead (this doesn't work with flake8)
-let g:pymode_lint_on_write = 1
-let g:pymode_lint_on_fly = 1
-" let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257']
-let g:pymode_lint_checkers = ['flake8']
-let g:pymode_lint_options_flake8 = ['--first']
-let g:pymode_lint_ignore = ''
-let g:pymode_lint_cwindow = 0
 let g:pymode_virtualenv = 1
-let g:pymode_rope = 1  " Danger !!!
+let g:pymode_rope = 1
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_lookup_project = 0
@@ -565,7 +556,6 @@ let g:pymode_rope_autoimport = 0  " Seriously, DON'T
 " let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime'])
 " let g:pymode_rope_autoimport_import_after_complete = 1
 let g:pymode_doc = 0
-set completeopt=menu
 
 " Syntastic
 nmap <silent><Leader>N :SyntasticCheck<CR>
@@ -711,10 +701,6 @@ nnoremap Y y$
 " inoremap <right> <nop>
 
 let g:AutoCloseExpandSpace = 0 " Make iabbrev work again
-let g:pymode_rope_autoimport = 0  " Danger !!!
-" let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime', 'itertools']
-" let g:pymode_debug = 1
-let pymode_rope_regenerate_on_write = 0
 
 inoreabbrev @@@ jose.eduardo.gd@gmail.com
 inoreabbrev ccop Copyright, all rights reserved.
@@ -825,6 +811,7 @@ let g:netrw_list_hide= '.*\.pyc$'
 nnoremap <Leader>j :vsplit<CR>:Explore<CR>
 noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
 noremap <Leader>r :checkt<CR>
+set completeopt=menu,longest,preview
 
 set path=**                     " Search the files under the run location.
 set suffixesadd=.py             " Look for Python files.
