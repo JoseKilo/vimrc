@@ -651,12 +651,6 @@ au FileType vinarise let g:airline_section_warning = ''
 let g:virtualenv_auto_activate = 1
 let g:virtualenv_stl_format = '(%n)'
 
-" Winresizer
-let g:winresizer_start_key = '<C-C><C-W>'
-" cancel pressing ESC
-" let g:winresizer_finish_with_escape = 1
-let g:winresizer_keycode_finish = 27
-
 " FILETYPES
 augroup json_autocmd
     autocmd!
