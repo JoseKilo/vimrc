@@ -82,9 +82,7 @@ NeoBundleLazy 'joedicastro/DirDiff.vim', { 'autoload': { 'commands' : 'DirDiff'}
 NeoBundle 'Shougo/vinarise.vim'
 
 " Autocompletion
-NeoBundle 'Shougo/neocomplete.vim'
-" Rope
-" NeoBundle 'sontek/rope-vim'
+" NeoBundle 'Shougo/neocomplete.vim'
 " A Python plugin
 NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
 " Admin virtualenvs
@@ -118,6 +116,8 @@ NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'tpope/vim-repeat'
 " toggle comments
 NeoBundle 'tpope/vim-commentary'
+" asynchronous build and test dispatcher
+NeoBundle 'tpope/vim-dispatch'
 " smart digraphs insertion
 NeoBundle 'Rykka/easydigraph.vim'
 " browse the vim undo tree
@@ -547,9 +547,9 @@ let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_lookup_project = 0
 " let g:pymode_rope_project_root = "."
 let g:pymode_rope_regenerate_on_write = 0
-let g:pymode_rope_autoimport = 0  " Seriously, DON'T
-" let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime'])
-" let g:pymode_rope_autoimport_import_after_complete = 1
+let g:pymode_rope_autoimport = 1  " Seriously, DON'T ... Or maybe yes
+let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime', 'itertools', 'logging']
+let g:pymode_rope_autoimport_import_after_complete = 1
 let g:pymode_doc = 0
 
 " Syntastic
