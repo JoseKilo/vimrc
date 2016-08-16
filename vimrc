@@ -677,14 +677,14 @@ nnoremap Y y$
 " vnoremap <leader>s y:! "<c-r>""<home><right>
 
 " inoremap <esc> <nop>
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
-" nnoremap <left> <nop>
-" nnoremap <right> <nop>
-" inoremap <up> <nop>
-" inoremap <down> <nop>
-" inoremap <left> <nop>
-" inoremap <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 
 let g:AutoCloseExpandSpace = 0 " Make iabbrev work again
 
