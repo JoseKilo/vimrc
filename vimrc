@@ -26,7 +26,6 @@ call dein#begin(expand('~/.vim/dein'))
 
 " is better if Dein rules Dein (needed!)
 call dein#add('Shougo/dein.vim')
-
 call dein#add('Shougo/vimproc', {'build' : 'make'})
 
 " Unite. The interface to rule almost everything
@@ -37,87 +36,61 @@ call dein#add('osyo-manga/unite-quickfix')
 call dein#add('osyo-manga/unite-fold')
 call dein#add('tacroe/unite-mark')
 
-" File explorer
-call dein#add('vim-scripts/The-NERD-tree')
-
-" Unite plugin that provides command line completition
-call dein#add('majkinetor/unite-cmdmatch')
-
-" Unite plugin that provides spell suggestions
-call dein#add('jbking/unite-spell-suggest')
-
-" Color scheme
+" Color schemes
 call dein#add('joedicastro/vim-molokai256')
 call dein#add('sjl/badwolf')
 call dein#add('nielsmadan/harlequin')
 call dein#add('tpope/vim-vividchalk')
 
-" Admin Git
+" Git
 call dein#add('tpope/vim-fugitive')
-" Show git repository changes in the current file
-call dein#add('airblade/vim-gitgutter')
-" Git viewer
+call dein#add('airblade/vim-gitgutter')  " Changes in side bar
 call dein#add('gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'on_cmd':'Gitv'})
 
-" Markdown Syntax
+" Custom Syntax
 call dein#add('plasticboy/vim-markdown')
-" Support for Ansible yml files
 call dein#add('chase/vim-ansible-yaml')
-" Support for Dockerfile
 call dein#add('ekalinin/Dockerfile.vim', {'on_ft': ['Dockerfile']})
+call dein#add('elzr/vim-json', {'on_ft' : 'json'})
+call dein#add('vim-scripts/po.vim--gray', {'on_ft': ['po']})  " Remove 'po' and leave the list empty if it fails
+call dein#add('othree/html5.vim', {'on_ft': ['html', 'xhttml', 'css']})
+call dein#add('mattn/emmet-vim', {'on_ft': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']})
+call dein#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
 
-" A diff tool for directories
-call dein#add('joedicastro/DirDiff.vim', {'on_cmd' : 'DirDiff'})
-" Hexadecimal editor
-call dein#add('Shougo/vinarise.vim')
-
-" Autocompletion
+" Editor tools
 " call dein#add('Shougo/neocomplete.vim')
-" A Python plugin
-call dein#add('klen/python-mode', {'on_ft': ['python']})
-" Admin virtualenvs
-call dein#add('jmcantrell/vim-virtualenv')
-" Show indent lines
+call dein#add('scrooloose/syntastic')
+call dein#add('SirVer/ultisnips')
+call dein#add('honza/vim-snippets')
 call dein#add('Yggdroot/indentLine')
-" Show reports from coverage.py
+call dein#add('sjl/gundo.vim', {'on_cmd': 'GundoToggle'})
+call dein#add('joedicastro/DirDiff.vim', {'on_cmd' : 'DirDiff'})
+call dein#add('Shougo/vinarise.vim')  " Hexadecimal editor
+call dein#add('Rykka/easydigraph.vim')
+call dein#add('kshenoy/vim-signature')  " Marks in side bar
+call dein#add('tpope/vim-obsession')  " Continuously updated session files
+call dein#add('bling/vim-airline')  " A better looking status line
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('vim-scripts/loremipsum', {'on_cmd' : 'Loremipsum'})
+call dein#add('tpope/vim-commentary')
+call dein#add('tpope/vim-surround')
+call dein#add('tpope/vim-vinegar')  " enhances netrw
+call dein#add('tpope/vim-characterize')  " character info => ga
+call dein#add('delimitMate.vim')  " Autocompletion of (, [, {, ', \", ...
+call dein#add('tpope/vim-speeddating')  " Smart and fast date changer <c-a> <c-x>
+call dein#add('tpope/vim-repeat')  " extend repetitions by the 'dot' key
+call dein#add('tpope/vim-dispatch')  " asynchronous build and test dispatcher
+call dein#add('Konfekt/FastFold')  " Speed up Vim by updating folds only when called-for
+
+" Tmux
+call dein#add('benmills/vimux')
+
+" Python
+call dein#add('klen/python-mode', {'on_ft': ['python']})
+call dein#add('jmcantrell/vim-virtualenv')
 call dein#add('alfredodeza/coveragepy.vim', {'on_ft': ['python']})
-" Sort imports
 call dein#add('fisadev/vim-isort', {'on_ft': ['python']})
 
-" Powerful and advanced Snippets tool
-call dein#add('SirVer/ultisnips')
-" Snippets for Ultisnips
-call dein#add('honza/vim-snippets')
-
-call dein#add('elzr/vim-json', {'on_ft' : 'json'})
-" Remove 'po' and leave the list empty if it fails
-call dein#add('vim-scripts/po.vim--gray', {'on_ft': ['po']})
-call dein#add('scrooloose/syntastic')
-
-" Autocompletion of (, [, {, ', ", ...
-call dein#add('delimitMate.vim')
-" Smart and fast date changer <c-a> <c-x>
-call dein#add('tpope/vim-speeddating')
-" to surround vim objects with a pair of identical chars
-call dein#add('tpope/vim-surround')
-" enhances netrw
-call dein#add('tpope/vim-vinegar')
-" extend repetitions by the 'dot' key
-call dein#add('tpope/vim-repeat')
-" toggle comments
-call dein#add('tpope/vim-commentary')
-" asynchronous build and test dispatcher
-call dein#add('tpope/vim-dispatch')
-" smart digraphs insertion
-call dein#add('Rykka/easydigraph.vim')
-" browse the vim undo tree
-call dein#add('sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}})
-" to insert lorem ipsum blocks
-call dein#add('vim-scripts/loremipsum', {'autoload' : { 'commands' : 'Loremipsum'}})
-" reveals all the character info, Unicode included => ga
-call dein#add('tpope/vim-characterize')
-" marks admin
-call dein#add('kshenoy/vim-signature')
 " text-objects
 call dein#add('kana/vim-textobj-entire') " ae, ie
 call dein#add('kana/vim-textobj-indent') " ai, ii, aI, iI
@@ -126,23 +99,6 @@ call dein#add('kana/vim-textobj-line') " al, il
 call dein#add('kana/vim-textobj-underscore') " a_, i_
 call dein#add('kana/vim-textobj-user')
 call dein#add('bps/vim-textobj-python')
-
-call dein#add('othree/html5.vim', {'on_ft': ['html', 'xhttml', 'css']})
-call dein#add('mattn/emmet-vim', {'on_ft': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']})
-call dein#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
-
-" A better looking status line
-call dein#add('bling/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-
-" Easily interacts with Tmux from Vim
-call dein#add('benmills/vimux')
-
-" Speed up Vim by updating folds only when called-for
-call dein#add('Konfekt/FastFold')
-
-" Continuously updated session files
-call dein#add('tpope/vim-obsession')
 
 call dein#end()
 
@@ -473,9 +429,6 @@ autocmd FileType git set nofoldenable
 " Gundo
 nnoremap <Leader>u :GundoToggle<CR>
 let g:gundo_preview_bottom = 1
-
-" NerdTree
-let NERDTreeIgnore=['\.pyc$', '\~$']
 
 " indentLine
 map <silent> <Leader>L :IndentLinesToggle<CR>
