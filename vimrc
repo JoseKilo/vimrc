@@ -202,6 +202,29 @@ set colorcolumn=81
 " Autocompletion
 set complete=.,w,b,u,t,i,kspell
 
+" Colorscheme
+syntax enable                  " enable the syntax highlight
+augroup color_all
+    autocmd!
+    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+augroup END
+set background=dark            " set a dark background
+set t_Co=256                   " 256 colors for the terminal
+if has('gui_running')
+    colorscheme molokai
+else
+    colorscheme molokai256
+    " colorscheme badwolf
+    " colorscheme harlequin
+    " colorscheme vividchalk
+endif
+set guifont=Dejavu\ Sans\ Mono\ for\ Powerline\ 11
+
+" Resize the divisions if the Vim window size changes
+au VimResized * exe "normal! \<c-w>="
+
+" Utility functions with maps
+
 function! ToggleWrap()
     let s:nowrap_cc_bg = [22, '#005f00']
     redir => s:curr_cc_hi
@@ -227,33 +250,6 @@ function! ToggleWrap()
 endfunction
 
 nmap <silent><Leader>ew :call ToggleWrap()<CR>
-
-" Colorscheme
-syntax enable                  " enable the syntax highlight
-augroup color_all
-    autocmd!
-    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-augroup END
-set background=dark            " set a dark background
-set t_Co=256                   " 256 colors for the terminal
-if has('gui_running')
-    colorscheme molokai
-else
-    colorscheme molokai256
-    " colorscheme badwolf
-    " colorscheme harlequin
-    " colorscheme vividchalk
-endif
-
-" Font
-set guifont=Dejavu\ Sans\ Mono\ for\ Powerline\ 11
-
-" Resize the divisions if the Vim window size changes
-au VimResized * exe "normal! \<c-w>="
-
-" Fast window & buffer close and kill
-nnoremap <Leader>k <C-w>c
-nnoremap <silent><Leader>K :bd<CR>
 
 " Toggle line numbers
 nnoremap <silent><Leader>l :call ToggleRelativeAbsoluteNumber()<CR>
@@ -282,17 +278,7 @@ nmap <Leader>h :set list!<CR>
 
 " Folding
 set foldmethod=marker
-nnoremap \ za
-vnoremap \ za
 set foldlevel=99
-
-" Cut/Paste
-" to/from the clipboard
-noremap <Leader>y "*y
-noremap <Leader>p "*p
-
-" toggle paste mode
-map <Leader>P :set invpaste<CR>
 
 " Spelling
 autocmd FileType gitcommit setlocal spell! spelllang=en
@@ -303,15 +289,6 @@ autocmd FileType rst setlocal spell! spelllang=en
 nmap <Leader>ss :setlocal spell! spelllang=es<CR>
 nmap <Leader>se :setlocal spell! spelllang=en<CR>
 " ]s and [s to move. z= to suggest. zg to add a word
-
-" Save as root
-cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
-
-" Quick saving
-nmap <silent> <Leader>w :update<CR>
-
-" Delete trailing whitespaces
-nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Move between Vim and Tmux windows
 if exists('$TMUX')
@@ -407,9 +384,6 @@ nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").' <Bar>
 
 nnoremap <Leader>ggc :silent! Ggrep -i<Space>
 nnoremap <leader>ga :silent! Git add %<cr>:redraw!<cr>
-
-" for the diffmode
-noremap <Leader>du :diffupdate<CR>
 
 if !exists(":Gdiffoff")
     command Gdiffoff diffoff | q | Gedit
@@ -623,8 +597,6 @@ nnoremap <leader>` viw<esc>a`<esc>hbi`<esc>lell
 vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>l
 vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>l
 vnoremap <leader>` <esc>`<i`<esc>`>la`<esc>l
-nnoremap Y y$
-" vnoremap <leader>s y:! "<c-r>""<home><right>
 
 " inoremap <esc> <nop>
 nnoremap <up> <nop>
@@ -766,6 +738,30 @@ noremap <Leader>wc :echo system('wc -w ' . shellescape(expand('%')))<CR>
 
 " Allow to repeat in visual mode
 vnoremap . :norm.<CR>
+
+" Fast window & buffer close and kill
+nnoremap <Leader>k <C-w>c
+nnoremap <silent><Leader>K :bd<CR>
+
+" Cut/Paste
+" to/from the clipboard
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+
+" toggle paste mode
+map <Leader>P :set invpaste<CR>
+
+" Save as root
+cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+
+" Quick saving
+nmap <silent> <Leader>w :update<CR>
+
+" Delete trailing whitespaces
+nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" for the diffmode
+noremap <Leader>du :diffupdate<CR>
 
 " let g:unite_source_rec_max_cache_files = 0
 " call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
