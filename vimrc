@@ -683,6 +683,7 @@ function! s:testCurrentTest()
     let @@ = saved_unnamed_register
 endfunction
 
+" Search visual selection
 vnoremap // y/<C-R>"<CR>"
 
 if filereadable(".vimrc") && $PWD != $HOME
