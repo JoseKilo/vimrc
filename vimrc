@@ -203,7 +203,7 @@ set colorcolumn=81
 set complete=.,w,b,u,t,i,kspell
 
 " Colorscheme
-syntax enable                  " enable the syntax highlight
+" syntax enable                  " enable the syntax highlight
 augroup color_all
     autocmd!
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
