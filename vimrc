@@ -560,19 +560,6 @@ au BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
-nnoremap <Leader>m :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
-vnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
-nnoremap <Leader>f :%s///g<Left><Left>
-nnoremap <space> za
-nnoremap <leader>ev :e $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lell
-nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lell
-nnoremap <leader>` viw<esc>a`<esc>hbi`<esc>lell
-vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>l
-vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>l
-vnoremap <leader>` <esc>`<i`<esc>`>la`<esc>l
-
 " inoremap <esc> <nop>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -734,6 +721,19 @@ nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " for the diffmode
 noremap <Leader>du :diffupdate<CR>
+
+nnoremap <Leader>m :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
+vnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
+nnoremap <Leader>f :%s///g<Left><Left>
+nnoremap <space> za
+nnoremap <leader>ev :e $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lell
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lell
+nnoremap <leader>` viw<esc>a`<esc>hbi`<esc>lell
+vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>l
+vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>l
+vnoremap <leader>` <esc>`<i`<esc>`>la`<esc>l
 
 " let g:unite_source_rec_max_cache_files = 0
 " call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
