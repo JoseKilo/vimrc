@@ -57,7 +57,7 @@ call dein#add('mattn/emmet-vim', {'on_ft': ['html', 'xhttml', 'css', 'xml', 'xls
 call dein#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
 
 " Editor tools
-" call dein#add('Shougo/neocomplete.vim')
+call dein#add('Shougo/neocomplete.vim')
 call dein#add('scrooloose/syntastic')
 call dein#add('SirVer/ultisnips')
 call dein#add('honza/vim-snippets')
@@ -695,7 +695,7 @@ let g:netrw_list_hide= '.*\.pyc$'
 nnoremap <Leader>j :vsplit<CR>:Explore<CR>
 noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
 noremap <Leader>r :checkt<CR>
-set completeopt=menu,longest,preview
+set completeopt=menu,longest
 
 set path=**                     " Search the files under the run location.
 set suffixesadd=.py             " Look for Python files.
