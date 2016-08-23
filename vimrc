@@ -623,10 +623,7 @@ augroup filetype_js
 augroup END
 augroup filetype_python
     autocmd!
-    autocmd FileType python :inoreabbrev <buffer> iif if:<left>
-    autocmd FileType python :inoreabbrev <buffer> wwh while:<left>
-    autocmd FileType python :inoreabbrev <buffer> ffo for i in:<left>
-    autocmd FileType python :inoreabbrev <buffer> rrr return
+    set textwidth=80
     set colorcolumn=81
 augroup END
 augroup filetype_txt
@@ -644,7 +641,6 @@ augroup filetype_all
     autocmd InsertLeave * match ExtraWhitespace /\v\s+$/
 augroup END
 
-onoremap p i(
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap il( :<c-u>normal! F)vi(<cr>
 onoremap an( :<c-u>normal! f(va(<cr>
@@ -658,7 +654,6 @@ onoremap an@ :<c-u>execute "normal! /\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
 onoremap ip@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt@"<cr>
 onoremap ap@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
 
-nnoremap <leader>rr pkddyy
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>tt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS % 2> .error.txt"<cr>:call <SID>loadTestErrors()<cr>
 nnoremap <leader>ttt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS 2> .error.txt"<cr>:call <SID>loadTestErrors()<cr>
@@ -679,7 +674,7 @@ function! s:testCurrentTest()
     let test_name = @@
     execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS %:" . class_name . "." . test_name " 2> .error.txt"
     redraw!
-    loadTestErrors()
+    call <SID>loadTestErrors()
     let @@ = saved_unnamed_register
 endfunction
 
