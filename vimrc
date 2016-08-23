@@ -563,7 +563,6 @@ au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 nnoremap <Leader>m :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
 vnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
 nnoremap <Leader>f :%s///g<Left><Left>
-nnoremap <Leader>w :w<CR>
 nnoremap <space> za
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -710,7 +709,7 @@ nnoremap <C-j> :tabe
 " Ansible support via 'chase/vim-ansible-yaml'
 let g:ansible_options = {'ignore_blank_lines': 0}
 
-noremap <Leader>wc :echo system('wc -w ' . shellescape(expand('%')))<CR>
+noremap <Leader>dwc :echo system('wc -w ' . shellescape(expand('%')))<CR>
 
 " Allow to repeat in visual mode
 vnoremap . :norm.<CR>
@@ -731,7 +730,7 @@ map <Leader>P :set invpaste<CR>
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
 " Quick saving
-nmap <silent> <Leader>w :update<CR>
+nnoremap <silent><Leader>w :update<CR>
 
 " Delete trailing whitespaces
 nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
