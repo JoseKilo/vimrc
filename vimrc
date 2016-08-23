@@ -31,7 +31,6 @@ call dein#add('Shougo/vimproc', {'build' : 'make'})
 " Unite. The interface to rule almost everything
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/unite-outline')
-call dein#add('tsukkee/unite-help')
 call dein#add('osyo-manga/unite-quickfix')
 call dein#add('osyo-manga/unite-fold')
 call dein#add('tacroe/unite-mark')
@@ -385,11 +384,6 @@ nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").' <Bar>
 nnoremap <Leader>ggc :silent! Ggrep -i<Space>
 nnoremap <leader>ga :silent! Git add %<cr>:redraw!<cr>
 
-if !exists(":Gdiffoff")
-    command Gdiffoff diffoff | q | Gedit
-endif
-noremap <Leader>dq :Gdiffoff<CR>
-
 " Gitv
 nnoremap <silent> <leader>gv :Gitv --all<CR>
 nnoremap <silent> <leader>gV :Gitv! --all<CR>
@@ -419,24 +413,8 @@ let g:neocomplete#min_keyword_length = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 1
 let g:neocomplete#data_directory = $HOME.'/.vim/tmp/neocomplete'
 
-" disable the auto select feature by default to speed up writing without
-" obstacles (is optimal for certain situations)
+" disable the auto select feature by default
 let g:neocomplete#enable_auto_select = 0
-
-" toggle the auto select feature
-function! ToggleNeoComplete()
-  if !g:neocomplete#disable_auto_complete && g:neocomplete#enable_auto_select
-      let g:neocomplete#disable_auto_complete = 0
-      let g:neocomplete#enable_auto_select = 0
-  elseif !g:neocomplete#disable_auto_complete && !g:neocomplete#enable_auto_select
-      let g:neocomplete#disable_auto_complete = 1
-      let g:neocomplete#enable_auto_select = 0
-  elseif g:neocomplete#disable_auto_complete && !g:neocomplete#enable_auto_select
-      let g:neocomplete#disable_auto_complete = 0
-      let g:neocomplete#enable_auto_select = 1
-  endif
-endfunction
-nnoremap <silent><Leader>ea :call ToggleNeoComplete()<CR>
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -504,8 +482,7 @@ nnoremap <silent><Leader>o :Unite -silent -start-insert file_rec/async:!<CR>
 nnoremap <silent><Leader>O :Unite -silent -start-insert file_rec/git<CR>
 nnoremap <silent><Leader>b :Unite -silent buffer<CR>
 nnoremap <silent><Leader>p :Unite -silent tab<CR>
-nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>
-nnoremap <silent> <leader>? :Unite -toggle -auto-resize -auto-highlight -input=TODO grep:.<CR>
+nnoremap <silent><leader>? :Unite -toggle -auto-resize -auto-highlight -input=TODO grep:.<CR>
 nnoremap <silent><Leader>i :Unite -silent outline<CR>
 
 nnoremap <silent><Leader>s :Unite -silent -start-insert grep:.<CR>
@@ -580,7 +557,6 @@ augroup markdown_autocmd
     autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 augroup END
 au BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
-au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
