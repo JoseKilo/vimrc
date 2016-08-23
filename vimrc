@@ -705,7 +705,8 @@ set nrformats-=octal            " Turn off octal increment / decrement so that
                                 " numbers with leading zeros won't go from 007
                                 " to 010
 
-nnoremap <C-j> :tabe 
+nnoremap <c-j> :tabe 
+nnoremap <c-t>t :tabn<cr>
 
 " Ansible support via 'chase/vim-ansible-yaml'
 let g:ansible_options = {'ignore_blank_lines': 0}
