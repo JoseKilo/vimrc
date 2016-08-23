@@ -200,6 +200,15 @@ set colorcolumn=81
 
 " Autocompletion
 set complete=.,w,b,u,t,i,kspell
+set completeopt=menu,longest
+
+set path=**                     " Search the files under the run location.
+set suffixesadd=.py             " Look for Python files.
+set shell=bash
+
+set nrformats-=octal            " Turn off octal increment / decrement so that
+                                " numbers with leading zeros won't go from 007
+                                " to 010
 
 " Colorscheme
 " syntax enable                  " enable the syntax highlight
@@ -677,15 +686,6 @@ let g:netrw_list_hide= '.*\.pyc$'
 nnoremap <Leader>j :vsplit<CR>:Explore<CR>
 noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
 noremap <Leader>r :checkt<CR>
-set completeopt=menu,longest
-
-set path=**                     " Search the files under the run location.
-set suffixesadd=.py             " Look for Python files.
-set shell=bash
-
-set nrformats-=octal            " Turn off octal increment / decrement so that
-                                " numbers with leading zeros won't go from 007
-                                " to 010
 
 nnoremap <c-j> :tabe 
 nnoremap <c-t>t :tabn<cr>
