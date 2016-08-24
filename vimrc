@@ -735,6 +735,11 @@ vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>l
 vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>l
 vnoremap <leader>` <esc>`<i`<esc>`>la`<esc>l
 
+" Scroll to previous indentation level
+nnoremap <leader>v :<c-u>execute "normal! ?^" .
+            \ repeat('\ ', ((len(matchstr(getline('.'), '\(^\s*\)')) / &tabstop) - 1) * &tabstop) .
+            \ "\\%<" . line('.') . "l\\S\r:nohlsearch\rzz"<cr>
+
 " let g:unite_source_rec_max_cache_files = 0
 " call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
 
