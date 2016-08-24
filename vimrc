@@ -55,6 +55,7 @@ call dein#add('vim-scripts/po.vim--gray', {'on_ft': ['po']})  " Remove 'po' and 
 call dein#add('othree/html5.vim', {'on_ft': ['html', 'xhttml', 'css']})
 call dein#add('mattn/emmet-vim', {'on_ft': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']})
 call dein#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
+call dein#add('artur-shaik/vim-javacomplete2', {'on_ft': ['java']})
 
 " Editor tools
 call dein#add('Shougo/neocomplete.vim')
@@ -433,6 +434,7 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
@@ -470,7 +472,7 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_check_on_open = 1
 let g:syntastic_mode_map = { 'mode': 'active',
             \ 'active_filetypes': ['python', 'css', 'json', 'javascript'],
-            \ 'passive_filetypes': ['po', 'typescript'] }
+            \ 'passive_filetypes': ['po', 'typescript', 'java'] }
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol  = '⚡'
@@ -495,7 +497,7 @@ nnoremap <silent><leader>? :Unite -toggle -auto-resize -auto-highlight -input=TO
 nnoremap <silent><Leader>i :Unite -silent outline<CR>
 
 nnoremap <silent><Leader>s :Unite -silent -start-insert grep:.<CR>
-nnoremap <silent><Leader>a :UniteWithCursorWord -silent -start-insert grep:.<CR>
+nnoremap <silent><Leader>a :UniteWithCursorWord -silent grep:.<CR>
 
 nnoremap <silent><Leader>sss :UniteWithCursorWord -silent file_rec/async:! grep:.<CR>
 
@@ -616,6 +618,10 @@ augroup filetype_js
     autocmd BufRead,BufNewFile *.js setlocal textwidth=120
     autocmd BufRead,BufNewFile *.js setlocal colorcolumn=121
     autocmd BufRead,BufNewFile *.js syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+augroup END
+augroup filetype_java
+    autocmd!
+    autocmd BufRead,BufNewFile *.java setlocal foldmethod=syntax
 augroup END
 augroup filetype_python
     autocmd!
