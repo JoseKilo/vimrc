@@ -758,3 +758,4 @@ if &term =~ '^screen'
 endif
 
 nmap <F5> <Plug>(JavaComplete-Imports-Add)
+nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
