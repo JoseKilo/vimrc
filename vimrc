@@ -212,7 +212,7 @@ set nrformats-=octal            " Turn off octal increment / decrement so that
                                 " to 010
 
 " Colorscheme
-" syntax enable                  " enable the syntax highlight
+syntax enable                  " enable the syntax highlight
 augroup color_all
     autocmd!
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
@@ -496,7 +496,7 @@ nnoremap <silent><Leader>p :Unite -silent tab<CR>
 nnoremap <silent><leader>? :Unite -toggle -auto-resize -auto-highlight -input=TODO grep:.<CR>
 nnoremap <silent><Leader>i :Unite -silent outline<CR>
 
-nnoremap <silent><Leader>s :Unite -silent -start-insert grep:.<CR>
+nnoremap <silent><Leader>s :Unite -silent grep:.<CR>
 nnoremap <silent><Leader>a :UniteWithCursorWord -silent grep:.<CR>
 
 nnoremap <silent><Leader>sss :UniteWithCursorWord -silent file_rec/async:! grep:.<CR>
@@ -740,6 +740,9 @@ nnoremap <leader>` viw<esc>a`<esc>hbi`<esc>lell
 vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>l
 vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>l
 vnoremap <leader>` <esc>`<i`<esc>`>la`<esc>l
+" Select last changed (or pasted) text
+nnoremap gp `[v`]
+nnoremap <leader>= `[v`]=
 
 " Scroll to previous indentation level
 nnoremap <leader>v :<c-u>execute "normal! ?^" .
