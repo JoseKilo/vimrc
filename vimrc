@@ -487,6 +487,9 @@ endif
 if filereadable(".jshintrc")
     call add(g:syntastic_javascript_checkers, "jshint")
 endif
+let g:syntastic_java_checkers = ["checkstyle"]
+let g:syntastic_java_checkstyle_conf_file = "google_checks.xml"
+let g:syntastic_java_checkstyle_classpath = "checkstyle-7.1.2-all.jar"
 
 " Unite
 nnoremap <silent><Leader>o :Unite -silent -start-insert file_rec/async:!<CR>
@@ -591,7 +594,7 @@ inoreabbrev ttest def test_(self):<cr>self.assertEqual('', '')
 augroup filetype_html
     autocmd!
     autocmd BufRead,BufNewFile *.html setlocal nowrap
-    autocmd FileType html,htmldjango.html  :inoreabbrev <buffer> --- &mdash;
+    autocmd FileType html,htmldjango.html :inoreabbrev <buffer> --- &mdash;
     autocmd FileType html,htmldjango.html set tabstop=2
     autocmd FileType html,htmldjango.html set shiftwidth=2
     autocmd FileType html,htmldjango.html set softtabstop=2
@@ -622,6 +625,9 @@ augroup END
 augroup filetype_java
     autocmd!
     autocmd BufRead,BufNewFile *.java setlocal foldmethod=syntax
+    autocmd BufRead,BufNewFile *.java setlocal tabstop=2 shiftwidth=2 softtabstop=2 cinoptions+=+2s
+    autocmd FileType java :inoreabbrev <buffer> True true
+    autocmd FileType java :inoreabbrev <buffer> False false
 augroup END
 augroup filetype_python
     autocmd!
@@ -689,7 +695,7 @@ endif
 
 let g:netrw_liststyle=3
 let g:netrw_list_hide= '.*\.pyc$'
-nnoremap <Leader>j :vsplit<CR>:Explore<CR>
+nnoremap <Leader>jj :vsplit<CR>:Explore<CR>
 noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
 noremap <Leader>r :checkt<CR>
 
@@ -762,3 +768,6 @@ endif
 
 nmap <F5> <Plug>(JavaComplete-Imports-Add)
 nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+let g:JavaComplete_ImportOrder = ['com.google.', '*', 'java.', 'javax.']
+let g:JavaComplete_ImportSortType = 'packageName'
