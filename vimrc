@@ -595,31 +595,22 @@ augroup filetype_html
     autocmd!
     autocmd BufRead,BufNewFile *.html setlocal nowrap
     autocmd FileType html,htmldjango.html :inoreabbrev <buffer> --- &mdash;
-    autocmd FileType html,htmldjango.html set tabstop=2
-    autocmd FileType html,htmldjango.html set shiftwidth=2
-    autocmd FileType html,htmldjango.html set softtabstop=2
+    autocmd FileType html,htmldjango.html set tabstop=2 shiftwidth=2 softtabstop=2
+augroup filetype_yml
+    autocmd!
+    autocmd FileType typescript set tabstop=2 shiftwidth=2 softtabstop=2
 augroup END
 augroup filetype_typescript
     autocmd!
-    autocmd FileType typescript set tabstop=2
-    autocmd FileType typescript set shiftwidth=2
-    autocmd FileType typescript set softtabstop=2
+    autocmd FileType typescript set tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType typescript let g:netrw_list_hide= '.*\.js,.*\.map$'
 augroup END
 augroup filetype_js
     autocmd!
-    autocmd BufRead,BufNewFile *.js setlocal nowrap
-    autocmd BufRead,BufNewFile *.js setlocal smarttab
-    autocmd BufRead,BufNewFile *.js setlocal expandtab
-    autocmd BufRead,BufNewFile *.js setlocal tabstop=4
-    autocmd BufRead,BufNewFile *.js setlocal shiftwidth=4
-    autocmd BufRead,BufNewFile *.js setlocal softtabstop=4
-    autocmd BufRead,BufNewFile *.js setlocal autoindent
-    autocmd BufRead,BufNewFile *.js setlocal foldmethod=syntax
+    autocmd BufRead,BufNewFile *.js setlocal nowrap smarttab expandtab tabstop=4
+          \ shiftwidth=4 softtabstop=4 autoindent foldmethod=syntax syntax=javascript
+          \ textwidth=120 colorcolumn=121
     autocmd BufRead,BufNewFile *.js let javaScript_fold=1
-    autocmd BufRead,BufNewFile *.js setlocal syntax=javascript
-    autocmd BufRead,BufNewFile *.js setlocal textwidth=120
-    autocmd BufRead,BufNewFile *.js setlocal colorcolumn=121
     autocmd BufRead,BufNewFile *.js syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 augroup END
 augroup filetype_java
