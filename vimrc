@@ -516,7 +516,7 @@ endif
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-let unite_ignore_pattern = ['\.git/', 'tmp/', 'bundle/']
+let unite_ignore_pattern = ['\.git/', 'tmp/', 'bundle/', 'target/', '.tox/']
 if !empty($VIRTUAL_ENV)
   let unite_ignore_pattern += [$VIRTUAL_ENV]
 endif
