@@ -338,6 +338,20 @@ augroup shebang_chmod
         \ endif
 augroup END
 
+" Create parent dirs if they don't exist on writing a new a file
+function s:MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
+    endif
+endfunction
+augroup BWCCreateDir
+    autocmd!
+    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
+
 " Airline
 set noshowmode
 let g:airline_theme='powerlineish'
