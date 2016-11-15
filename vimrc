@@ -24,7 +24,7 @@ if has('vim_starting')
 endif
 call dein#begin(expand('~/.vim/dein'))
 
-" is better if Dein rules Dein (needed!)
+" It is better if Dein rules Dein (needed!)
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc', {'build' : 'make'})
 
@@ -339,7 +339,7 @@ augroup shebang_chmod
 augroup END
 
 " Create parent dirs if they don't exist on writing a new a file
-function s:MkNonExDir(file, buf)
+function! s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
         let dir=fnamemodify(a:file, ':h')
         if !isdirectory(dir)
@@ -457,10 +457,6 @@ endif
 let g:neocomplete#sources#omni#input_patterns.python='[^. \t]\.\w*'
 " let g:neocomplete#fallback_mappings = ["\<C-x>\<C-o>", "\<C-x>\<C-n>"]
 
-" Dein
-let g:dein#enable_notification=1
-let g:dein#notification_time=5
-
 " Po.vim
 let g:po_translator = "Jose Garcia (JoseKilo)<jose.eduardo.gd@gmail.com>"
 
@@ -506,15 +502,14 @@ let g:syntastic_java_checkstyle_conf_file = "google_checks.xml"
 let g:syntastic_java_checkstyle_classpath = "checkstyle-7.1.2-all.jar"
 
 " Unite
-nnoremap <silent><Leader>o :Unite -silent -start-insert file_rec/async:!<CR>
-nnoremap <silent><Leader>O :Unite -silent -start-insert file_rec/git<CR>
-nnoremap <silent><Leader>b :Unite -silent buffer<CR>
-nnoremap <silent><Leader>p :Unite -silent tab<CR>
-nnoremap <silent><leader>? :Unite -toggle -auto-resize -auto-highlight -input=TODO grep:.<CR>
-nnoremap <silent><Leader>i :Unite -silent outline<CR>
+nnoremap <silent><Leader>o :Unite -toggle -silent -start-insert file_rec/async:!<CR>
+nnoremap <silent><Leader>O :Unite -toggle -silent -start-insert file_rec/git<CR>
+nnoremap <silent><Leader>b :Unite -toggle -silent buffer<CR>
+nnoremap <silent><leader>? :Unite -toggle -silent -auto-resize -auto-highlight -input=TODO grep:.<CR>
+nnoremap <silent><Leader>i :Unite -toggle -silent outline<CR>
 
-nnoremap <silent><Leader>s :Unite -silent grep:.<CR>
-nnoremap <silent><Leader>a :UniteWithCursorWord -silent grep:.<CR>
+nnoremap <silent><Leader>s :Unite -toggle -silent -auto-highlight grep:.<CR>
+nnoremap <silent><Leader>a :UniteWithCursorWord -toggle -silent -auto-highlight grep:.<CR>
 
 nnoremap <silent><Leader>sss :UniteWithCursorWord -silent file_rec/async:! grep:.<CR>
 
@@ -548,13 +543,12 @@ let g:default_context = {
     \ 'marked_icon' : '✓',
     \ 'ignorecase' : 1,
     \ 'smartcase' : 1,
+    \ 'direction' : 'botright',
 \ }
 
 call unite#custom#profile('default', 'context', default_context)
 
-let g:unite_source_history_yank_enable = 1
 let g:unite_force_overwrite_statusline = 0
-let g:unite_split_rule = 'botright'
 let g:unite_data_directory = $HOME.'/.vim/tmp/unite'
 let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
 
