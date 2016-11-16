@@ -37,6 +37,7 @@ call dein#add('tacroe/unite-mark')
 
 " Color schemes
 call dein#add('joedicastro/vim-molokai256')
+call dein#add('jonathanfilip/vim-lucius')
 call dein#add('sjl/badwolf')
 call dein#add('nielsmadan/harlequin')
 call dein#add('tpope/vim-vividchalk')
@@ -71,7 +72,7 @@ call dein#add('kshenoy/vim-signature')  " Marks in side bar
 call dein#add('tpope/vim-obsession')  " Continuously updated session files
 call dein#add('bling/vim-airline')  " A better looking status line
 call dein#add('vim-airline/vim-airline-themes')
-call dein#add('vim-scripts/loremipsum', {'on_cmd' : 'Loremipsum'})
+call dein#add('vim-scripts/loremipsum')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
 call dein#add('tpope/vim-vinegar')  " enhances netrw
@@ -222,10 +223,11 @@ set t_Co=256                   " 256 colors for the terminal
 if has('gui_running')
     colorscheme molokai
 else
-    colorscheme molokai256
+    " colorscheme molokai256
     " colorscheme badwolf
     " colorscheme harlequin
     " colorscheme vividchalk
+    colorscheme lucius
 endif
 set guifont=Dejavu\ Sans\ Mono\ for\ Powerline\ 11
 
@@ -267,7 +269,7 @@ inoreabbrev ttest def test_(self):<cr>self.assertEqual('', '')
 
 " Airline
 set noshowmode
-let g:airline_theme='powerlineish'
+let g:airline_theme='lucius'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
@@ -428,7 +430,8 @@ nnoremap <silent><Leader>sss :UniteWithCursorWord -silent file_rec/async:! grep:
 
 if executable('ag')
     let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts='--nocolor --nogroup -S -i --line-numbers --ignore-dir node_modules --ignore-dir migrations --ignore-dir static --ignore-dir media --ignore-dir fixtures --ignore-dir mekami-web'
+    let g:unite_source_grep_default_opts = '--nocolor --nogroup -S -i --line-numbers ' .
+        \ '--ignore-dir node_modules --ignore-dir migrations --ignore-dir static --ignore-dir media'
     if !empty($VIRTUAL_ENV)
       let g:unite_source_grep_default_opts .= ' --ignore-dir $VIRTUAL_ENV'
     endif
@@ -766,3 +769,26 @@ if exists('$TMUX')
   nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
   nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
 endif
+
+function! BackgroundCommandClose(channel)
+  unlet g:backgroundCommandOutput
+endfunction
+
+function! RunBackgroundCommand(command)
+  if v:version < 800
+    echoerr 'RunBackgroundCommand requires VIM version 8 or higher'
+    return
+  endif
+
+  if exists('g:backgroundCommandOutput')
+    echo 'Already running task in background'
+  else
+    echo 'Running task in background'
+    let g:backgroundCommandOutput = tempname()
+    let g:backgroundCommandJob = job_start(a:command, {'close_cb': 'BackgroundCommandClose', 'out_io': 'file', 'out_name': g:backgroundCommandOutput})
+  endif
+endfunction
+
+let g:noiseCommand = 'play --no-show-progress -c 2 --null synth 01:00 brownnoise band -n 100 499 tremolo 0.1 43 reverb 19 bass -11 treble -1 vol 14dB repeat 59'
+nnoremap <silent> <leader>ppp :call RunBackgroundCommand(g:noiseCommand)<CR>
+nnoremap <silent> <leader>ooo :call job_stop(g:backgroundCommandJob)<CR>
