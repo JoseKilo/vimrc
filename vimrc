@@ -293,7 +293,6 @@ let delimitMate_expand_space = 1
 let g:EasyDigraph_nmap = '<Leader>dd'
 
 " Fugitive
-nnoremap <Leader>gn :Unite output:echo\ system("git\ init")<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>go :Gread<CR>
@@ -302,26 +301,15 @@ nnoremap <Leader>gm :Gmove<Space>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gB :Gbrowse<CR>
-nnoremap <Leader>gp :Git! push<CR>
-nnoremap <Leader>gP :Git! pull<CR>
-nnoremap <Leader>gi :Git!<Space>
 nnoremap <Leader>ge :Gedit<CR>
 nnoremap <Leader>gE :Gedit<Space>
-nnoremap <Leader>gl :exe "silent Glog <Bar> Unite -no-quit
-            \ quickfix"<CR>:redraw!<CR>
-nnoremap <Leader>gL :exe "silent Glog -- <Bar> Unite -no-quit
-            \ quickfix"<CR>:redraw!<CR>
 nnoremap <Leader>gt :!tig<CR>:redraw!<CR>
-nnoremap <Leader>gg :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>Unite
-            \ quickfix -no-quit<CR>
-nnoremap <Leader>ggm :exe 'silent Glog --grep='.input("Pattern: ").' <Bar>
-            \Unite -no-quit quickfix'<CR>
-nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").' <Bar>
-            \Unite -no-quit quickfix'<CR>
+nnoremap <leader>ga :silent! Git add %<cr>:redraw!<cr>
+nnoremap <Leader>gl :exe "silent Glog <Bar> Unite quickfix"<CR>:redraw!<CR>
+nnoremap <Leader>gL :exe "silent Glog -- <Bar> Unite quickfix"<CR>:redraw!<CR>
 
 nnoremap <Leader>ggc :silent! Ggrep -i<Space>
-nnoremap <leader>ga :silent! Git add %<cr>:redraw!<cr>
+nnoremap <Leader>gg :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>Unite -no-quit -toggle quickfix<CR>
 
 " Gitv
 nnoremap <silent> <leader>gv :Gitv --all<CR>
