@@ -45,7 +45,7 @@ call dein#add('tpope/vim-vividchalk')
 " Git
 call dein#add('tpope/vim-fugitive')
 call dein#add('airblade/vim-gitgutter')  " Changes in side bar
-call dein#add('gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'on_cmd':'Gitv'})
+call dein#add('gregsexton/gitv', {'depends':['tpope/vim-fugitive']})
 
 " Custom Syntax
 call dein#add('plasticboy/vim-markdown')
@@ -170,7 +170,6 @@ set undodir=$HOME/.vim/tmp/undo/
 set directory=$HOME/.vim/tmp/swap/
 set viminfo+=n$HOME/.vim/tmp/viminfo
 
-" make this dirs if no exists previously
 function! MakeDirIfNoExists(path)
     if !isdirectory(expand(a:path))
         call mkdir(expand(a:path), "p")
@@ -197,7 +196,7 @@ set shiftwidth=4               " number of spaces for auto-indent
 set softtabstop=4              " a soft-tab of four spaces
 set autoindent nosmartindent   " set on the auto-indent
 " set formatoptions=qrn1ct
-set textwidth=80
+set textwidth=79
 set colorcolumn=81
 
 " Autocompletion
@@ -213,12 +212,12 @@ set nrformats-=octal            " Turn off octal increment / decrement so that
                                 " to 010
 
 " Colorscheme
-syntax enable                  " enable the syntax highlight
+syntax enable
 augroup color_all
     autocmd!
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 augroup END
-set background=dark            " set a dark background
+set background=dark
 set t_Co=256                   " 256 colors for the terminal
 if has('gui_running')
     colorscheme molokai
@@ -339,9 +338,7 @@ let g:neocomplete#max_list = 30
 let g:neocomplete#min_keyword_length = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 1
 let g:neocomplete#data_directory = $HOME.'/.vim/tmp/neocomplete'
-
-" disable the auto select feature by default
-let g:neocomplete#enable_auto_select = 0
+let g:neocomplete#use_vimproc = 1
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -674,12 +671,12 @@ function! ToggleWrap()
     if s:curr_cc_guibg != s:nowrap_cc_bg[1]
         let g:curr_cc_guibg = s:curr_cc_guibg
     endif
-    if &textwidth == 80
+    if &textwidth == 79
         set textwidth=0
         exec 'hi ColorColumn ctermbg='.s:nowrap_cc_bg[0].
                     \' guibg='.s:nowrap_cc_bg[1]
     elseif &textwidth == 0
-        set textwidth=80
+        set textwidth=79
         exec 'hi ColorColumn ctermbg='.g:curr_cc_ctermbg.
                     \' guibg='.g:curr_cc_guibg
     endif
