@@ -573,7 +573,7 @@ function! s:testCurrentTest()
 endfunction
 
 " Search visual selection
-vnoremap // y/<C-R>"<CR>"
+vnoremap // y/<C-R>"<BS><CR>
 
 if filereadable(".vimrc") && $PWD != $HOME
     source .vimrc
@@ -780,3 +780,10 @@ endfunction
 let g:noiseCommand = 'play --no-show-progress -c 2 --null synth 01:00 brownnoise band -n 100 499 tremolo 0.1 43 reverb 19 bass -11 treble -1 vol 14dB repeat 59'
 nnoremap <silent> <leader>ppp :call RunBackgroundCommand(g:noiseCommand)<CR>
 nnoremap <silent> <leader>ooo :call job_stop(g:backgroundCommandJob)<CR>
+
+set scrolloff=3
+
+autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
