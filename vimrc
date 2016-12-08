@@ -129,7 +129,7 @@ set go-=m                       " hide the menu
 " only hide all the scrollbars, the vertical scrollbar is showed anyway
 set go+=rRlLbh                  " show all the scrollbars
 set go-=rRlLbh                  " hide all the scrollbars
-set visualbell                  " turn on the visual bell
+set novisualbell                " turn off the visual bell
 set cursorline                  " highlight the line under the cursor
 set fillchars+=vert:│           " better looking for windows separator
 set ttyfast                     " better screen redraw
