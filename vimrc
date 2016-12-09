@@ -88,7 +88,6 @@ call dein#add('benmills/vimux')
 
 " Python
 call dein#add('klen/python-mode', {'on_ft': ['python']})
-call dein#add('jmcantrell/vim-virtualenv')
 call dein#add('alfredodeza/coveragepy.vim', {'on_ft': ['python']})
 call dein#add('fisadev/vim-isort', {'on_ft': ['python']})
 
@@ -264,7 +263,6 @@ inoremap <right> <nop>
 inoreabbrev @@@ jose.eduardo.gd@gmail.com
 inoreabbrev ccop Copyright, all rights reserved.
 inoreabbrev ssig --<cr>Jose Garcia (Jose Kilo)<cr>jose.eduardo.gd@gmail.com
-inoreabbrev ttest def test_(self):<cr>self.assertEqual('', '')
 
 " Airline
 set noshowmode
@@ -407,10 +405,8 @@ nnoremap <silent><Leader>O :Unite -toggle -silent -start-insert file_rec/git<CR>
 nnoremap <silent><Leader>b :Unite -toggle -silent buffer<CR>
 nnoremap <silent><leader>? :Unite -toggle -silent -auto-resize -auto-highlight -input=TODO grep:.<CR>
 nnoremap <silent><Leader>i :Unite -toggle -silent outline<CR>
-
-nnoremap <silent><Leader>s :Unite -toggle -silent -auto-highlight grep:.<CR>
+nnoremap <silent><Leader>sa :Unite -toggle -silent -auto-highlight grep:.<CR>
 nnoremap <silent><Leader>a :UniteWithCursorWord -toggle -silent -auto-highlight grep:.<CR>
-
 nnoremap <silent><Leader>sss :UniteWithCursorWord -silent file_rec/async:! grep:.<CR>
 
 if executable('ag')
@@ -465,10 +461,6 @@ map <Leader>rq :VimuxCloseRunner<CR>
 map <F6> :Vinarise<CR>
 let g:vinarise_enable_auto_detect = 1
 au FileType vinarise let g:airline_section_warning = ''
-
-" Virtualenv
-let g:virtualenv_auto_activate = 1
-let g:virtualenv_stl_format = '(%n)'
 
 " FILETYPES
 augroup json_autocmd
