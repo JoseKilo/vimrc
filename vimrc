@@ -463,62 +463,36 @@ let g:vinarise_enable_auto_detect = 1
 au FileType vinarise let g:airline_section_warning = ''
 
 " FILETYPES
-augroup json_autocmd
+augroup filetype_autocmd
     autocmd!
     autocmd FileType json set foldmethod=syntax
-augroup END
-augroup markdown_autocmd
-    autocmd!
-    autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
-augroup END
-au BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
-au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
-au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
-
-augroup filetype_html
-    autocmd!
-    autocmd BufRead,BufNewFile *.html setlocal nowrap
+    autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType html,htmldjango.html :inoreabbrev <buffer> --- &mdash;
     autocmd FileType html,htmldjango.html set tabstop=2 shiftwidth=2 softtabstop=2
-augroup filetype_yml
-    autocmd!
-    autocmd FileType typescript set tabstop=2 shiftwidth=2 softtabstop=2
-augroup END
-augroup filetype_typescript
-    autocmd!
     autocmd FileType typescript set tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType typescript let g:netrw_list_hide= '.*\.js,.*\.map$'
-augroup END
-augroup filetype_js
-    autocmd!
+    autocmd FileType java :inoreabbrev <buffer> True true
+    autocmd FileType java :inoreabbrev <buffer> False false
+    autocmd FileType python set textwidth=80
+    autocmd FileType python set colorcolumn=81
+    autocmd FileType text set textwidth=80
+    autocmd FileType text set colorcolumn=81
+    autocmd FileType markdown,rst :onoremap <buffer> ih :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rkvg_"<cr>
+    autocmd FileType markdown,rst :onoremap <buffer> ah :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
+
+    autocmd BufRead,BufNewFile *.html setlocal nowrap
+    autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
+    autocmd BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
+    autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
+    autocmd BufRead,BufNewFile *.js let javaScript_fold=1
+    autocmd BufRead,BufNewFile *.js syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+    autocmd BufRead,BufNewFile *.java setlocal foldmethod=syntax
+    autocmd BufRead,BufNewFile *.java setlocal tabstop=2 shiftwidth=2 softtabstop=2 cinoptions+=+2s
     autocmd BufRead,BufNewFile *.js setlocal nowrap smarttab expandtab tabstop=4
           \ shiftwidth=4 softtabstop=4 autoindent foldmethod=syntax syntax=javascript
           \ textwidth=120 colorcolumn=121
-    autocmd BufRead,BufNewFile *.js let javaScript_fold=1
-    autocmd BufRead,BufNewFile *.js syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 augroup END
-augroup filetype_java
-    autocmd!
-    autocmd BufRead,BufNewFile *.java setlocal foldmethod=syntax
-    autocmd BufRead,BufNewFile *.java setlocal tabstop=2 shiftwidth=2 softtabstop=2 cinoptions+=+2s
-    autocmd FileType java :inoreabbrev <buffer> True true
-    autocmd FileType java :inoreabbrev <buffer> False false
-augroup END
-augroup filetype_python
-    autocmd!
-    set textwidth=80
-    set colorcolumn=81
-augroup END
-augroup filetype_txt
-    autocmd!
-    set textwidth=80
-    set colorcolumn=81
-augroup END
-augroup filetype_markdown
-    autocmd!
-    autocmd FileType markdown,rst :onoremap <buffer> ih :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rkvg_"<cr>
-    autocmd FileType markdown,rst :onoremap <buffer> ah :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
-augroup END
+
 augroup filetype_all
     autocmd!
     autocmd InsertLeave * match ExtraWhitespace /\v\s+$/
