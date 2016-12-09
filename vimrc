@@ -209,6 +209,7 @@ set shell=bash
 set nrformats-=octal            " Turn off octal increment / decrement so that
                                 " numbers with leading zeros won't go from 007
                                 " to 010
+set scrolloff=3
 
 " Colorscheme
 syntax enable
@@ -462,7 +463,16 @@ map <F6> :Vinarise<CR>
 let g:vinarise_enable_auto_detect = 1
 au FileType vinarise let g:airline_section_warning = ''
 
-" FILETYPES
+" Ansible support via 'chase/vim-ansible-yaml'
+let g:ansible_options = {'ignore_blank_lines': 0}
+
+" javacomplete2
+nmap <F5> <Plug>(JavaComplete-Imports-Add)
+nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+let g:JavaComplete_ImportOrder = ['com.google.', '*', 'java.', 'javax.']
+let g:JavaComplete_ImportSortType = 'packageName'
+
 augroup filetype_autocmd
     autocmd!
     autocmd FileType json set foldmethod=syntax
@@ -551,9 +561,6 @@ noremap <Leader>r :checkt<CR>
 nnoremap <c-j> :tabe 
 nnoremap <c-t>t :tabn<cr>
 
-" Ansible support via 'chase/vim-ansible-yaml'
-let g:ansible_options = {'ignore_blank_lines': 0}
-
 noremap <Leader>dwc :echo system('wc -w ' . shellescape(expand('%')))<CR>
 
 " Allow to repeat in visual mode
@@ -562,25 +569,19 @@ vnoremap . :norm.<CR>
 " Fast window & buffer close and kill
 nnoremap <Leader>k <C-w>c
 nnoremap <silent><Leader>K :bd<CR>
+nnoremap <silent><Leader>n :bn<CR>
+nnoremap <silent><Leader>N :bN<CR>
 
-" Cut/Paste
-" to/from the clipboard
-noremap <Leader>y "*y
-noremap <Leader>p "*p
-
-" toggle paste mode
-map <Leader>P :set invpaste<CR>
+" Toggle paste mode
+nnoremap <Leader>P :set invpaste<CR>
 
 " Save as root
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
-" Quick saving
-nnoremap <silent><Leader>w :update<CR>
-
 " Delete trailing whitespaces
-nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+noremap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
-" for the diffmode
+" For the diffmode
 noremap <Leader>du :diffupdate<CR>
 
 nnoremap <Leader>m :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
@@ -614,12 +615,6 @@ if &term =~ '^screen'
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
 endif
-
-nmap <F5> <Plug>(JavaComplete-Imports-Add)
-nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
-nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
-let g:JavaComplete_ImportOrder = ['com.google.', '*', 'java.', 'javax.']
-let g:JavaComplete_ImportSortType = 'packageName'
 
 " Utility functions with maps
 
@@ -744,8 +739,7 @@ let g:noiseCommand = 'play --no-show-progress -c 2 --null synth 01:00 brownnoise
 nnoremap <silent> <leader>ppp :call RunBackgroundCommand(g:noiseCommand)<CR>
 nnoremap <silent> <leader>ooo :call job_stop(g:backgroundCommandJob)<CR>
 
-set scrolloff=3
-
+" Go to last change when opening a file
 autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
