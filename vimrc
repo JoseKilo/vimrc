@@ -89,7 +89,6 @@ call dein#add('benmills/vimux')
 " Python
 call dein#add('klen/python-mode', {'on_ft': ['python']})
 call dein#add('alfredodeza/coveragepy.vim', {'on_ft': ['python']})
-call dein#add('fisadev/vim-isort', {'on_ft': ['python']})
 
 " text-objects
 call dein#add('kana/vim-textobj-entire') " ae, ie
@@ -361,24 +360,26 @@ let g:po_translator = "Jose Garcia (JoseKilo)<jose.eduardo.gd@gmail.com>"
 
 " PythonMode
 let g:pymode_breakpoint_bind = '<Leader>B'
+let g:pymode_doc = 0
+let g:pymode_run = 0
 let g:pymode_lint = 0  " Use Syntastic instead (this doesn't work with flake8)
-let g:pymode_virtualenv = 1
+let g:pymode_options = 0
 let g:pymode_rope = 1
-let g:pymode_rope_completion = 0
+let g:pymode_folding = 1
+let g:pymode_virtualenv = 1
+let g:pymode_trim_whitespaces = 1
+let g:pymode_rope_completion = 1
 let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_lookup_project = 0
-" let g:pymode_rope_project_root = "."
 let g:pymode_rope_regenerate_on_write = 0
 let g:pymode_rope_autoimport = 0  " Seriously, DON'T ... Or maybe yes ... NO !!
 let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime', 'itertools', 'logging']
-let g:pymode_rope_autoimport_import_after_complete = 1
-let g:pymode_doc = 0
+let g:pymode_rope_autoimport_import_after_complete = 0
 
 " Syntastic
 nmap <silent><Leader>N :SyntasticCheck<CR>
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_mode_map = { 'mode': 'active',
             \ 'active_filetypes': ['python', 'css', 'json', 'javascript'],
             \ 'passive_filetypes': ['po', 'typescript', 'java'] }
@@ -599,6 +600,8 @@ vnoremap <leader>` <esc>`<i`<esc>`>la`<esc>l
 " Select last changed (or pasted) text
 nnoremap gp `[v`]
 nnoremap <leader>= `[v`]=
+
+:map Y y$
 
 " Scroll to previous indentation level
 nnoremap <leader>v :<c-u>execute "normal! ?^" .
