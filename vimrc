@@ -212,6 +212,7 @@ syntax enable
 augroup color_all
     autocmd!
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+    autocmd InsertLeave * match ExtraWhitespace /\v\s+$/
 augroup END
 set background=dark
 set t_Co=256                   " 256 colors for the terminal
@@ -227,7 +228,7 @@ endif
 set guifont=Dejavu\ Sans\ Mono\ for\ Powerline\ 11
 
 " Resize the divisions if the Vim window size changes
-au VimResized * exe "normal! \<c-w>="
+autocmd VimResized * exe "normal! \<c-w>="
 
 " Show hidden chars
 set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
@@ -273,11 +274,11 @@ let g:airline#extensions#hunks#non_zero_only = 1
 nmap <Leader>c <Plug>CommentaryLine
 xmap <Leader>c <Plug>Commentary
 augroup plugin_commentary
-    au!
-    au FileType python setlocal commentstring=#%s
-    au FileType htmldjango setlocal commentstring={#\ %s\ #}
-    au FileType puppet setlocal commentstring=#\ %s
-    au FileType xquery setlocal commentstring=(:\ %s\ :)
+    autocmd!
+    autocmd FileType python setlocal commentstring=#%s
+    autocmd FileType htmldjango setlocal commentstring={#\ %s\ #}
+    autocmd FileType puppet setlocal commentstring=#\ %s
+    autocmd FileType xquery setlocal commentstring=(:\ %s\ :)
 augroup END
 
 " delimitmate
@@ -451,7 +452,7 @@ let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
 " Vinarise
 map <F6> :Vinarise<CR>
 let g:vinarise_enable_auto_detect = 1
-au FileType vinarise let g:airline_section_warning = ''
+autocmd FileType vinarise let g:airline_section_warning = ''
 
 " Ansible support via 'chase/vim-ansible-yaml'
 let g:ansible_options = {'ignore_blank_lines': 0}
@@ -493,23 +494,14 @@ augroup filetype_autocmd
           \ textwidth=120 colorcolumn=121
 augroup END
 
-augroup filetype_all
-    autocmd!
-    autocmd InsertLeave * match ExtraWhitespace /\v\s+$/
-augroup END
-
-onoremap in( :<c-u>normal! f(vi(<cr>
-onoremap il( :<c-u>normal! F)vi(<cr>
-onoremap an( :<c-u>normal! f(va(<cr>
-onoremap al( :<c-u>normal! F)va(<cr>
-onoremap in{ :<c-u>normal! f{vi{<cr>
-onoremap il{ :<c-u>normal! F}vi{<cr>
-onoremap an{ :<c-u>normal! f{va{<cr>
-onoremap al{ :<c-u>normal! F}va{<cr>
-onoremap in@ :<c-u>execute "normal! /\\S\\+@\\S\\+\r:nohlsearch\rvt@"<cr>
-onoremap an@ :<c-u>execute "normal! /\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
-onoremap ip@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt@"<cr>
-onoremap ap@ :<c-u>execute "normal! ?\\S\\+@\\S\\+\r:nohlsearch\rvt "<cr>
+onoremap in) :<c-u>normal! f(vi(<cr>
+onoremap il) :<c-u>normal! F)vi(<cr>
+onoremap an) :<c-u>normal! f(va(<cr>
+onoremap al) :<c-u>normal! F)va(<cr>
+onoremap in} :<c-u>normal! f{vi{<cr>
+onoremap il} :<c-u>normal! F}vi{<cr>
+onoremap an} :<c-u>normal! f{va{<cr>
+onoremap al} :<c-u>normal! F}va{<cr>
 
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>tt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS % 2> .error.txt"<cr>:call <SID>loadTestErrors()<cr>
