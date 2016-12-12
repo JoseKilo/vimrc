@@ -83,9 +83,6 @@ call dein#add('tpope/vim-repeat')  " extend repetitions by the 'dot' key
 call dein#add('tpope/vim-dispatch')  " asynchronous build and test dispatcher
 call dein#add('Konfekt/FastFold')  " Speed up Vim by updating folds only when called-for
 
-" Tmux
-call dein#add('benmills/vimux')
-
 " Python
 call dein#add('klen/python-mode', {'on_ft': ['python']})
 call dein#add('alfredodeza/coveragepy.vim', {'on_ft': ['python']})
@@ -451,14 +448,6 @@ let g:unite_force_overwrite_statusline = 0
 let g:unite_data_directory = $HOME.'/.vim/tmp/unite'
 let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
 
-" vimux
-let g:VimuxUseNearestPane = 1
-map <Leader>rc :VimuxPromptCommand<CR>
-map <Leader>rl :VimuxRunLastCommand<CR>
-map <Leader>rs :VimuxInterruptRunner<CR>
-map <Leader>ri :VimuxInspectRunner<CR>
-map <Leader>rq :VimuxCloseRunner<CR>
-
 " Vinarise
 map <F6> :Vinarise<CR>
 let g:vinarise_enable_auto_detect = 1
@@ -611,14 +600,6 @@ nnoremap <leader>v :<c-u>execute "normal! ?^" .
 " let g:unite_source_rec_max_cache_files = 0
 " call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
 
-if &term =~ '^screen'
-    " tmux will send xterm-style keys when its xterm-keys option is on
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
-endif
-
 " Utility functions with maps
 
 nnoremap <silent><Leader>ew :call ToggleWrap()<CR>
@@ -697,27 +678,6 @@ augroup BWCCreateDir
     autocmd!
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
-
-" Move between Vim and Tmux windows
-if exists('$TMUX')
-  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
-    let previous_winnr = winnr()
-    execute "wincmd " . a:wincmd
-    if previous_winnr == winnr()
-      " The sleep and & gives time to get back to vim so tmux's focus tracking
-      " can kick in and send us our ^[[O
-      execute "silent !sh -c 'sleep 0.01; tmux select-pane -" . a:tmuxdir . "' &"
-      redraw!
-    endif
-  endfunction
-  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
-  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
-  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
-  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
-  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
-endif
 
 function! BackgroundCommandClose(channel)
   unlet g:backgroundCommandOutput
