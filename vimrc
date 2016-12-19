@@ -206,6 +206,7 @@ set nrformats-=octal            " Turn off octal increment / decrement so that
                                 " numbers with leading zeros won't go from 007
                                 " to 010
 set scrolloff=3
+set nomodeline
 
 " Colorscheme
 syntax enable
@@ -536,7 +537,7 @@ endif
 
 let g:netrw_liststyle=3
 let g:netrw_list_hide= '.*\.pyc$'
-nnoremap <Leader>jj :vsplit<CR>:Explore<CR>
+nnoremap <Leader>jj :10Lexplore<CR>
 noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
 noremap <Leader>r :checkt<CR>
 
@@ -704,3 +705,19 @@ xmap aC <Plug>(textobj-python-class-a)
 omap aC <Plug>(textobj-python-class-a)
 xmap iC <Plug>(textobj-python-class-i)
 omap iC <Plug>(textobj-python-class-i)
+
+" Some forms of therapy are straightforwardly skill-based. Cognitive
+" remediation therapy is just memory and concentration practice.  Dialectical
+" Behavioral Therapy is largely about teaching the skill of managing emotions.
+" Behavioral activation is a concept from cognitive-behavioral therapy that
+" says “if you practice doing stuff, you’ll be able to do more stuff.”
+" Exposure therapy is literally just practice doing the thing you’re scared of.
+"
+" Some types of self-help outside the world of formally trained psychology are
+" also skill-based. Some people approach meditation this way, or Stoicism, or a
+" regular exercise practice, as a way of training yourself to be saner. Unfuck
+" Your Habitat is about gaining the skill of keeping your house clean.
+" Ureshiku Naritai is a very nice, straightforward essay that epitomizes a
+" skill-based way of overcoming depression: the author trained herself to
+" notice which things improved and worsened her mood, and did more of the
+" former and less of the latter.
