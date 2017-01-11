@@ -537,7 +537,7 @@ endif
 
 let g:netrw_liststyle=3
 let g:netrw_list_hide= '.*\.pyc$'
-nnoremap <Leader>jj :10Lexplore<CR>
+nnoremap <Leader>jj :10Lexplore %:p:h<CR>
 noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
 noremap <Leader>r :checkt<CR>
 
