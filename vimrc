@@ -721,3 +721,11 @@ omap iC <Plug>(textobj-python-class-i)
 " skill-based way of overcoming depression: the author trained herself to
 " notice which things improved and worsened her mood, and did more of the
 " former and less of the latter.
+"
+"
+" Quien lleva 4 pesetas
+" Y un chorizo en la maleta
+" Y apuntá en una libreta
+" La estación de duseldó
+
+nnoremap <silent> <leader>j :.!python -m json.tool<cr>
