@@ -82,6 +82,8 @@ call dein#add('tpope/vim-speeddating')  " Smart and fast date changer <c-a> <c-x
 call dein#add('tpope/vim-repeat')  " extend repetitions by the 'dot' key
 call dein#add('tpope/vim-dispatch')  " asynchronous build and test dispatcher
 call dein#add('Konfekt/FastFold')  " Speed up Vim by updating folds only when called-for
+call dein#add('AndrewRadev/splitjoin.vim')  " gS gJ
+call dein#add('tommcdo/vim-exchange')  " cxiw
 
 " Python
 call dein#add('klen/python-mode', {'on_ft': ['python']})
@@ -95,6 +97,7 @@ call dein#add('kana/vim-textobj-line') " al, il
 call dein#add('kana/vim-textobj-underscore') " a_, i_
 call dein#add('kana/vim-textobj-user')
 call dein#add('bps/vim-textobj-python')
+call dein#add('AndrewRadev/sideways.vim')
 
 call dein#end()
 
@@ -730,3 +733,7 @@ omap iC <Plug>(textobj-python-class-i)
 " La estación de duseldó
 
 nnoremap <silent> <leader>j :.!python -m json.tool<cr>
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
