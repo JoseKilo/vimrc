@@ -51,7 +51,6 @@ call dein#add('gregsexton/gitv', {'depends':['tpope/vim-fugitive']})
 call dein#add('plasticboy/vim-markdown')
 call dein#add('chase/vim-ansible-yaml')
 call dein#add('ekalinin/Dockerfile.vim', {'on_ft': ['Dockerfile']})
-call dein#add('elzr/vim-json', {'on_ft' : 'json'})
 call dein#add('vim-scripts/po.vim--gray', {'on_ft': ['po']})  " Remove 'po' and leave the list empty if it fails
 call dein#add('othree/html5.vim', {'on_ft': ['html', 'xhttml', 'css']})
 call dein#add('mattn/emmet-vim', {'on_ft': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']})
@@ -239,7 +238,6 @@ set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
 nmap <Leader>h :set list!<CR>
 
 " Folding
-set foldmethod=marker
 set foldlevel=99
 
 " Spelling
@@ -471,8 +469,11 @@ let g:JavaComplete_ImportSortType = 'packageName'
 
 augroup filetype_autocmd
     autocmd!
-    autocmd FileType json set foldmethod=syntax
-    autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType vim :setlocal foldmethod=marker
+    autocmd FileType json :setlocal foldmethod=syntax
+    autocmd FileType json :setlocal formatprg=python\ -m\ json.tool
+    autocmd FileType json :setlocal equalprg=python\ -m\ json.tool
+    autocmd FileType ruby :setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType html,htmldjango.html :inoreabbrev <buffer> --- &mdash;
     autocmd FileType html,htmldjango.html set tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType typescript set tabstop=2 shiftwidth=2 softtabstop=2
@@ -732,7 +733,6 @@ omap iC <Plug>(textobj-python-class-i)
 " Y apuntá en una libreta
 " La estación de duseldó
 
-nnoremap <silent> <leader>j :.!python -m json.tool<cr>
 omap aa <Plug>SidewaysArgumentTextobjA
 xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
