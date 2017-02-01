@@ -4,6 +4,9 @@
 " To meditate mindfully demands 'an open and receptive, nonjudgmental
 " awareness of your present-moment experience'.
 
+" Quien lleva 4 pesetas / Y un chorizo en la maleta
+" Y apuntá en una libreta / La estación de duseldó
+
 " language en_US.UTF-8
 set nocompatible
 
@@ -713,28 +716,6 @@ xmap aC <Plug>(textobj-python-class-a)
 omap aC <Plug>(textobj-python-class-a)
 xmap iC <Plug>(textobj-python-class-i)
 omap iC <Plug>(textobj-python-class-i)
-
-" Some forms of therapy are straightforwardly skill-based. Cognitive
-" remediation therapy is just memory and concentration practice.  Dialectical
-" Behavioral Therapy is largely about teaching the skill of managing emotions.
-" Behavioral activation is a concept from cognitive-behavioral therapy that
-" says “if you practice doing stuff, you’ll be able to do more stuff.”
-" Exposure therapy is literally just practice doing the thing you’re scared of.
-"
-" Some types of self-help outside the world of formally trained psychology are
-" also skill-based. Some people approach meditation this way, or Stoicism, or a
-" regular exercise practice, as a way of training yourself to be saner. Unfuck
-" Your Habitat is about gaining the skill of keeping your house clean.
-" Ureshiku Naritai is a very nice, straightforward essay that epitomizes a
-" skill-based way of overcoming depression: the author trained herself to
-" notice which things improved and worsened her mood, and did more of the
-" former and less of the latter.
-"
-"
-" Quien lleva 4 pesetas
-" Y un chorizo en la maleta
-" Y apuntá en una libreta
-" La estación de duseldó
 
 omap aa <Plug>SidewaysArgumentTextobjA
 xmap aa <Plug>SidewaysArgumentTextobjA
