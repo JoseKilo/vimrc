@@ -241,11 +241,14 @@ nmap <Leader>h :set list!<CR>
 set foldlevel=99
 
 " Spelling
-autocmd FileType gitcommit setlocal spell! spelllang=en
-autocmd FileType markdown setlocal spell! spelllang=en
-autocmd FileType mkd setlocal spell! spelllang=en
-autocmd FileType rst setlocal spell! spelllang=en
-autocmd FileType text setlocal spell! spelllang=en
+augroup spelling
+    autocmd!
+    autocmd FileType gitcommit setlocal spell! spelllang=en
+    autocmd FileType markdown setlocal spell! spelllang=en
+    autocmd FileType mkd setlocal spell! spelllang=en
+    autocmd FileType rst setlocal spell! spelllang=en
+    autocmd FileType text setlocal spell! spelllang=en
+augroup END
 
 nmap <Leader>ss :setlocal spell! spelllang=es<CR>
 nmap <Leader>se :setlocal spell! spelllang=en<CR>
