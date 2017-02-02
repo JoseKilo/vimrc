@@ -490,9 +490,9 @@ augroup filetype_autocmd
     autocmd FileType typescript let g:netrw_list_hide= '.*\.js,.*\.map$'
     autocmd FileType java :inoreabbrev <buffer> True true
     autocmd FileType java :inoreabbrev <buffer> False false
-    autocmd FileType python set textwidth=80
+    autocmd FileType python set textwidth=79
     autocmd FileType python set colorcolumn=81
-    autocmd FileType text set textwidth=80
+    autocmd FileType text set textwidth=79
     autocmd FileType text set colorcolumn=81
     autocmd FileType markdown,rst :onoremap <buffer> ih :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rkvg_"<cr>
     autocmd FileType markdown,rst :onoremap <buffer> ah :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
