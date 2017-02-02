@@ -153,8 +153,11 @@ set smartcase                   " smart case ignore
 set ignorecase                  " ignore case letters
 " Turn off highlighting when dropping into insert mode, and turn back on again
 " when leaving
-autocmd InsertEnter * :setlocal nohlsearch
-autocmd InsertLeave * :setlocal hlsearch
+augroup highlight_search
+    autocmd!
+    autocmd InsertEnter * :setlocal nohlsearch
+    autocmd InsertLeave * :setlocal hlsearch
+augroup END
 nnoremap <leader>/ :nohlsearch<cr>
 
 " History and permanent undo levels
