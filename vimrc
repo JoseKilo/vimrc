@@ -86,6 +86,7 @@ call dein#add('tpope/vim-dispatch')  " asynchronous build and test dispatcher
 call dein#add('Konfekt/FastFold')  " Speed up Vim by updating folds only when called-for
 call dein#add('AndrewRadev/splitjoin.vim')  " gS gJ
 call dein#add('tommcdo/vim-exchange')  " cxiw
+call dein#add('tpope/vim-unimpaired')  " ]b ]l ]q ...
 
 " Python
 call dein#add('klen/python-mode', {'on_ft': ['python']})
