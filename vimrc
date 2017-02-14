@@ -204,8 +204,9 @@ set textwidth=79
 set colorcolumn=81
 
 " Autocompletion
-set complete=.,w,b,u,t,i,kspell
+set complete=.,w,b,u,k,kspell
 set completeopt=menu,longest
+set dictionary=$HOME/.vim/dictionaries/keywords.txt
 
 set path=**                     " Search the files under the run location.
 set suffixesadd=.py             " Look for Python files.
@@ -587,6 +588,7 @@ vnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
 nnoremap <Leader>f :%s///g<Left><Left>
 nnoremap <space> za
 nnoremap <leader>ev :e $MYVIMRC<cr>
+nnoremap <leader>ek :e $HOME/.vim/dictionaries/keywords.txt<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lell
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lell
