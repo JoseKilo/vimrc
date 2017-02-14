@@ -61,7 +61,7 @@ call dein#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
 call dein#add('artur-shaik/vim-javacomplete2', {'on_ft': ['java']})
 
 " Editor tools
-call dein#add('Shougo/neocomplete.vim')
+" call dein#add('Shougo/neocomplete.vim')
 call dein#add('scrooloose/syntastic')
 call dein#add('SirVer/ultisnips')
 call dein#add('honza/vim-snippets')
@@ -340,32 +340,32 @@ let g:indentLine_enabled = 0
 let g:indentLine_char = '┊'
 let g:indentLine_color_term = 239
 
-" Neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_refresh_always = 1
-let g:neocomplete#max_list = 30
-let g:neocomplete#min_keyword_length = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 1
-let g:neocomplete#data_directory = $HOME.'/.vim/tmp/neocomplete'
-let g:neocomplete#use_vimproc = 1
+" " Neocomplete
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#enable_refresh_always = 1
+" let g:neocomplete#max_list = 30
+" let g:neocomplete#min_keyword_length = 1
+" let g:neocomplete#sources#syntax#min_keyword_length = 1
+" let g:neocomplete#data_directory = $HOME.'/.vim/tmp/neocomplete'
+" let g:neocomplete#use_vimproc = 1
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html,markdown setlocal list
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType html,markdown setlocal list
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-endif
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"     let g:neocomplete#sources#omni#input_patterns = {}
+" endif
 
-let g:neocomplete#sources#omni#input_patterns.python='[^. \t]\.\w*'
-" let g:neocomplete#fallback_mappings = ["\<C-x>\<C-o>", "\<C-x>\<C-n>"]
+" let g:neocomplete#sources#omni#input_patterns.python='[^. \t]\.\w*'
+" " let g:neocomplete#fallback_mappings = ["\<C-x>\<C-o>", "\<C-x>\<C-n>"]
 
 " Po.vim
 let g:po_translator = "Jose Garcia (JoseKilo)<jose.eduardo.gd@gmail.com>"
