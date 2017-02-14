@@ -100,7 +100,7 @@ call dein#add('kana/vim-textobj-line') " al, il
 call dein#add('kana/vim-textobj-underscore') " a_, i_
 call dein#add('kana/vim-textobj-user')
 call dein#add('bps/vim-textobj-python')
-call dein#add('AndrewRadev/sideways.vim')
+call dein#add('PeterRincker/vim-argumentative')
 
 call dein#end()
 
@@ -720,10 +720,5 @@ xmap aC <Plug>(textobj-python-class-a)
 omap aC <Plug>(textobj-python-class-a)
 xmap iC <Plug>(textobj-python-class-i)
 omap iC <Plug>(textobj-python-class-i)
-
-omap aa <Plug>SidewaysArgumentTextobjA
-xmap aa <Plug>SidewaysArgumentTextobjA
-omap ia <Plug>SidewaysArgumentTextobjI
-xmap ia <Plug>SidewaysArgumentTextobjI
 
 nnoremap <silent> gs :!isort %<cr>:redraw!<cr>
