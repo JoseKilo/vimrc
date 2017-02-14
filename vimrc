@@ -612,26 +612,12 @@ nnoremap <leader>v :<c-u>execute "normal! ?^" .
 
 nnoremap <silent><Leader>ew :call ToggleWrap()<CR>
 function! ToggleWrap()
-    let s:nowrap_cc_bg = [22, '#005f00']
-    redir => s:curr_cc_hi
-    silent hi ColorColumn
-    redir END
-    let s:curr_cc_ctermbg = matchstr(s:curr_cc_hi, 'ctermbg=\zs.\{-}\s\ze\1')
-    let s:curr_cc_guibg = matchstr(s:curr_cc_hi, 'guibg=\zs.\{-}\_$\ze\1')
-    if s:curr_cc_ctermbg != s:nowrap_cc_bg[0]
-        let g:curr_cc_ctermbg = s:curr_cc_ctermbg
-    endif
-    if s:curr_cc_guibg != s:nowrap_cc_bg[1]
-        let g:curr_cc_guibg = s:curr_cc_guibg
-    endif
     if &textwidth == 79
         set textwidth=0
-        exec 'hi ColorColumn ctermbg='.s:nowrap_cc_bg[0].
-                    \' guibg='.s:nowrap_cc_bg[1]
+        set colorcolumn=0
     elseif &textwidth == 0
         set textwidth=79
-        exec 'hi ColorColumn ctermbg='.g:curr_cc_ctermbg.
-                    \' guibg='.g:curr_cc_guibg
+        set colorcolumn=81
     endif
 endfunction
 
