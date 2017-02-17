@@ -89,7 +89,7 @@ call dein#add('tommcdo/vim-exchange')  " cxiw
 call dein#add('tpope/vim-unimpaired')  " ]b ]l ]q ...
 
 " Python
-call dein#add('klen/python-mode', {'on_ft': ['python']})
+call dein#add('python-mode/python-mode', {'on_ft': ['python']})
 call dein#add('alfredodeza/coveragepy.vim', {'on_ft': ['python']})
 
 " text-objects
