@@ -416,7 +416,7 @@ let g:syntastic_java_checkstyle_classpath = "checkstyle-7.1.2-all.jar"
 " Unite
 nnoremap <silent><Leader>o :Unite -toggle -silent -start-insert file_rec/async:!<CR>
 nnoremap <silent><Leader>O :Unite -toggle -silent -start-insert file_rec/git<CR>
-nnoremap <silent><Leader>b :Unite -toggle -silent buffer<CR>
+" nnoremap <silent><Leader>b :Unite -toggle -silent buffer<CR>
 nnoremap <silent><leader>? :Unite -toggle -silent -auto-resize -auto-highlight -input=TODO grep:.<CR>
 nnoremap <silent><Leader>i :Unite -toggle -silent outline<CR>
 nnoremap <silent><Leader>sa :Unite -toggle -silent -auto-highlight grep:.<CR>
@@ -586,7 +586,7 @@ noremap <Leader>du :diffupdate<CR>
 nnoremap <Leader>m :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
 vnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
 nnoremap <Leader>f :%s///g<Left><Left>
-nnoremap <space> za
+nnoremap <space> :bnext<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ek :e $HOME/.vim/dictionaries/keywords.txt<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
