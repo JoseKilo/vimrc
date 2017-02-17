@@ -711,3 +711,5 @@ xmap iC <Plug>(textobj-python-class-i)
 omap iC <Plug>(textobj-python-class-i)
 
 nnoremap <silent> gs :!isort %<cr>:redraw!<cr>
+
+nnoremap <silent> gL :g/./,/^$/join<cr>
