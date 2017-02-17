@@ -491,6 +491,7 @@ augroup filetype_autocmd
     autocmd FileType typescript let g:netrw_list_hide= '.*\.js,.*\.map$'
     autocmd FileType java :inoreabbrev <buffer> True true
     autocmd FileType java :inoreabbrev <buffer> False false
+    autocmd FileType java :inoreabbrev <buffer> raise throw
     autocmd FileType python set textwidth=79
     autocmd FileType python set colorcolumn=81
     autocmd FileType text set textwidth=79
