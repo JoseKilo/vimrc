@@ -358,7 +358,7 @@ let g:indentLine_color_term = 239
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" autocmd FileType java setlocal omnifunc=javacomplete#Complete
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 " if !exists('g:neocomplete#sources#omni#input_patterns')
 "     let g:neocomplete#sources#omni#input_patterns = {}
