@@ -484,15 +484,6 @@ augroup filetype_autocmd
           \ textwidth=120 colorcolumn=121
 augroup END
 
-onoremap in) :<c-u>normal! f(vi(<cr>
-onoremap il) :<c-u>normal! F)vi(<cr>
-onoremap an) :<c-u>normal! f(va(<cr>
-onoremap al) :<c-u>normal! F)va(<cr>
-onoremap in} :<c-u>normal! f{vi{<cr>
-onoremap il} :<c-u>normal! F}vi{<cr>
-onoremap an} :<c-u>normal! f{va{<cr>
-onoremap al} :<c-u>normal! F}va{<cr>
-
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>tt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS % 2> .error.txt"<cr>:call <SID>loadTestErrors()<cr>
 nnoremap <leader>ttt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS 2> .error.txt"<cr>:call <SID>loadTestErrors()<cr>
@@ -520,20 +511,11 @@ endfunction
 " Search visual selection
 vnoremap // y/<C-R>"<BS><CR>
 
-if filereadable(".vimrc") && $PWD != $HOME
-    source .vimrc
-endif
-
 let g:netrw_liststyle=3
-let g:netrw_list_hide= '.*\.pyc$'
-nnoremap <Leader>jj :10Lexplore %:p:h<CR>
-noremap <Leader>y :<C-U>silent'<,'>w !xclip -sel clip<CR>
-noremap <Leader>r :checkt<CR>
 
+noremap <Leader>r :checkt<CR>
 nnoremap <c-j> :tabe 
 nnoremap <c-t>t :tabn<cr>
-
-noremap <Leader>dwc :echo system('wc -w ' . shellescape(expand('%')))<CR>
 
 " Allow to repeat in visual mode
 vnoremap . :norm.<CR>
@@ -541,8 +523,6 @@ vnoremap . :norm.<CR>
 " Fast window & buffer close and kill
 nnoremap <Leader>k <C-w>c
 nnoremap <silent><Leader>K :bd<CR>
-nnoremap <silent><Leader>n :bn<CR>
-nnoremap <silent><Leader>N :bN<CR>
 
 " Toggle paste mode
 nnoremap <Leader>P :set invpaste<CR>
@@ -556,6 +536,10 @@ noremap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<
 " For the diffmode
 noremap <Leader>du :diffupdate<CR>
 
+" Join paragraphs in one-liners
+nnoremap <silent> gL :g/./,/^$/join<cr>
+
+:map Y y$
 nnoremap <Leader>m :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
 vnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
 nnoremap <Leader>f :%s///g<Left><Left>
@@ -563,17 +547,15 @@ nnoremap <space> :bnext<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ek :e $HOME/.vim/dictionaries/keywords.txt<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lell
-nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lell
-nnoremap <leader>` viw<esc>a`<esc>hbi`<esc>lell
-vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>l
-vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>l
-vnoremap <leader>` <esc>`<i`<esc>`>la`<esc>l
+nnoremap <silent> gs :!isort %<cr>:redraw!<cr>
+
 " Select last changed (or pasted) text
 nnoremap gp `[v`]
 nnoremap <leader>= `[v`]=
 
-:map Y y$
+if filereadable(".vimrc") && $PWD != $HOME
+    source .vimrc
+endif
 
 " Scroll to previous indentation level
 nnoremap <leader>v :<c-u>execute "normal! ?^" .
@@ -681,7 +663,3 @@ xmap aC <Plug>(textobj-python-class-a)
 omap aC <Plug>(textobj-python-class-a)
 xmap iC <Plug>(textobj-python-class-i)
 omap iC <Plug>(textobj-python-class-i)
-
-nnoremap <silent> gs :!isort %<cr>:redraw!<cr>
-
-nnoremap <silent> gL :g/./,/^$/join<cr>
