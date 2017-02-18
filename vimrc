@@ -238,7 +238,10 @@ endif
 set guifont=Dejavu\ Sans\ Mono\ for\ Powerline\ 11
 
 " Resize the divisions if the Vim window size changes
-autocmd VimResized * exe "normal! \<c-w>="
+augroup vim_resize
+    autocmd!
+    autocmd VimResized * exe "normal! \<c-w>="
+augroup END
 
 " Show hidden chars
 set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
