@@ -29,13 +29,12 @@ call dein#begin(expand('~/.vim/dein'))
 
 " It is better if Dein rules Dein (needed!)
 call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc', {'build' : 'make'})
+call dein#add('Shougo/vimproc', {'build': 'make'})
 
 " Unite. The interface to rule almost everything
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/unite-outline')
 call dein#add('osyo-manga/unite-quickfix')
-call dein#add('osyo-manga/unite-fold')
 call dein#add('tacroe/unite-mark')
 
 " Color schemes
@@ -43,7 +42,6 @@ call dein#add('joedicastro/vim-molokai256')
 call dein#add('jonathanfilip/vim-lucius')
 call dein#add('sjl/badwolf')
 call dein#add('nielsmadan/harlequin')
-call dein#add('tpope/vim-vividchalk')
 
 " Git
 call dein#add('tpope/vim-fugitive')
@@ -76,7 +74,7 @@ call dein#add('vim-airline/vim-airline-themes')
 call dein#add('vim-scripts/loremipsum')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
-call dein#add('tpope/vim-vinegar')  " enhances netrw
+call dein#add('manasthakur/vim-vinegar')  " enhances netrw
 call dein#add('tpope/vim-characterize')  " character info => ga
 call dein#add('delimitMate.vim')  " Autocompletion of (, [, {, ', \", ...
 call dein#add('tpope/vim-speeddating')  " Smart and fast date changer <c-a> <c-x>
@@ -111,8 +109,7 @@ if iCanHazDein == 0
     call dein#install()
 endif
 
-" Check if all of the plugins are already installed, in other case it will
-" install them (useful to add plugins in the .vimrc)
+" Check if all of the plugins are already installed
 if  dein#check_install()
     call dein#install()
 endif
@@ -232,7 +229,6 @@ else
     " colorscheme molokai256
     " colorscheme badwolf
     " colorscheme harlequin
-    " colorscheme vividchalk
     colorscheme lucius
 endif
 set guifont=Dejavu\ Sans\ Mono\ for\ Powerline\ 11
@@ -437,6 +433,8 @@ call unite#custom#profile('default', 'context', default_context)
 let g:unite_force_overwrite_statusline = 0
 let g:unite_data_directory = $HOME.'/.vim/tmp/unite'
 let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
+" let g:unite_source_rec_max_cache_files = 0
+" call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
 
 " Vinarise
 map <F6> :Vinarise<CR>
@@ -565,9 +563,6 @@ endif
 nnoremap <leader>v :<c-u>execute "normal! ?^" .
             \ repeat('\ ', ((len(matchstr(getline('.'), '\(^\s*\)')) / &tabstop) - 1) * &tabstop) .
             \ "\\%<" . line('.') . "l\\S\r:nohlsearch\rzz"<cr>
-
-" let g:unite_source_rec_max_cache_files = 0
-" call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
 
 " Utility functions with maps
 
