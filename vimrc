@@ -523,7 +523,7 @@ nnoremap <c-t>t :tabn<cr>
 vnoremap . :norm.<CR>
 
 " Fast window & buffer close and kill
-nnoremap <Leader>k <C-w>c
+nnoremap <Leader>k :bwipeout<CR>
 nnoremap <silent><Leader>K :bd<CR>
 
 " Toggle paste mode
