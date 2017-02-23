@@ -59,7 +59,7 @@ call dein#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
 call dein#add('artur-shaik/vim-javacomplete2', {'on_ft': ['java']})
 
 " Editor tools
-call dein#add('scrooloose/syntastic')
+call dein#add('neomake/neomake')
 call dein#add('SirVer/ultisnips')
 call dein#add('honza/vim-snippets')
 call dein#add('Yggdroot/indentLine')
@@ -359,6 +359,27 @@ let g:pymode_rope_autoimport = 0  " Seriously, DON'T ... Or maybe yes ... NO !!
 let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime', 'itertools', 'logging']
 let g:pymode_rope_autoimport_import_after_complete = 0
 
+" Neomake
+autocmd! BufWritePost * Neomake!
+
+ let g:neomake_error_sign = {'text': '✗'}
+ let g:neomake_warning_sign = {
+     \   'text': '⚠',
+     \   'texthl': 'NeomakeWarningSign',
+     \ }
+ let g:neomake_message_sign = {
+      \   'text': '➤',
+      \   'texthl': 'NeomakeMessageSign',
+      \ }
+ let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
+
+autocmd ColorScheme * highlight NeomakeErrorSign ctermfg=white
+autocmd ColorScheme * highlight NeomakeErrorSign ctermbg=red
+
+autocmd ColorScheme *
+            \ hi link NeomakeError SpellBad |
+            \ hi link NeomakeWarning SpellCap
+
 " Syntastic
 nmap <silent><Leader>N :SyntasticCheck<CR>
 let g:syntastic_always_populate_loc_list = 1
@@ -367,7 +388,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_mode_map = { 'mode': 'active',
             \ 'active_filetypes': ['python', 'css', 'json', 'javascript'],
             \ 'passive_filetypes': ['po', 'typescript', 'java'] }
-let g:syntastic_error_symbol='✗'
+let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol  = '⚡'
 let g:syntastic_style_warning_symbol  = '⚡'
@@ -468,6 +489,7 @@ augroup filetype_autocmd
     autocmd FileType java :inoreabbrev <buffer> raise throw
     autocmd FileType python setlocal textwidth=79 colorcolumn=81
     autocmd FileType python let g:netrw_list_hide= '.*\.pyc$'
+    autocmd FileType python setlocal makeprg=flake8
     autocmd FileType text setlocal textwidth=79 colorcolumn=81
     autocmd FileType markdown,rst :onoremap <buffer> ih :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rkvg_"<cr>
     autocmd FileType markdown,rst :onoremap <buffer> ah :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
