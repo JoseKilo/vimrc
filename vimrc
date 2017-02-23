@@ -461,23 +461,22 @@ augroup filetype_autocmd
     autocmd FileType json :setlocal equalprg=python\ -m\ json.tool
     autocmd FileType ruby :setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType html,htmldjango.html :inoreabbrev <buffer> --- &mdash;
-    autocmd FileType html,htmldjango.html set tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType typescript set tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType html,htmldjango.html setlocal tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType typescript setlocal tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType typescript let g:netrw_list_hide= '.*\.js,.*\.map$'
     autocmd FileType java :inoreabbrev <buffer> True true
     autocmd FileType java :inoreabbrev <buffer> False false
     autocmd FileType java :inoreabbrev <buffer> raise throw
-    autocmd FileType python set textwidth=79
-    autocmd FileType python set colorcolumn=81
-    autocmd FileType text set textwidth=79
-    autocmd FileType text set colorcolumn=81
+    autocmd FileType python setlocal textwidth=79 colorcolumn=81
+    autocmd FileType python let g:netrw_list_hide= '.*\.pyc$'
+    autocmd FileType text setlocal textwidth=79 colorcolumn=81
     autocmd FileType markdown,rst :onoremap <buffer> ih :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rkvg_"<cr>
     autocmd FileType markdown,rst :onoremap <buffer> ah :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
+    autocmd FileType netrw setl bufhidden=wipe
 
     autocmd BufRead,BufNewFile *.html setlocal nowrap
-    autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
+    autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} setlocal filetype=markdown
     autocmd BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
-    autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
     autocmd BufRead,BufNewFile *.js let javaScript_fold=1
     autocmd BufRead,BufNewFile *.js syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
     autocmd BufRead,BufNewFile *.java setlocal foldmethod=syntax
