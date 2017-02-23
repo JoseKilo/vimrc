@@ -312,6 +312,7 @@ nnoremap <Leader>ge :Gedit<CR>
 nnoremap <Leader>gE :Gedit<Space>
 nnoremap <Leader>gt :!tig<CR>:redraw!<CR>
 nnoremap <leader>ga :silent! Git add %<cr>:redraw!<cr>
+nnoremap <leader>gn :silent! Git commit --amend --no-edit -a<cr>:e %<cr>:redraw!<cr>
 nnoremap <Leader>gl :exe "silent Glog <Bar> Unite quickfix"<CR>:redraw!<CR>
 nnoremap <Leader>gL :exe "silent Glog -- <Bar> Unite quickfix"<CR>:redraw!<CR>
 
