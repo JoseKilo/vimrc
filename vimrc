@@ -217,19 +217,16 @@ set nomodeline
 syntax enable
 augroup color_all
     autocmd!
-    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+    autocmd ColorScheme * highlight NeomakeErrorSign ctermfg=white ctermbg=darkred
+    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred
     autocmd InsertLeave * match ExtraWhitespace /\v\s+$/
+    autocmd ColorScheme *
+                \ highlight NeomakeErrorSign ctermfg=white |
+                \ highlight NeomakeWarningSign ctermfg=yellow
 augroup END
 set background=dark
 set t_Co=256                   " 256 colors for the terminal
-if has('gui_running')
-    colorscheme molokai
-else
-    " colorscheme molokai256
-    " colorscheme badwolf
-    " colorscheme harlequin
-    colorscheme lucius
-endif
+colorscheme lucius             " molokai256 badwolf harlequin
 set guifont=Dejavu\ Sans\ Mono\ for\ Powerline\ 11
 
 " Resize the divisions if the Vim window size changes
@@ -371,13 +368,6 @@ autocmd! BufWritePost * Neomake!
       \   'texthl': 'NeomakeMessageSign',
       \ }
  let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
-
-autocmd ColorScheme * highlight NeomakeErrorSign ctermfg=white
-autocmd ColorScheme * highlight NeomakeErrorSign ctermbg=red
-
-autocmd ColorScheme *
-            \ hi link NeomakeError SpellBad |
-            \ hi link NeomakeWarning SpellCap
 
 " Syntastic
 nmap <silent><Leader>N :SyntasticCheck<CR>
