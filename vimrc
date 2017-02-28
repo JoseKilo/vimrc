@@ -80,7 +80,6 @@ call dein#add('delimitMate.vim')  " Autocompletion of (, [, {, ', \", ...
 call dein#add('tpope/vim-speeddating')  " Smart and fast date changer <c-a> <c-x>
 call dein#add('tpope/vim-repeat')  " extend repetitions by the 'dot' key
 call dein#add('tpope/vim-dispatch')  " asynchronous build and test dispatcher
-call dein#add('Konfekt/FastFold')  " Speed up Vim by updating folds only when called-for
 call dein#add('AndrewRadev/splitjoin.vim')  " gS gJ
 call dein#add('tommcdo/vim-exchange')  " cxiw
 call dein#add('tpope/vim-unimpaired')  " ]b ]l ]q ...
@@ -349,7 +348,7 @@ let g:pymode_run = 0
 let g:pymode_lint = 0  " Use Syntastic instead (this doesn't work with flake8)
 let g:pymode_options = 0
 let g:pymode_rope = 1
-let g:pymode_folding = 1
+let g:pymode_folding = 0
 let g:pymode_virtualenv = 1
 let g:pymode_trim_whitespaces = 1
 let g:pymode_rope_completion = 1
@@ -489,7 +488,7 @@ augroup filetype_autocmd
     autocmd FileType java :inoreabbrev <buffer> raise throw
     autocmd FileType python setlocal textwidth=79 colorcolumn=81
     autocmd FileType python let g:netrw_list_hide= '.*\.pyc$'
-    autocmd FileType python setlocal makeprg=flake8
+    autocmd FileType python setlocal makeprg=flake8 foldmethod=indent foldnestmax=2
     autocmd FileType text setlocal textwidth=79 colorcolumn=81
     autocmd FileType markdown,rst :onoremap <buffer> ih :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rkvg_"<cr>
     autocmd FileType markdown,rst :onoremap <buffer> ah :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
@@ -568,7 +567,7 @@ vnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
 nnoremap <Leader>f :%s///g<Left><Left>
 nnoremap <space> :bnext<cr>
 nnoremap <s-space> :bprev<cr>
-nnoremap \ za<cr>
+nnoremap \ zak<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ek :e $HOME/.vim/dictionaries/keywords.txt<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
