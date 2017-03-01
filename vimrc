@@ -410,7 +410,7 @@ endif
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-let unite_ignore_pattern = ['\.git/', 'tmp/', 'bundle/', 'target/', '.tox/']
+let unite_ignore_pattern = ['\.git/', 'tmp/', 'bundle/', 'target/', '.tox/', '.pyc']
 if !empty($VIRTUAL_ENV)
   let unite_ignore_pattern += [$VIRTUAL_ENV]
 endif
@@ -436,8 +436,6 @@ call unite#custom#profile('default', 'context', default_context)
 let g:unite_force_overwrite_statusline = 0
 let g:unite_data_directory = $HOME.'/.vim/tmp/unite'
 let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
-" let g:unite_source_rec_max_cache_files = 0
-" call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
 
 " Vinarise
 map <F6> :Vinarise<CR>
