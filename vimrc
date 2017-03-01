@@ -370,17 +370,9 @@ augroup END
  let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
 
 " Syntastic
-nmap <silent><Leader>N :SyntasticCheck<CR>
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_check_on_open = 0
 let g:syntastic_mode_map = { 'mode': 'active',
             \ 'active_filetypes': ['python', 'css', 'json', 'javascript'],
             \ 'passive_filetypes': ['po', 'typescript', 'java'] }
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol  = '⚡'
-let g:syntastic_style_warning_symbol  = '⚡'
 
 " check json files with jshint
 let g:syntastic_filetype_map = { "json": "javascript", }
