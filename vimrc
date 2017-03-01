@@ -569,17 +569,6 @@ nnoremap <leader>v :<c-u>execute "normal! ?^" .
 
 " Utility functions with maps
 
-nnoremap <silent><Leader>ew :call ToggleWrap()<CR>
-function! ToggleWrap()
-    if &textwidth == 79
-        set textwidth=0
-        set colorcolumn=0
-    elseif &textwidth == 0
-        set textwidth=79
-        set colorcolumn=81
-    endif
-endfunction
-
 " Toggle line numbers
 set number
 set relativenumber
