@@ -552,6 +552,7 @@ nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ek :e $HOME/.vim/dictionaries/keywords.txt<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <silent> gs :!isort %<cr>:redraw!<cr>
+nnoremap <silent> g/ :%s///gn<cr>
 
 " Select last changed (or pasted) text
 nnoremap gp `[v`]
