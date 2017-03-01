@@ -356,6 +356,7 @@ let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime', 'itertools',
 let g:pymode_rope_autoimport_import_after_complete = 0
 
 " Neomake
+autocmd! BufWritePost * Neomake
 autocmd! BufWritePost * Neomake!
 
  let g:neomake_error_sign = {'text': '✗'}
