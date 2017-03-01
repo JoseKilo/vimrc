@@ -183,10 +183,7 @@ set wildmenu                        " Command line autocompletion
 set wildmode=list:longest,full      " Shows all the options
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~      " Backup files
-set wildignore+=*.luac                           " Lua byte code
-set wildignore+=*.jar                            " java archives
-set wildignore+=*.pyc                            " Python byte code
-set wildignore+=*.stats                          " Pylint stats
+set wildignore+=*.luac,*.jar,*.pyc,*.stats       " Temporal files
 
 " Tabs, space and wrapping
 set expandtab                  " spaces instead of tabs
