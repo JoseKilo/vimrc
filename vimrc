@@ -480,7 +480,7 @@ augroup filetype_autocmd
     autocmd FileType python setlocal textwidth=79 colorcolumn=81
     autocmd FileType python let g:netrw_list_hide= '.*\.pyc$'
     autocmd FileType python setlocal makeprg=flake8 foldmethod=indent foldnestmax=2
-    autocmd FileType text setlocal textwidth=79 colorcolumn=81
+    autocmd FileType text setlocal textwidth=79 colorcolumn=81 formatoptions=qrn1ct
     autocmd FileType markdown,rst :onoremap <buffer> ih :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rkvg_"<cr>
     autocmd FileType markdown,rst :onoremap <buffer> ah :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
     autocmd FileType netrw setl bufhidden=wipe
