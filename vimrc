@@ -214,12 +214,11 @@ set nomodeline
 syntax enable
 augroup color_all
     autocmd!
-    autocmd ColorScheme * highlight NeomakeErrorSign ctermfg=white ctermbg=darkred
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred
     autocmd InsertLeave * match ExtraWhitespace /\v\s+$/
-    autocmd ColorScheme *
-                \ highlight NeomakeErrorSign ctermfg=white |
-                \ highlight NeomakeWarningSign ctermfg=yellow
+    autocmd ColorScheme * highlight NeomakeErrorSign ctermfg=white ctermbg=darkred
+    autocmd ColorScheme * highlight NeomakeError ctermfg=white ctermbg=darkred
+    autocmd ColorScheme * highlight NeomakeWarningSign ctermfg=yellow
 augroup END
 set background=dark
 set t_Co=256                   " 256 colors for the terminal
