@@ -41,11 +41,13 @@ call dein#add('joedicastro/vim-molokai256')
 call dein#add('jonathanfilip/vim-lucius')
 call dein#add('sjl/badwolf')
 call dein#add('nielsmadan/harlequin')
+call dein#add('bling/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
 
 " Git
 call dein#add('tpope/vim-fugitive')
 call dein#add('airblade/vim-gitgutter')  " Changes in side bar
-call dein#add('gregsexton/gitv', {'depends':['tpope/vim-fugitive']})
+call dein#add('gregsexton/gitv', {'depends': ['tpope/vim-fugitive']})
 
 " Custom Syntax
 call dein#add('plasticboy/vim-markdown')
@@ -68,8 +70,6 @@ call dein#add('Shougo/vinarise.vim')  " Hexadecimal editor
 call dein#add('Rykka/easydigraph.vim')
 call dein#add('kshenoy/vim-signature')  " Marks in side bar
 call dein#add('tpope/vim-obsession')  " Continuously updated session files
-call dein#add('bling/vim-airline')  " A better looking status line
-call dein#add('vim-airline/vim-airline-themes')
 call dein#add('vim-scripts/loremipsum')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
