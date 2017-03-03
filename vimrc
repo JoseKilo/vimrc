@@ -330,40 +330,25 @@ let g:pymode_rope_autoimport_import_after_complete = 0
 
 " Neomake
 let g:neomake_python_enabled_makers = ['flake8']
+let g:neomake_json_enabled_makers = ['jsonlint']
+let g:neomake_javascript_enabled_makers = []
+if filereadable(".jscsrc")
+    call add(g:neomake_javascript_enabled_makers, "jscs")
+endif
+if filereadable(".jshintrc")
+    call add(g:neomake_javascript_enabled_makers, "jshint")
+endif
+
 augroup NeomakeOnWrite
     autocmd!
     autocmd BufWritePost * Neomake
     autocmd BufWritePost * Neomake!
 augroup END
 
- let g:neomake_error_sign = {'text': '✗'}
- let g:neomake_warning_sign = {
-             \   'text': '⚠',
-             \   'texthl': 'NeomakeWarningSign',
-             \ }
- let g:neomake_message_sign = {
-             \   'text': '➤',
-             \   'texthl': 'NeomakeMessageSign',
-             \ }
- let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
-
-" Syntastic
-let g:syntastic_mode_map = { 'mode': 'active',
-            \ 'active_filetypes': ['python', 'css', 'json', 'javascript'],
-            \ 'passive_filetypes': ['po', 'typescript', 'java'] }
-
-" check json files with jshint
-let g:syntastic_filetype_map = { "json": "javascript", }
-let g:syntastic_javascript_checkers = []
-if filereadable(".jscsrc")
-    call add(g:syntastic_javascript_checkers, "jscs")
-endif
-if filereadable(".jshintrc")
-    call add(g:syntastic_javascript_checkers, "jshint")
-endif
-let g:syntastic_java_checkers = ["checkstyle"]
-let g:syntastic_java_checkstyle_conf_file = "google_checks.xml"
-let g:syntastic_java_checkstyle_classpath = "checkstyle-7.1.2-all.jar"
+let g:neomake_error_sign = {'text': '✗'}
+let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeomakeWarningSign'}
+let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
+let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
 
 " Unite
 nnoremap <silent><Leader>o :Unite -toggle -silent -start-insert file_rec/async:!<CR>
