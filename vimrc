@@ -244,20 +244,6 @@ nmap <Leader>ss :setlocal spell! spelllang=es<CR>
 nmap <Leader>se :setlocal spell! spelllang=en<CR>
 " ]s and [s to move. z= to suggest. zg to add a word
 
-" inoremap <esc> <nop>
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-inoreabbrev @@@ jose.eduardo.gd@gmail.com
-inoreabbrev ccop Copyright, all rights reserved.
-inoreabbrev ssig --<cr>Jose Garcia (Jose Kilo)<cr>jose.eduardo.gd@gmail.com
-
 " Airline
 set noshowmode
 let g:airline_theme='lucius'
@@ -480,6 +466,20 @@ augroup filetype_autocmd
           \ shiftwidth=4 softtabstop=4 autoindent foldmethod=syntax syntax=javascript
           \ textwidth=120 colorcolumn=121
 augroup END
+
+inoreabbrev @@@ jose.eduardo.gd@gmail.com
+inoreabbrev ccop Copyright, all rights reserved.
+inoreabbrev ssig --<cr>Jose Garcia (Jose Kilo)<cr>jose.eduardo.gd@gmail.com
+
+" inoremap <esc> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 
 " Search visual selection
 vnoremap // y/<C-R>"<BS><CR>
