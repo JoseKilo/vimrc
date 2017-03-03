@@ -344,6 +344,7 @@ let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime', 'itertools',
 let g:pymode_rope_autoimport_import_after_complete = 0
 
 " Neomake
+let g:neomake_python_enabled_makers = ['flake8']
 augroup NeomakeOnWrite
     autocmd!
     autocmd BufWritePost * Neomake
