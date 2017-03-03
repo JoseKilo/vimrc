@@ -35,7 +35,6 @@ call dein#add('Shougo/vimproc', {'build': 'make'})
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/unite-outline')
 call dein#add('osyo-manga/unite-quickfix')
-call dein#add('tacroe/unite-mark')
 
 " Color schemes
 call dein#add('joedicastro/vim-molokai256')
