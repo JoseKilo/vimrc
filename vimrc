@@ -488,7 +488,6 @@ augroup filetype_autocmd
           \ textwidth=120 colorcolumn=121
 augroup END
 
-nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>tt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS % 2> .error.txt"<cr>:call <SID>loadTestErrors()<cr>
 nnoremap <leader>ttt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS 2> .error.txt"<cr>:call <SID>loadTestErrors()<cr>
 
@@ -548,13 +547,14 @@ nnoremap <Leader>m :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
 vnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
 nnoremap <Leader>f :%s///g<Left><Left>
 nnoremap <space> :bnext<cr>
-nnoremap <s-space> :b#<cr>
 nnoremap \ zak<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ek :e $HOME/.vim/dictionaries/keywords.txt<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <silent> gs :!isort %<cr>:redraw!<cr>
 nnoremap <silent> g/ :%s///gn<cr>
+nnoremap <silent>g% :Make<cr>:Coveragepy show<cr>
+nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 
 " Select last changed (or pasted) text
 nnoremap gp `[v`]
