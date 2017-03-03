@@ -418,7 +418,10 @@ let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
 " Vinarise
 map <F6> :Vinarise<CR>
 let g:vinarise_enable_auto_detect = 1
-autocmd FileType vinarise let g:airline_section_warning = ''
+augroup filetype_autocmd
+    autocmd!
+    autocmd FileType vinarise let g:airline_section_warning = ''
+augroup END
 
 " Ansible support via 'chase/vim-ansible-yaml'
 let g:ansible_options = {'ignore_blank_lines': 0}
