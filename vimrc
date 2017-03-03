@@ -40,7 +40,6 @@ call dein#add('osyo-manga/unite-quickfix')
 call dein#add('joedicastro/vim-molokai256')
 call dein#add('jonathanfilip/vim-lucius')
 call dein#add('sjl/badwolf')
-call dein#add('nielsmadan/harlequin')
 call dein#add('bling/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 
@@ -215,7 +214,7 @@ augroup color_all
 augroup END
 set background=dark
 set t_Co=256                   " 256 colors for the terminal
-colorscheme lucius             " molokai256 badwolf harlequin
+colorscheme lucius             " molokai256 badwolf lucius
 
 " Resize the divisions if the Vim window size changes
 augroup vim_resize
