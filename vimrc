@@ -118,12 +118,6 @@ let maplocalleader = ' '
 scriptencoding utf-8
 set encoding=utf-8              " setup the encoding to UTF-8
 set ls=2                        " status line always visible
-set go-=T                       " hide the toolbar
-set go-=m                       " hide the menu
-" The next two lines are quite tricky, but in Gvim, if you don't do this, if you
-" only hide all the scrollbars, the vertical scrollbar is showed anyway
-set go+=rRlLbh                  " show all the scrollbars
-set go-=rRlLbh                  " hide all the scrollbars
 set novisualbell                " turn off the visual bell
 set cursorline                  " highlight the line under the cursor
 set fillchars+=vert:│           " better looking for windows separator
@@ -222,7 +216,6 @@ augroup END
 set background=dark
 set t_Co=256                   " 256 colors for the terminal
 colorscheme lucius             " molokai256 badwolf harlequin
-set guifont=Dejavu\ Sans\ Mono\ for\ Powerline\ 11
 
 " Resize the divisions if the Vim window size changes
 augroup vim_resize
