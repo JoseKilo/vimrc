@@ -488,29 +488,6 @@ augroup filetype_autocmd
           \ textwidth=120 colorcolumn=121
 augroup END
 
-nnoremap <leader>tt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS % 2> .error.txt"<cr>:call <SID>loadTestErrors()<cr>
-nnoremap <leader>ttt :execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS 2> .error.txt"<cr>:call <SID>loadTestErrors()<cr>
-
-nnoremap <leader>t :call <SID>testCurrentTest()<cr>
-
-function! s:loadTestErrors()
-    redraw!
-    cfile .error.txt
-    copen
-endfunction
-
-function! s:testCurrentTest()
-    let saved_unnamed_register = @@
-    execute "normal! ?^class\ \rwyiw\<c-o>"
-    let class_name = @@
-    execute "normal! ?def test_\rwyiw\<c-o>"
-    let test_name = @@
-    execute "!python manage.py test --noinput -s -x --settings=$DJANGO_SETTINGS %:" . class_name . "." . test_name " 2> .error.txt"
-    redraw!
-    call <SID>loadTestErrors()
-    let @@ = saved_unnamed_register
-endfunction
-
 " Search visual selection
 vnoremap // y/<C-R>"<BS><CR>
 
