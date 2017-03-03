@@ -296,7 +296,10 @@ let g:Gitv_OpenHorizontal = 'auto'
 let g:Gitv_WipeAllOnClose = 1
 let g:Gitv_DoNotMapCtrlKey = 1
 " let g:Gitv_WrapLines = 1
-autocmd FileType git set nofoldenable
+augroup git_fold
+    autocmd!
+    autocmd FileType git set nofoldenable
+augroup END
 
 " Gundo
 nnoremap <Leader>u :GundoToggle<CR>
@@ -603,10 +606,13 @@ nnoremap <silent> <leader>ppp :call RunBackgroundCommand(g:noiseCommand)<CR>
 nnoremap <silent> <leader>ooo :call job_stop(g:backgroundCommandJob)<CR>
 
 " Go to last change when opening a file
-autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+augroup last_change
+    autocmd!
+    autocmd BufReadPost *
+                \ if line("'\"") > 1 && line("'\"") <= line("$") |
+                \   exe "normal! g`\"" |
+                \ endif
+augroup END
 
 xmap aC <Plug>(textobj-python-class-a)
 omap aC <Plug>(textobj-python-class-a)
