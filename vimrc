@@ -216,6 +216,14 @@ set background=dark
 set t_Co=256                   " 256 colors for the terminal
 colorscheme lucius             " molokai256 badwolf lucius
 
+" Airline
+set noshowmode
+let g:airline_theme='lucius'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#hunks#non_zero_only = 1
+
 " Resize the divisions if the Vim window size changes
 augroup vim_resize
     autocmd!
@@ -242,14 +250,6 @@ augroup END
 nmap <Leader>ss :setlocal spell! spelllang=es<CR>
 nmap <Leader>se :setlocal spell! spelllang=en<CR>
 " ]s and [s to move. z= to suggest. zg to add a word
-
-" Airline
-set noshowmode
-let g:airline_theme='lucius'
-let g:airline_powerline_fonts=1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#hunks#non_zero_only = 1
 
 " Commentary
 nmap <Leader>c <Plug>CommentaryLine
