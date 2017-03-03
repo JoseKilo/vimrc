@@ -434,8 +434,7 @@ augroup filetype_autocmd
     autocmd FileType java :inoreabbrev <buffer> raise throw
     autocmd FileType python setlocal textwidth=79 colorcolumn=81
     autocmd FileType python let g:netrw_list_hide= '.*\.pyc$'
-    autocmd FileType python setlocal makeprg=flake8 foldmethod=indent foldnestmax=2
-    autocmd FileType python setlocal makeprg=tox\ -e\ py27\ --\ %
+    autocmd FileType python setlocal foldmethod=indent foldnestmax=2 makeprg=tox\ -e\ py27\ --\ %
     autocmd FileType python setlocal efm=%ETraceback%.%#,%C\ \ File\ \"%f\"\\,\ line\ %l\\,\ in\ test%.%#,%Z%[%^\ ]%\\@=%m,%C%.%#
     autocmd FileType text setlocal textwidth=79 colorcolumn=81 formatoptions=qrn1ct
     autocmd FileType markdown,rst :onoremap <buffer> ih :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rkvg_"<cr>
