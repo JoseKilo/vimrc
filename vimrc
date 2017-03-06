@@ -373,6 +373,10 @@ nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
 nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
 let g:JavaComplete_ImportOrder = ['com.google.', '*', 'java.', 'javax.']
 let g:JavaComplete_ImportSortType = 'packageName'
+augroup plugin_java
+    autocmd!
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+augroup END
 
 augroup filetype_autocmd
     autocmd!
@@ -388,6 +392,8 @@ augroup filetype_autocmd
     autocmd FileType java :inoreabbrev <buffer> True true
     autocmd FileType java :inoreabbrev <buffer> False false
     autocmd FileType java :inoreabbrev <buffer> raise throw
+    autocmd FileType java setlocal foldmethod=syntax
+    autocmd FileType java setlocal tabstop=2 shiftwidth=2 softtabstop=2 cinoptions+=+2s
     autocmd FileType python setlocal textwidth=79 colorcolumn=81 define=^\s*\\(def\\\\|class\\)
     autocmd FileType python let g:netrw_list_hide= '.*\.pyc$'
     autocmd FileType python setlocal foldmethod=indent foldnestmax=2 makeprg=tox\ -e\ py27\ --\ %
@@ -402,8 +408,6 @@ augroup filetype_autocmd
     autocmd BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
     autocmd BufRead,BufNewFile *.js let javaScript_fold=1
     autocmd BufRead,BufNewFile *.js syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-    autocmd BufRead,BufNewFile *.java setlocal foldmethod=syntax
-    autocmd BufRead,BufNewFile *.java setlocal tabstop=2 shiftwidth=2 softtabstop=2 cinoptions+=+2s
     autocmd BufRead,BufNewFile *.js setlocal nowrap smarttab expandtab tabstop=4
           \ shiftwidth=4 softtabstop=4 autoindent foldmethod=syntax syntax=javascript
           \ textwidth=120 colorcolumn=121
