@@ -433,7 +433,7 @@ vnoremap // y/<C-R>"<BS><CR>
 let g:netrw_liststyle=3
 
 noremap <Leader>r :checkt<CR>
-nnoremap <c-j> :tabe 
+nnoremap <c-j> :tabe<space>
 nnoremap <c-t>t :tabn<cr>
 
 " Allow to repeat in visual mode
