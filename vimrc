@@ -234,8 +234,6 @@ nmap <Leader>se :setlocal spell! spelllang=en<CR>
 " ]s and [s to move. z= to suggest. zg to add a word
 
 " Commentary
-nmap <Leader>c <Plug>CommentaryLine
-xmap <Leader>c <Plug>Commentary
 augroup plugin_commentary
     autocmd!
     autocmd FileType python setlocal commentstring=#%s
