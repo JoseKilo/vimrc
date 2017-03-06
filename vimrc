@@ -254,7 +254,7 @@ nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>go :Gread<CR>
 nnoremap <Leader>gR :Gremove<CR>
 nnoremap <Leader>gm :Gmove<Space>
-nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gc :Gcommit<CR>:setlocal spell! spelllang=en<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>ge :Gedit<CR>
