@@ -291,9 +291,6 @@ let g:indentLine_enabled = 0
 let g:indentLine_char = '┊'
 let g:indentLine_color_term = 239
 
-" Po.vim
-let g:po_translator = "Jose Garcia (JoseKilo)<jose.eduardo.gd@gmail.com>"
-
 " PythonMode
 let g:pymode_breakpoint_bind = '<Leader>B'
 let g:pymode_rope = 1
@@ -366,12 +363,8 @@ endif
 " Vinarise
 map <F6> :Vinarise<CR>
 let g:vinarise_enable_auto_detect = 1
-augroup filetype_autocmd
-    autocmd!
-    autocmd FileType vinarise let g:airline_section_warning = ''
-augroup END
 
-" Ansible support via 'chase/vim-ansible-yaml'
+" vim-ansible-yaml
 let g:ansible_options = {'ignore_blank_lines': 0}
 
 " javacomplete2
