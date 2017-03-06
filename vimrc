@@ -114,14 +114,12 @@ endif
 filetype plugin indent on      " Indent and plugins by filetype
 let mapleader = ','
 let maplocalleader = ' '
-scriptencoding utf-8
 set encoding=utf-8              " setup the encoding to UTF-8
 set ls=2                        " status line always visible
 set novisualbell                " turn off the visual bell
 set cursorline                  " highlight the line under the cursor
 set fillchars+=vert:│           " better looking for windows separator
 set ttyfast                     " better screen redraw
-set title                       " set the terminal title to the current file
 set showcmd                     " shows partial commands
 set hidden                      " hide the inactive buffers
 set ruler                       " sets a permanent rule
@@ -131,15 +129,17 @@ set ttimeoutlen=0               " toggle between modes almost instantly
 set backspace=indent,eol,start  " defines the backspace key behavior
 set virtualedit=all             " to edit where there is no actual character
 set more                        " to show pages using `more` in command outpouts
+set showmatch                   " show pairs match
+set nrformats-=octal            " Turn off octal increment / decrement so that
+                                " numbers with leading zeros won't go from 007
+                                " to 010
+set shell=bash
+set scrolloff=3
+set nomodeline
 
 " Searching
-set incsearch                   " incremental searching
-set showmatch                   " show pairs match
-set hlsearch                    " highlight search results
-set smartcase                   " smart case ignore
-set ignorecase                  " ignore case letters
-" Turn off highlighting when dropping into insert mode, and turn back on again
-" when leaving
+set incsearch hlsearch smartcase ignorecase
+" Turn off highlighting in insert mode, and turn back on again when leaving
 augroup highlight_search
     autocmd!
     autocmd InsertEnter * :setlocal nohlsearch
@@ -148,14 +148,10 @@ augroup END
 nnoremap <leader>/ :nohlsearch<cr>
 
 " History and permanent undo levels
-set undolevels=1000
-set history=1000
-set undofile
-set undoreload=1000
+set undolevels=1000 history=1000 undofile undoreload=1000
 
 " Backups
-set backup
-set noswapfile
+set backup noswapfile
 set backupdir=$HOME/.vim/tmp/backup/
 set undodir=$HOME/.vim/tmp/undo/
 set directory=$HOME/.vim/tmp/swap/
@@ -194,13 +190,6 @@ set dictionary=$HOME/.vim/dictionaries/keywords.txt
 
 set path=**                     " Search the files under the run location.
 set suffixesadd=.py             " Look for Python files.
-set shell=bash
-
-set nrformats-=octal            " Turn off octal increment / decrement so that
-                                " numbers with leading zeros won't go from 007
-                                " to 010
-set scrolloff=3
-set nomodeline
 
 " Colorscheme
 syntax enable
@@ -316,20 +305,18 @@ let g:po_translator = "Jose Garcia (JoseKilo)<jose.eduardo.gd@gmail.com>"
 
 " PythonMode
 let g:pymode_breakpoint_bind = '<Leader>B'
-let g:pymode_doc = 0
-let g:pymode_run = 0
-let g:pymode_lint = 0  " Use Syntastic instead (this doesn't work with flake8)
-let g:pymode_options = 0
 let g:pymode_rope = 1
-let g:pymode_folding = 0
 let g:pymode_virtualenv = 1
 let g:pymode_trim_whitespaces = 1
 let g:pymode_rope_completion = 1
+let g:pymode_doc = 0
+let g:pymode_run = 0
+let g:pymode_lint = 0
+let g:pymode_options = 0
+let g:pymode_folding = 0
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_regenerate_on_write = 0
-let g:pymode_rope_autoimport = 0  " Seriously, DON'T ... Or maybe yes ... NO !!
-let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime', 'itertools', 'logging']
-let g:pymode_rope_autoimport_import_after_complete = 0
+let g:pymode_rope_autoimport = 0
 
 " Neomake
 let g:neomake_python_enabled_makers = ['flake8']
@@ -435,7 +422,7 @@ augroup filetype_autocmd
     autocmd FileType java :inoreabbrev <buffer> True true
     autocmd FileType java :inoreabbrev <buffer> False false
     autocmd FileType java :inoreabbrev <buffer> raise throw
-    autocmd FileType python setlocal textwidth=79 colorcolumn=81
+    autocmd FileType python setlocal textwidth=79 colorcolumn=81 define=^\s*\\(def\\\\|class\\)
     autocmd FileType python let g:netrw_list_hide= '.*\.pyc$'
     autocmd FileType python setlocal foldmethod=indent foldnestmax=2 makeprg=tox\ -e\ py27\ --\ %
     autocmd FileType python setlocal efm=%ETraceback%.%#,%C\ \ File\ \"%f\"\\,\ line\ %l\\,\ in\ test%.%#,%Z%[%^\ ]%\\@=%m,%C%.%#
