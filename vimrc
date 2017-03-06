@@ -134,6 +134,7 @@ set nrformats-=octal            " Turn off octal increment / decrement so that
 set shell=bash
 set scrolloff=3
 set nomodeline
+set foldlevel=99
 
 " Searching
 set incsearch hlsearch smartcase ignorecase
@@ -222,17 +223,10 @@ augroup END
 set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
 nmap <Leader>h :set list!<CR>
 
-" Folding
-set foldlevel=99
-
 " Spelling
 augroup spelling
     autocmd!
-    autocmd FileType gitcommit setlocal spell! spelllang=en
-    autocmd FileType markdown setlocal spell! spelllang=en
-    autocmd FileType mkd setlocal spell! spelllang=en
-    autocmd FileType rst setlocal spell! spelllang=en
-    autocmd FileType text setlocal spell! spelllang=en
+    autocmd FileType gitcommit,markdown,mkd,rst,text setlocal spell! spelllang=en
 augroup END
 
 nmap <Leader>ss :setlocal spell! spelllang=es<CR>
