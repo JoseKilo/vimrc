@@ -31,10 +31,8 @@ call dein#begin(expand('~/.vim/dein'))
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc', {'build': 'make'})
 
-" Unite. The interface to rule almost everything
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/unite-outline')
-call dein#add('osyo-manga/unite-quickfix')
+" Denite
+call dein#add('Shougo/denite.nvim')
 
 " Color schemes
 call dein#add('joedicastro/vim-molokai256')
@@ -200,6 +198,7 @@ augroup color_all
     autocmd ColorScheme * highlight NeomakeErrorSign ctermfg=white ctermbg=darkred
     autocmd ColorScheme * highlight NeomakeError ctermfg=white ctermbg=darkred
     autocmd ColorScheme * highlight NeomakeWarningSign ctermfg=yellow
+    autocmd ColorScheme * highlight WildMenu ctermbg=238
 augroup END
 set background=dark
 set t_Co=256                   " 256 colors for the terminal
@@ -271,11 +270,11 @@ nnoremap <Leader>gE :Gedit<Space>
 nnoremap <Leader>gt :!tig<CR>:redraw!<CR>
 nnoremap <leader>ga :silent! Git add %<cr>:redraw!<cr>
 nnoremap <leader>gn :silent! Git commit --amend --no-edit -a<cr>:e %<cr>:redraw!<cr>
-nnoremap <Leader>gl :exe "silent Glog <Bar> Unite quickfix"<CR>:redraw!<CR>
-nnoremap <Leader>gL :exe "silent Glog -- <Bar> Unite quickfix"<CR>:redraw!<CR>
+nnoremap <Leader>gl :exe "silent Glog <Bar> copen"<CR>:redraw!<CR>
+nnoremap <Leader>gL :exe "silent Glog -- <Bar> copen"<CR>:redraw!<CR>
 
 nnoremap <Leader>ggc :silent! Ggrep -i<Space>
-nnoremap <Leader>gg :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>Unite -no-quit -toggle quickfix<CR>
+nnoremap <Leader>gg :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>copen<CR>
 
 " Gitv
 nnoremap <silent> <leader>gv :Gitv --all<CR>
@@ -340,55 +339,37 @@ let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeomakeWarningSign'}
 let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
 let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
 
-" Unite
-nnoremap <silent><Leader>o :Unite -toggle -silent -start-insert file_rec/async:!<CR>
-nnoremap <silent><Leader>O :Unite -toggle -silent -start-insert file_rec/git<CR>
-" nnoremap <silent><Leader>b :Unite -toggle -silent buffer<CR>
-nnoremap <silent><leader>? :Unite -toggle -silent -auto-resize -auto-highlight -input=TODO grep:.<CR>
-nnoremap <silent><Leader>i :Unite -toggle -silent outline<CR>
-nnoremap <silent><Leader>sa :Unite -toggle -silent -auto-highlight grep:.<CR>
-nnoremap <silent><Leader>a :UniteWithCursorWord -toggle -silent -auto-highlight grep:.<CR>
-nnoremap <silent><Leader>sss :UniteWithCursorWord -silent file_rec/async:! grep:.<CR>
+" Denite
+call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files'])
+call denite#custom#option('default', 'prompt', '>>>')
+call denite#custom#option('default', 'mode', 'normal')
+call denite#custom#option('default', 'winheight', '15')
+
+nnoremap <silent><Leader>o :Denite -mode=insert file_rec/async:!<CR>
+nnoremap <silent><Leader>O :Denite -mode=insert file_rec/git<CR>
+" nnoremap <silent><Leader>b :Denite buffer<CR>
+nnoremap <silent><leader>? :Denite -input=TODO grep:.<CR>
+nnoremap <silent><Leader>i :Denite outline<CR>
+nnoremap <silent><Leader>sa :Denite grep:.<CR>
+nnoremap <silent><Leader>a :DeniteCursorWord grep:.<CR>
+nnoremap <silent><Leader>sss :DeniteCursorWord file_rec/async:! grep:.<CR>
 
 if executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts = '--nocolor --nogroup -S -i --line-numbers ' .
-        \ '--ignore-dir node_modules --ignore-dir migrations --ignore-dir static --ignore-dir media'
+    let g:ag_options = '--nocolor --nogroup -S -i --line-numbers ' .
+        \ '--ignore-dir node_modules --ignore-dir migrations ' .
+        \ '--ignore-dir static --ignore-dir media'
     if !empty($VIRTUAL_ENV)
-      let g:unite_source_grep_default_opts .= ' --ignore-dir $VIRTUAL_ENV'
+      let g:ag_options .= ' --ignore-dir $VIRTUAL_ENV'
     endif
-    let g:unite_source_grep_recursive_opt = ''
-    let g:unite_source_search_word_highlight = 1
+
+    call denite#custom#var('grep', 'command', ['ag'])
+    call denite#custom#var('grep', 'default_opts', split(g:ag_options, ' '))
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'pattern_opt', [])
+    call denite#custom#var('grep', 'separator', ['--'])
+    call denite#custom#var('grep', 'final_opts', [])
 endif
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-let unite_ignore_pattern = ['\.git/', 'tmp/', 'bundle/', 'target/', '.tox/', '.pyc']
-if !empty($VIRTUAL_ENV)
-  let unite_ignore_pattern += [$VIRTUAL_ENV]
-endif
-call unite#custom#source('file,file_rec,file_rec/async,file_rec/git,grep',
-            \ 'ignore_pattern', join(unite_ignore_pattern, '\|'))
-call unite#custom#source('file,file_rec,file_rec/async,file_rec/git,grep',
-            \ 'ignore_globs', ['./.*', './.*/'])
-
-let g:default_context = {
-    \ 'winheight' : 15,
-    \ 'update_time' : 200,
-    \ 'prompt' : '>>> ',
-    \ 'enable_start_insert' : 0,
-    \ 'enable_short_source_names' : 0,
-    \ 'marked_icon' : '✓',
-    \ 'ignorecase' : 1,
-    \ 'smartcase' : 1,
-    \ 'direction' : 'botright',
-\ }
-
-call unite#custom#profile('default', 'context', default_context)
-
-let g:unite_force_overwrite_statusline = 0
-let g:unite_data_directory = $HOME.'/.vim/tmp/unite'
-let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
 
 " Vinarise
 map <F6> :Vinarise<CR>
