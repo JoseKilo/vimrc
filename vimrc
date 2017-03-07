@@ -199,7 +199,7 @@ augroup color_all
     autocmd ColorScheme * highlight NeomakeErrorSign ctermfg=white ctermbg=darkred
     autocmd ColorScheme * highlight NeomakeError ctermfg=white ctermbg=darkred
     autocmd ColorScheme * highlight NeomakeWarningSign ctermfg=yellow
-    autocmd ColorScheme * highlight WildMenu ctermbg=238
+    autocmd ColorScheme * highlight DeniteChar ctermbg=24
 augroup END
 set background=dark
 set t_Co=256                   " 256 colors for the terminal
@@ -334,9 +334,16 @@ call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files'])
 call denite#custom#option('default', 'prompt', '>>>')
 call denite#custom#option('default', 'mode', 'normal')
 call denite#custom#option('default', 'winheight', '15')
+call denite#custom#option('default', 'cursor_wrap', 1)
+call denite#custom#option('default', 'highlight_matched_char', 'DeniteChar')
+call denite#custom#option('default', 'highlight_matched_range', 'nonexistent')
+call denite#custom#option('default', 'highlight_mode_insert', 'CursorLine')
+call denite#custom#option('default', 'highlight_mode_normal', 'Visual')
+call denite#custom#option('default', 'statusline', 0)
 
 nnoremap <silent><Leader>o :Denite -mode=insert file_rec/async:!<CR>
 nnoremap <silent><Leader>O :Denite -mode=insert file_rec/git<CR>
+nnoremap <silent><Leader>T :Denite -mode=insert -path=tests/ file_rec/git<CR>
 " nnoremap <silent><Leader>b :Denite buffer<CR>
 nnoremap <silent><leader>? :Denite -input=TODO grep:.<CR>
 nnoremap <silent><Leader>i :Denite outline<CR>
