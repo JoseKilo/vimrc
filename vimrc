@@ -55,6 +55,7 @@ call dein#add('othree/html5.vim', {'on_ft': ['html', 'xhttml', 'css']})
 call dein#add('mattn/emmet-vim', {'on_ft': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']})
 call dein#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
 call dein#add('artur-shaik/vim-javacomplete2', {'on_ft': ['java']})
+call dein#add('JavaScript-syntax', {'on_ft': ['javascript']})
 
 " Editor tools
 call dein#add('neomake/neomake')
@@ -413,11 +414,6 @@ augroup filetype_autocmd
     autocmd BufRead,BufNewFile *.html setlocal nowrap
     autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} setlocal filetype=markdown
     autocmd BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
-    autocmd BufRead,BufNewFile *.js let javaScript_fold=1
-    autocmd BufRead,BufNewFile *.js syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-    autocmd BufRead,BufNewFile *.js setlocal nowrap smarttab expandtab tabstop=4
-          \ shiftwidth=4 softtabstop=4 autoindent foldmethod=syntax syntax=javascript
-          \ textwidth=120 colorcolumn=121
 augroup END
 
 inoreabbrev @@@ jose.eduardo.gd@gmail.com
