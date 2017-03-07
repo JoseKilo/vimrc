@@ -555,11 +555,17 @@ function! RunBackgroundCommand(command)
   else
     echo 'Running task in background'
     let g:backgroundCommandOutput = tempname()
-    let g:backgroundCommandJob = job_start(a:command, {'close_cb': 'BackgroundCommandClose', 'out_io': 'file', 'out_name': g:backgroundCommandOutput})
+    let g:backgroundCommandJob = job_start(a:command, {
+                \ 'close_cb': 'BackgroundCommandClose',
+                \ 'out_io': 'file',
+                \ 'out_name': g:backgroundCommandOutput
+                \ })
   endif
 endfunction
 
-let g:noiseCommand = 'play --no-show-progress -c 2 --null synth 01:00 brownnoise band -n 100 499 tremolo 0.1 43 reverb 19 bass -11 treble -1 vol 14dB repeat 59'
+let g:noiseCommand = 'play --no-show-progress -c 2 --null synth 01:00 ' .
+            \ 'brownnoise band -n 100 499 tremolo 0.1 43 reverb 19 bass ' .
+            \ '-11 treble -1 vol 14dB repeat 59'
 nnoremap <silent> <leader>ppp :call RunBackgroundCommand(g:noiseCommand)<CR>
 nnoremap <silent> <leader>ooo :call job_stop(g:backgroundCommandJob)<CR>
 
