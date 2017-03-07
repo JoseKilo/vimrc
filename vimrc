@@ -393,13 +393,13 @@ augroup filetype_autocmd
     autocmd FileType json :setlocal formatprg=python\ -m\ json.tool
     autocmd FileType json :setlocal equalprg=python\ -m\ json.tool
     autocmd FileType ruby :setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd FileType html,htmldjango.html :inoreabbrev <buffer> --- &mdash;
+    autocmd FileType html,htmldjango.html inoreabbrev <buffer> --- &mdash;
     autocmd FileType html,htmldjango.html setlocal tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType typescript setlocal tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType typescript let g:netrw_list_hide= '.*\.js,.*\.map$'
-    autocmd FileType java :inoreabbrev <buffer> True true
-    autocmd FileType java :inoreabbrev <buffer> False false
-    autocmd FileType java :inoreabbrev <buffer> raise throw
+    autocmd FileType java inoreabbrev <buffer> True true
+    autocmd FileType java inoreabbrev <buffer> False false
+    autocmd FileType java inoreabbrev <buffer> raise throw
     autocmd FileType java setlocal foldmethod=syntax
     autocmd FileType java setlocal tabstop=2 shiftwidth=2 softtabstop=2 cinoptions+=+2s
     autocmd FileType python setlocal textwidth=79 colorcolumn=81 define=^\s*\\(def\\\\|class\\)
@@ -410,9 +410,7 @@ augroup filetype_autocmd
     autocmd FileType markdown,rst :onoremap <buffer> ih :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rkvg_"<cr>
     autocmd FileType markdown,rst :onoremap <buffer> ah :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
     autocmd FileType netrw setl bufhidden=wipe
-
-    autocmd BufRead,BufNewFile *.html setlocal nowrap
-    autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} setlocal filetype=markdown
+    autocmd FileType html setlocal nowrap
     autocmd BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
 augroup END
 
