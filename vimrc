@@ -469,6 +469,7 @@ nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ek :e $HOME/.vim/dictionaries/keywords.txt<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <silent> gs :!isort %<cr>:redraw!<cr>
+nnoremap <silent> gy :let view = winsaveview()<cr>:0,$!yapf %<cr>:redraw!<cr>:call winrestview(view)<cr>
 nnoremap <silent> g/ :%s///gn<cr>
 nnoremap <silent>g% :Make<cr>:Coveragepy show<cr>
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
