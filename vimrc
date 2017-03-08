@@ -295,8 +295,8 @@ let g:indentLine_char = '┊'
 let g:indentLine_color_term = 239
 
 " PythonMode
-let g:pymode_breakpoint_bind = '<Leader>B'
 let g:pymode_rope = 1
+let g:pymode_breakpoint = 0
 let g:pymode_virtualenv = 1
 let g:pymode_trim_whitespaces = 1
 let g:pymode_rope_completion = 1
@@ -475,6 +475,7 @@ nnoremap <silent> gy :let view = winsaveview()<cr>:0,$!yapf %<cr>:redraw!<cr>:ca
 nnoremap <silent> g/ :%s///gn<cr>
 nnoremap <silent>g% :Make<cr>:Coveragepy show<cr>
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
+nnoremap <leader>B Oimport ipdb  # XXX<cr>ipdb.set_trace()<esc>
 
 " Select last changed (or pasted) text
 nnoremap gp `[v`]
