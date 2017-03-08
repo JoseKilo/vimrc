@@ -370,10 +370,6 @@ if executable('ag')
     call denite#custom#var('grep', 'final_opts', [])
 endif
 
-" Vinarise
-map <F6> :Vinarise<CR>
-let g:vinarise_enable_auto_detect = 1
-
 " vim-ansible-yaml
 let g:ansible_options = {'ignore_blank_lines': 0}
 
