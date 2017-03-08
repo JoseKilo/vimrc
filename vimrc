@@ -84,6 +84,7 @@ call dein#add('tpope/vim-unimpaired')  " ]b ]l ]q ...
 " Python
 call dein#add('python-mode/python-mode', {'on_ft': ['python']})
 call dein#add('alfredodeza/coveragepy.vim', {'on_ft': ['python']})
+call dein#add('tmhedberg/SimpylFold', {'on_ft': ['python']})
 
 " text-objects
 call dein#add('kana/vim-textobj-entire') " ae, ie
@@ -404,7 +405,7 @@ augroup filetype_autocmd
     autocmd FileType java setlocal tabstop=2 shiftwidth=2 softtabstop=2 cinoptions+=+2s
     autocmd FileType python setlocal textwidth=79 colorcolumn=81 define=^\s*\\(def\\\\|class\\)
     autocmd FileType python let g:netrw_list_hide= '.*\.pyc$'
-    autocmd FileType python setlocal foldmethod=indent foldnestmax=2 makeprg=tox\ -e\ py27\ --\ %
+    autocmd FileType python setlocal makeprg=tox\ -e\ py27\ --\ %
     autocmd FileType python setlocal efm=%ETraceback%.%#,%C\ \ File\ \"%f\"\\,\ line\ %l\\,\ in\ test%.%#,%Z%[%^\ ]%\\@=%m,%C%.%#
     autocmd FileType text setlocal textwidth=79 colorcolumn=81 formatoptions=qrn1ct
     autocmd FileType markdown,rst :onoremap <buffer> ih :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rkvg_"<cr>
