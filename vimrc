@@ -474,6 +474,8 @@ nnoremap <silent>g% :Make<cr>:Coveragepy show<cr>
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>B Oimport ipdb  # XXX<cr>ipdb.set_trace()<esc>
 
+command! Today pu=strftime('%Y/%m/%d')
+
 " Select last changed (or pasted) text
 nnoremap gp `[v`]
 nnoremap <leader>= `[v`]=
