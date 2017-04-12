@@ -172,9 +172,9 @@ silent! call MakeDirIfNoExists(&directory)
 " Wildmenu
 set wildmenu                        " Command line autocompletion
 set wildmode=list:longest,full      " Shows all the options
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~      " Backup files
-set wildignore+=*.luac,*.jar,*.pyc,*.stats       " Temporal files
+set wildignore+=*.sw?                                 " Vim swap files
+set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~           " Backup files
+set wildignore+=*.class,*.luac,*.jar,*.pyc,*.stats    " Temporal files
 
 " Tabs, space and wrapping
 set expandtab                  " spaces instead of tabs
