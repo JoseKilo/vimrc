@@ -5,3 +5,6 @@ prefetch_related
 IndexError
 AttributeError
 continue
+isinstance
+NotImplemented
+KeyError
