@@ -1,6 +1,8 @@
+import functools
 import re
 import sys
 from difflib import ndiff
+
 try:
     from StringIO import StringIO
 except ImportError:
@@ -26,3 +28,14 @@ def test_module_doc(doc, main):
     error_message = '\n{}'.format(''.join(diff))
 
     assert test_result == expected_test_output, error_message
+
+
+def memoize(obj):
+    cache = obj.cache = {}
+
+    @functools.wraps(obj)
+    def memoizer(*args, **kwargs):
+        if args not in cache:
+            cache[args] = obj(*args, **kwargs)
+        return cache[args]
+    return memoizer
