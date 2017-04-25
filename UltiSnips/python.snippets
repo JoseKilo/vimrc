@@ -161,6 +161,10 @@ snippet pp "print statement" !b
 print 'C$1'
 endsnippet
 
+snippet ee "print to stderr" !b
+print >> sys.stderr, 'C$1'
+endsnippet
+
 snippet "" "docstring" !b
 """
 ${1}
@@ -183,4 +187,27 @@ class MyTest(TestCase):
 		response = self.client.get(url)
 
 		self.assertEqual(response, '')
+endsnippet
+
+snippet main "Python script with main method" !b
+"""
+2 3
+4 5 -1
+
+5
+8
+"""
+import sys
+
+
+def main():
+	for line in sys.stdin.readlines():
+		line = line.strip()
+		print sum(map(int, line.split()))
+
+
+if __name__ == '__main__':
+	import helpers
+	helpers.test_module_doc(__doc__, main)
+	main()
 endsnippet
