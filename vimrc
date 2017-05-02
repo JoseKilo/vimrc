@@ -482,6 +482,8 @@ command! Today pu=strftime('%Y/%m/%d')
 nnoremap gp `[v`]
 nnoremap <leader>= `[v`]=
 
+nmap gy bysiw)i
+
 if filereadable(".vimrc") && $PWD != $HOME
     source .vimrc
 endif
