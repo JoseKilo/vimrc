@@ -55,7 +55,7 @@ call dein#add('othree/html5.vim', {'on_ft': ['html', 'xhttml', 'css']})
 call dein#add('mattn/emmet-vim', {'on_ft': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']})
 call dein#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
 call dein#add('artur-shaik/vim-javacomplete2', {'on_ft': ['java']})
-call dein#add('JavaScript-syntax', {'on_ft': ['javascript']})
+call dein#add('vim-scripts/JavaScript-syntax', {'on_ft': ['javascript']})
 
 " Editor tools
 call dein#add('neomake/neomake')
@@ -73,7 +73,7 @@ call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
 call dein#add('manasthakur/vim-vinegar')  " enhances netrw
 call dein#add('tpope/vim-characterize')  " character info => ga
-call dein#add('delimitMate.vim')  " Autocompletion of (, [, {, ', \", ...
+call dein#add('Raimondi/delimitMate')  " Autocompletion of (, [, {, ', \", ...
 call dein#add('tpope/vim-speeddating')  " Smart and fast date changer <c-a> <c-x>
 call dein#add('tpope/vim-repeat')  " extend repetitions by the 'dot' key
 call dein#add('tpope/vim-dispatch')  " asynchronous build and test dispatcher
