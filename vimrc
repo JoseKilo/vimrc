@@ -279,7 +279,6 @@ vnoremap <silent> <leader>gV :Gitv! --all<CR>
 let g:Gitv_OpenHorizontal = 'auto'
 let g:Gitv_WipeAllOnClose = 1
 let g:Gitv_DoNotMapCtrlKey = 1
-" let g:Gitv_WrapLines = 1
 augroup git_fold
     autocmd!
     autocmd FileType git set nofoldenable
