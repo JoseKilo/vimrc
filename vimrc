@@ -463,6 +463,7 @@ nnoremap <Leader>m :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
 vnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
 nnoremap <Leader>f :%s///g<Left><Left>
 nnoremap <space> :bnext<cr>
+nnoremap <bs> :bprev<cr>
 nnoremap \ zak<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ek :e $HOME/.vim/dictionaries/keywords.txt<cr>
