@@ -461,6 +461,7 @@ nnoremap <silent> gL :g/./,/^$/join<cr>
 map Y y$
 nnoremap <Leader>m :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
 vnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
+nnoremap <Leader>n :%s/<C-r>///g<Left><Left>
 nnoremap <Leader>f :%s///g<Left><Left>
 nnoremap <space> :bnext<cr>
 nnoremap <bs> :bprev<cr>
