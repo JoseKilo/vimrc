@@ -485,6 +485,8 @@ nnoremap <leader>= `[v`]=
 
 nmap gy vi,o<esc>ysi,)i
 
+nnoremap gM :Make<cr>
+
 if filereadable(".vimrc") && $PWD != $HOME
     source .vimrc
 endif
