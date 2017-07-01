@@ -443,6 +443,9 @@ nnoremap <c-t>t :tabn<cr>
 " Allow to repeat in visual mode
 vnoremap . :norm.<CR>
 
+" Allow to execute the 'q' macro in visual mode
+vnoremap Q :'<,'>:normal @q<CR>
+
 " Fast window & buffer close and kill
 nnoremap <Leader>k :bwipeout<CR>
 nnoremap <silent><Leader>K :bd<CR>
