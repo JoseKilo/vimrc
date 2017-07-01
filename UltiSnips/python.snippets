@@ -158,11 +158,11 @@ logger = logging.getLogger('')
 endsnippet
 
 snippet pp "print statement" !b
-print 'C$1'
+print('C$1')
 endsnippet
 
 snippet ee "print to stderr" !b
-print >> sys.stderr, 'C$1'
+print('C$1', file=sys.stderr)
 endsnippet
 
 snippet "" "docstring" !b
