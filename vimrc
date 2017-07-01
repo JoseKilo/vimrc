@@ -82,6 +82,8 @@ call dein#add('tommcdo/vim-exchange')  " cxiw
 call dein#add('tpope/vim-unimpaired')  " ]b ]l ]q ...
 call dein#add('gorkunov/smartpairs.vim')  " vv vi{ va'
 call dein#add('AndrewRadev/linediff.vim')  " :Linediff :LinediffReset
+call dein#add('mhinz/vim-grepper')  " :Grepper
+call dein#add('tpope/tpope-vim-abolish')  " :%Subvert/facilit{y,ies}/building{,s}/g
 
 " Python
 call dein#add('python-mode/python-mode', {'on_ft': ['python']})
