@@ -220,7 +220,7 @@ let g:airline#extensions#hunks#non_zero_only = 1
 " Resize the divisions if the Vim window size changes
 augroup vim_resize
     autocmd!
-    autocmd VimResized * exe "normal! \<c-w>="
+    autocmd VimResized * wincmd =
 augroup END
 
 " Show hidden chars
