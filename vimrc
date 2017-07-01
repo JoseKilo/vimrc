@@ -77,7 +77,7 @@ call dein#add('Raimondi/delimitMate')  " Autocompletion of (, [, {, ', \", ...
 call dein#add('tpope/vim-speeddating')  " Smart and fast date changer <c-a> <c-x>
 call dein#add('tpope/vim-repeat')  " extend repetitions by the 'dot' key
 call dein#add('tpope/vim-dispatch')  " asynchronous build and test dispatcher
-call dein#add('AndrewRadev/splitjoin.vim')  " gS gJ
+call dein#add('AndrewRadev/splitjoin.vim')  " zS zJ
 call dein#add('tommcdo/vim-exchange')  " cxiw
 call dein#add('tpope/vim-unimpaired')  " ]b ]l ]q ...
 call dein#add('gorkunov/smartpairs.vim')  " vv vi{ va'
@@ -384,6 +384,10 @@ augroup plugin_java
     autocmd!
     autocmd FileType java setlocal omnifunc=javacomplete#Complete
 augroup END
+
+" splitjoin
+let g:splitjoin_split_mapping = 'zS'
+let g:splitjoin_join_mapping  = 'zJ'
 
 augroup filetype_autocmd
     autocmd!
