@@ -276,7 +276,7 @@ nnoremap <Leader>gg :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>copen<CR>
 " Gitv
 nnoremap <silent> <leader>gv :Gitv --all<CR>
 nnoremap <silent> <leader>gV :Gitv! --all<CR>
-vnoremap <silent> <leader>gV :Gitv! --all<CR>
+xnoremap <silent> <leader>gV :Gitv! --all<CR>
 let g:Gitv_OpenHorizontal = 'auto'
 let g:Gitv_WipeAllOnClose = 1
 let g:Gitv_DoNotMapCtrlKey = 1
@@ -433,7 +433,7 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 " Search visual selection
-vnoremap // y/<C-R>"<BS><CR>
+xnoremap // y/<C-R>"<BS><CR>
 
 let g:netrw_liststyle=3
 
@@ -442,10 +442,10 @@ nnoremap <c-j> :tabe<space>
 nnoremap <c-t>t :tabn<cr>
 
 " Allow to repeat in visual mode
-vnoremap . :norm.<CR>
+xnoremap . :norm.<CR>
 
 " Allow to execute the 'q' macro in visual mode
-vnoremap Q :'<,'>:normal @q<CR>
+xnoremap Q :'<,'>:normal @q<CR>
 
 " Fast window & buffer close and kill
 nnoremap <Leader>k :bwipeout<CR>
@@ -468,7 +468,7 @@ nnoremap <silent> gL :g/./,/^$/join<cr>
 
 map Y y$
 nnoremap <Leader>m :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
-vnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
+xnoremap <Leader>m :<BS><BS><BS><BS><BS>%s/\%V//g<Left><Left>
 nnoremap <Leader>n :%s/<C-r>///g<Left><Left>
 nnoremap <Leader>c :%s///n<cr>  " :%~n
 nnoremap <Leader>f :%s///g<Left><Left>
