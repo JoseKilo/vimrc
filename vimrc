@@ -139,6 +139,8 @@ set scrolloff=3
 set nomodeline
 set foldlevel=99
 
+runtime macros/matchit.vim
+
 " Searching
 set incsearch hlsearch smartcase ignorecase
 " Turn off highlighting in insert mode, and turn back on again when leaving
