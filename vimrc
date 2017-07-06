@@ -226,7 +226,7 @@ augroup END
 
 " Show hidden chars
 set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
-nmap <Leader>h :set list!<CR>
+nnoremap <Leader>h :set list!<CR>
 
 " Spelling
 augroup spelling
@@ -234,8 +234,8 @@ augroup spelling
     autocmd FileType gitcommit,markdown,mkd,rst,text setlocal spell! spelllang=en
 augroup END
 
-nmap <Leader>ss :setlocal spell! spelllang=es<CR>
-nmap <Leader>se :setlocal spell! spelllang=en<CR>
+nnoremap <Leader>ss :setlocal spell! spelllang=es<CR>
+nnoremap <Leader>se :setlocal spell! spelllang=en<CR>
 " ]s and [s to move. z= to suggest. zg to add a word
 
 " Commentary
