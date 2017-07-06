@@ -282,7 +282,7 @@ let g:Gitv_WipeAllOnClose = 1
 let g:Gitv_DoNotMapCtrlKey = 1
 augroup git_fold
     autocmd!
-    autocmd FileType git set nofoldenable
+    autocmd FileType git setlocal nofoldenable
 augroup END
 
 " Gundo
@@ -413,7 +413,7 @@ augroup filetype_autocmd
     autocmd FileType text setlocal textwidth=79 colorcolumn=81 formatoptions=qrn1ct
     autocmd FileType markdown,rst :onoremap <buffer> ih :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rkvg_"<cr>
     autocmd FileType markdown,rst :onoremap <buffer> ah :<c-u>execute "normal! ?^\\(==\\+\\)\\\\|\\(--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
-    autocmd FileType netrw setl bufhidden=wipe
+    autocmd FileType netrw setlocal bufhidden=wipe
     autocmd FileType html setlocal nowrap
     autocmd BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
 augroup END
