@@ -7,9 +7,6 @@
 " Quien lleva 4 pesetas / Y un chorizo en la maleta
 " Y apuntá en una libreta / La estación de duseldó
 
-" language en_US.UTF-8
-set nocompatible
-
 " Auto installing Dein
 let iCanHazDein=1
 let dein_readme = expand('~/.vim/dein/repos/github.com/Shougo/dein.vim/README.md')
