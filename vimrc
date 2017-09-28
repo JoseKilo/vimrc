@@ -527,24 +527,6 @@ function! ToggleRelativeAbsoluteNumber()
   endif
 endfunction
 
-" Execution permissions by default to shebang (#!) files
-augroup shebang_chmod
-  autocmd!
-  autocmd BufNewFile  * let b:brand_new_file = 1
-  autocmd BufWritePost * unlet! b:brand_new_file
-  autocmd BufWritePre *
-        \ if exists('b:brand_new_file') |
-        \   if getline(1) =~ '^#!' |
-        \     let b:chmod_post = '+x' |
-        \   endif |
-        \ endif
-  autocmd BufWritePost,FileWritePost *
-        \ if exists('b:chmod_post') && executable('chmod') |
-        \   silent! execute '!chmod '.b:chmod_post.' "<afile>"' |
-        \   unlet b:chmod_post |
-        \ endif
-augroup END
-
 " Create parent dirs if they don't exist on writing a new a file
 function! s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
