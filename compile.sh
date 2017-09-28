@@ -1,6 +1,6 @@
 set -e
 
-# sudo apt-get install libxpm-dev
+# sudo apt-get install libxpm-dev libxt-dev
 
 ./configure --with-features=huge \
     --enable-fail-if-missing \
