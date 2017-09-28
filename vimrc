@@ -455,7 +455,7 @@ nnoremap <silent><Leader>K :bd<CR>
 nnoremap <Leader>P :set invpaste<CR>
 
 " Save as root
-cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Delete trailing whitespaces
 noremap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
