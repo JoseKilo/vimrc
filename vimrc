@@ -479,7 +479,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 command! -range=% Isort :<line1>,<line2>! isort -
 noremap <silent> gs :Isort<cr>
 nnoremap <silent> g/ :%s///gn<cr>
-nnoremap <silent>g% :Make<cr>:Coveragepy show<cr>
+nnoremap g% :Coveragepy show<cr>
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>B Oimport ipdb  # XXX<cr>ipdb.set_trace()<esc>
 nnoremap <leader>V Ofrom IPython import embed<cr>embed()<esc>
