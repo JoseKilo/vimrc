@@ -107,7 +107,7 @@ if iCanHazDein == 0
 endif
 
 " Check if all of the plugins are already installed
-if  dein#check_install()
+if dein#check_install()
     call dein#install()
 endif
 
