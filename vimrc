@@ -449,20 +449,17 @@ xnoremap . :norm.<CR>
 xnoremap Q :'<,'>:normal @q<CR>
 
 " Fast window & buffer close and kill
-nnoremap <Leader>k :bwipeout<CR>
-nnoremap <silent><Leader>K :bd<CR>
+nnoremap <Leader>k :bp\|bwipeout #<cr>
+nnoremap <leader>K :bp\|bd #<cr>
 
 " Toggle paste mode
 nnoremap <Leader>P :set invpaste<CR>
 
 " Save as root
-command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Delete trailing whitespaces
 noremap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-
-" For the diffmode
-noremap <Leader>du :diffupdate<CR>
 
 " Join paragraphs in one-liners
 nnoremap <silent> gL :g/./,/^$/join<cr>
