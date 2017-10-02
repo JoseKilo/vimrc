@@ -419,6 +419,10 @@ inoreabbrev @@@ jose.eduardo.gd@gmail.com
 inoreabbrev ccop Copyright, all rights reserved.
 inoreabbrev ssig --<cr>Jose Garcia (Jose Kilo)<cr>jose.eduardo.gd@gmail.com
 
+" Tags
+command! Ctags !ctags --languages=python -f .tags -R $(python -c "import sys; print(' '.join(sys.path))")
+set tags=.tags
+
 " inoremap <esc> <nop>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
