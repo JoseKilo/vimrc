@@ -94,7 +94,6 @@ call dein#add('kana/vim-textobj-lastpat') " a/, i/, a?, i?
 call dein#add('kana/vim-textobj-line') " al, il
 call dein#add('kana/vim-textobj-underscore') " a_, i_
 call dein#add('kana/vim-textobj-user')
-call dein#add('bps/vim-textobj-python')
 call dein#add('PeterRincker/vim-argumentative')
 
 call dein#end()
@@ -578,12 +577,3 @@ augroup last_change
                 \   exe "normal! g`\"" |
                 \ endif
 augroup END
-
-xmap aC <Plug>(textobj-python-class-a)
-omap aC <Plug>(textobj-python-class-a)
-xmap iC <Plug>(textobj-python-class-i)
-omap iC <Plug>(textobj-python-class-i)
-xmap aM <Plug>(textobj-python-method-a)
-omap aM <Plug>(textobj-python-method-a)
-xmap iM <Plug>(textobj-python-method-i)
-omap iM <Plug>(textobj-python-method-i)
