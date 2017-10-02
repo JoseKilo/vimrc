@@ -129,7 +129,7 @@ set autoread                    " update a open file edited outside of Vim
 set ttimeoutlen=0               " toggle between modes almost instantly
 set backspace=indent,eol,start  " defines the backspace key behavior
 set virtualedit=all             " to edit where there is no actual character
-set more                        " to show pages using `more` in command outpouts
+set more                        " to show pages using `more` in command outputs
 set showmatch                   " show pairs match
 set nrformats-=octal            " Turn off octal increment / decrement so that
                                 " numbers with leading zeros won't go from 007
