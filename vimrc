@@ -411,6 +411,7 @@ augroup filetype_autocmd
     autocmd FileType python setlocal efm=%ETraceback%.%#,%C\ \ File\ \"%f\"\\,\ line\ %l\\,\ in\ test%.%#,%Z%[%^\ ]%\\@=%m,%C%.%#
     autocmd FileType text setlocal textwidth=79 colorcolumn=81 formatoptions=qrn1ct
     autocmd FileType netrw setlocal bufhidden=wipe
+    autocmd FileType python setlocal nowrap
     autocmd FileType html setlocal nowrap
     autocmd BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
 augroup END
