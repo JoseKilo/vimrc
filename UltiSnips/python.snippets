@@ -211,3 +211,36 @@ if __name__ == '__main__':
 	helpers.test_module_doc(__doc__, main)
 	main()
 endsnippet
+
+snippet main2 "Python script with main method and utility to read stdin" !b
+import sys
+
+
+def line(cast=None, split=None):
+    line = sys.stdin.readline()
+    if isinstance(split, str):
+        line = line.split(split)
+        if cast is not None:
+            line = list(map(cast, line))
+    elif cast is not None:
+        line = cast(line)
+    return line
+
+
+def process_line(i, things):
+    result = 42
+    print('Case #{}: {}'.format(i, result))
+
+
+def main():
+    cases = line(int)
+    for i in range(cases):
+        N = line(int)
+        things = line(int, ' ')
+        assert len(pizzas) == N
+        process_line(i + 1, things)
+
+
+if __name__ == '__main__':
+    main()
+endsnippet
