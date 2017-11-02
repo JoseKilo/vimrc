@@ -434,7 +434,7 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 " Search visual selection
-xnoremap // y/<C-R>"<BS><CR>
+xnoremap <silent> // y/<C-R>"<BS><CR>
 
 let g:netrw_liststyle=3
 
