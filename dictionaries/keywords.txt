@@ -17,3 +17,5 @@ slice
 concat
 __future__
 division
+OrderedDict
+ValueError
