@@ -345,20 +345,22 @@ call denite#custom#option('default', 'highlight_mode_insert', 'CursorLine')
 call denite#custom#option('default', 'highlight_mode_normal', 'Visual')
 call denite#custom#option('default', 'statusline', 0)
 
-nnoremap <silent><Leader>o :Denite -mode=insert file_rec/async:!<CR>
+nnoremap <silent><Leader>o :Denite -mode=insert file_rec<CR>
 nnoremap <silent><Leader>O :Denite -mode=insert file_rec/git<CR>
 nnoremap <silent><Leader>T :Denite -mode=insert -path=tests/ file_rec/git<CR>
-" nnoremap <silent><Leader>b :Denite buffer<CR>
-nnoremap <silent><leader>? :Denite -input=TODO grep:.<CR>
+nnoremap <silent><leader>? :Grepper -open -switch -query '\(TODO\|FIXME\)'<cr>
 nnoremap <silent><Leader>i :Denite outline<CR>
-nnoremap <silent><Leader>sa :Denite grep:.<CR>
+nnoremap <silent><Leader>sa :Grepper -open -switch -prompt<CR>
 nnoremap <silent><Leader>a :DeniteCursorWord grep:.<CR>
-nnoremap <silent><Leader>sss :DeniteCursorWord file_rec/async:! grep:.<CR>
+nnoremap <silent><Leader>sss :DeniteCursorWord file_rec grep:.<CR>
+nnoremap <silent><leader>* :Grepper -open -switch -cword -noprompt<cr>
+nmap gS <plug>(GrepperOperator)
+xmap gS <plug>(GrepperOperator)
 
 if executable('ag')
     let g:ag_options = '--nocolor --nogroup -S -i --line-numbers ' .
         \ '--ignore-dir node_modules --ignore-dir migrations ' .
-        \ '--ignore-dir static --ignore-dir media'
+        \ '--ignore-dir static --ignore-dir media --vimgrep'
     if !empty($VIRTUAL_ENV)
       let g:ag_options .= ' --ignore-dir $VIRTUAL_ENV'
     endif
@@ -388,6 +390,17 @@ augroup END
 " splitjoin
 let g:splitjoin_split_mapping = 'zS'
 let g:splitjoin_join_mapping  = 'zJ'
+
+" Grepper
+let g:grepper = {}
+let g:grepper.highlight = 1
+let g:grepper.switch = 0
+let g:grepper.dir = 'filecwd'
+let g:grepper.tools = ['ag', 'grep', 'git']
+let g:grepper.prompt_quote = 1
+
+" JavaScript
+let g:jsx_ext_required = 0
 
 augroup filetype_autocmd
     autocmd!
