@@ -347,7 +347,7 @@ call denite#custom#option('default', 'statusline', 0)
 nnoremap <silent><Leader>o :Denite -mode=insert file_rec<CR>
 nnoremap <silent><Leader>O :Denite -mode=insert file_rec/git<CR>
 nnoremap <silent><Leader>T :Denite -mode=insert -path=tests/ file_rec/git<CR>
-nnoremap <silent><leader>? :Grepper -open -switch -query '\(TODO\|FIXME\)'<cr>
+nnoremap <silent><leader>? :Grepper -open -switch -query 'TODO\|FIXME'<cr>
 nnoremap <silent><Leader>i :Denite outline<CR>
 nnoremap <silent><Leader>sa :Grepper -open -switch -prompt<CR>
 nnoremap <silent><Leader>a :DeniteCursorWord grep:.<CR>
