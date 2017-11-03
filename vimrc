@@ -47,7 +47,6 @@ call dein#add('gregsexton/gitv', {'depends': ['tpope/vim-fugitive']})
 call dein#add('plasticboy/vim-markdown')
 call dein#add('chase/vim-ansible-yaml')
 call dein#add('ekalinin/Dockerfile.vim', {'on_ft': ['Dockerfile']})
-call dein#add('vim-scripts/po.vim--gray', {'on_ft': ['po']})  " Remove 'po' and leave the list empty if it fails
 call dein#add('othree/html5.vim', {'on_ft': ['html', 'xhttml', 'css']})
 call dein#add('mattn/emmet-vim', {'on_ft': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']})
 call dein#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
