@@ -495,6 +495,7 @@ nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>B Oimport ipdb  # XXX<cr>ipdb.set_trace()<esc>
 nnoremap <leader>V Ofrom IPython import embed<cr>embed()<esc>
 nnoremap <leader>V Oimport traceback<cr>traceback.print_exc()<esc>
+noremap <silent> gY :call yapf#YAPF()<cr>
 
 command! Today pu=strftime('%Y/%m/%d')
 
