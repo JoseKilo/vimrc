@@ -26,7 +26,6 @@ call dein#begin(expand('~/.vim/dein'))
 
 " It is better if Dein rules Dein (needed!)
 call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc', {'build': 'make'})
 
 " Denite
 call dein#add('Shougo/denite.nvim')
