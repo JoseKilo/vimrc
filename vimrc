@@ -351,8 +351,8 @@ nnoremap <silent><Leader>sa :Grepper -open -switch -prompt<CR>
 nnoremap <silent><Leader>a :DeniteCursorWord grep:.<CR>
 nnoremap <silent><Leader>sss :DeniteCursorWord file_rec grep:.<CR>
 nnoremap <silent><leader>* :Grepper -open -switch -cword -noprompt<cr>
-nmap gS <plug>(GrepperOperator)
-xmap gS <plug>(GrepperOperator)
+nnoremap gS <plug>(GrepperOperator)
+xnoremap gS <plug>(GrepperOperator)
 
 if executable('ag')
     let g:ag_options = '--nocolor --nogroup -S -i --line-numbers ' .
@@ -374,9 +374,9 @@ endif
 let g:ansible_options = {'ignore_blank_lines': 0}
 
 " javacomplete2
-nmap <F5> <Plug>(JavaComplete-Imports-Add)
-nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
-nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+nnoremap <F5> <Plug>(JavaComplete-Imports-Add)
+nnoremap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+nnoremap <F6> <Plug>(JavaComplete-Imports-AddMissing)
 let g:JavaComplete_ImportOrder = ['com.google.', '*', 'java.', 'javax.']
 let g:JavaComplete_ImportSortType = 'packageName'
 augroup plugin_java
@@ -501,7 +501,7 @@ command! Today pu=strftime('%Y/%m/%d')
 nnoremap gp `[v`]
 nnoremap <leader>= `[v`]=
 
-nmap gy vi,o<esc>ysi,)i
+nnoremap gy vi,o<esc>ysi,)i
 
 nnoremap gM :Make<cr>
 
