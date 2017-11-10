@@ -82,7 +82,6 @@ call dein#add('tpope/tpope-vim-abolish')  " :%Subvert/facilit{y,ies}/building{,s
 
 " Python
 call dein#add('python-mode/python-mode', {'on_ft': ['python']})
-call dein#add('alfredodeza/coveragepy.vim', {'on_ft': ['python']})
 call dein#add('tmhedberg/SimpylFold', {'on_ft': ['python']})
 
 " text-objects
@@ -491,7 +490,6 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 command! -range=% Isort :<line1>,<line2>! isort -
 noremap <silent> gs :Isort<cr>
 nnoremap <silent> g/ :%s///gn<cr>
-nnoremap g% :Coveragepy show<cr>
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>B Oimport ipdb  # XXX<cr>ipdb.set_trace()<esc>
 nnoremap <leader>V Ofrom IPython import embed<cr>embed()<esc>
