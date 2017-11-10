@@ -432,8 +432,11 @@ inoreabbrev ccop Copyright, all rights reserved.
 inoreabbrev ssig --<cr>Jose Garcia (Jose Kilo)<cr>jose.eduardo.gd@gmail.com
 
 " Tags
-command! Ctags !ctags --languages=python -f .tags -R $(python -c "import sys; print(' '.join(sys.path))")
 set tags=.tags
+augroup filetype_tag_command
+    autocmd FileType python command! Ctags !ctags --languages=python -f .tags -R $(python -c "import sys; print(' '.join(sys.path))")
+    autocmd FileType java command! Ctags !ctags --languages=java -f .tags -R .
+augroup END
 
 " inoremap <esc> <nop>
 nnoremap <up> <nop>
