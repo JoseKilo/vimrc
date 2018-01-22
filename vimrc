@@ -51,6 +51,7 @@ call dein#add('mattn/emmet-vim', {'on_ft': ['html', 'xhttml', 'css', 'xml', 'xls
 call dein#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
 call dein#add('artur-shaik/vim-javacomplete2', {'on_ft': ['java']})
 call dein#add('vim-scripts/JavaScript-syntax', {'on_ft': ['javascript']})
+call dein#add('google/yapf', {'rtp': 'plugins/vim', 'on_ft': ['python']})
 
 " Editor tools
 call dein#add('neomake/neomake')
