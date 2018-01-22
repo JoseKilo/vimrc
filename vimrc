@@ -147,7 +147,7 @@ augroup highlight_search
     autocmd InsertEnter * :setlocal nohlsearch
     autocmd InsertLeave * :setlocal hlsearch
 augroup END
-nnoremap <leader>/ :nohlsearch<cr>
+nnoremap <leader>/ :nohlsearch\|ccl\|lcl<cr>
 
 " History and permanent undo levels
 set undolevels=1000 history=1000 undofile undoreload=1000
