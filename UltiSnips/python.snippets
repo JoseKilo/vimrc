@@ -171,6 +171,54 @@ ${1}
 """
 endsnippet
 
+snippet sphinx "sphinx docstring" !b
+"""
+${1}
+
+:param name: The name to use.
+:type name: str.
+:returns: int -- the return code.
+:raises: AttributeError, KeyError
+
+:param name:
+	The name to use.
+
+:param kwargs:
+	Keyword arguments to pass to \`name\`
+
+:returns:
+	int -- the return code.
+
+:raises:
+	AttributeError, KeyError
+
+"""
+endsnippet
+
+snippet googly "googly docstring" !b
+"""
+${1}
+
+Args:
+	param1 (int): The first parameter.
+	param2 (:obj:`str`, optional): The second parameter. Defaults to None.
+		Second line of description should be indented.
+	*args: Variable length argument list.
+	**kwargs: Arbitrary keyword arguments.
+
+Returns:
+	bool: True if successful, False otherwise.
+
+	The ``Returns`` section may span multiple lines and paragraphs.
+	Following lines should be indented to match the first line.
+
+Raises:
+	AttributeError: The ``Raises`` section is a list of all exceptions
+		that are relevant to the interface.
+	ValueError: If \`param2\` is equal to \`param1\`.
+"""
+endsnippet
+
 snippet djangotest "Django test case" !b
 from django.core.urlresolvers import reverse
 from django.test import TestCase
