@@ -183,7 +183,7 @@ set softtabstop=4              " a soft-tab of four spaces
 set autoindent nosmartindent   " set on the auto-indent
 set formatoptions=cqnl1j       " before qrn1ct - default tcq
 set textwidth=79
-set colorcolumn=81
+set colorcolumn=80
 
 " Autocompletion
 set complete=.,w,b,u,k,kspell
@@ -416,12 +416,12 @@ augroup filetype_autocmd
     autocmd FileType java inoreabbrev <buffer> False false
     autocmd FileType java inoreabbrev <buffer> raise throw
     autocmd FileType java setlocal foldmethod=syntax
-    autocmd FileType java setlocal tabstop=2 shiftwidth=2 softtabstop=2 cinoptions+=+2s
-    autocmd FileType python setlocal textwidth=79 colorcolumn=81 define=^\s*\\(def\\\\|class\\)
+    autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 cinoptions+=+4s
+    autocmd FileType python setlocal textwidth=79 colorcolumn=80 define=^\s*\\(def\\\\|class\\)
     autocmd FileType python let g:netrw_list_hide= '.*\.pyc$'
     autocmd FileType python setlocal makeprg=tox\ -e\ py27\ --\ %
     autocmd FileType python setlocal efm=%ETraceback%.%#,%C\ \ File\ \"%f\"\\,\ line\ %l\\,\ in\ test%.%#,%Z%[%^\ ]%\\@=%m,%C%.%#
-    autocmd FileType text setlocal textwidth=79 colorcolumn=81 formatoptions=qrn1ct
+    autocmd FileType text setlocal textwidth=79 colorcolumn=80 formatoptions=qrn1ct
     autocmd FileType netrw setlocal bufhidden=wipe
     autocmd FileType python setlocal nowrap
     autocmd FileType html setlocal nowrap
