@@ -498,6 +498,7 @@ nnoremap <leader>V Oimport traceback<cr>traceback.print_exc()<esc>
 noremap <silent> gY :call yapf#YAPF()<cr>
 
 command! Today pu=strftime('%Y/%m/%d')
+command! Now pu=strftime('%Y/%m/%d %H:%M:%S')
 
 " Select last changed (or pasted) text
 nnoremap gp `[v`]
