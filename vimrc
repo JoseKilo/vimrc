@@ -404,28 +404,25 @@ let g:jsx_ext_required = 0
 augroup filetype_autocmd
     autocmd!
     autocmd FileType vim :setlocal foldmethod=marker
-    autocmd FileType json :setlocal foldmethod=syntax
     autocmd FileType json :setlocal formatprg=python\ -m\ json.tool
     autocmd FileType json :setlocal equalprg=python\ -m\ json.tool
-    autocmd FileType ruby :setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType html,htmldjango.html inoreabbrev <buffer> --- &mdash;
-    autocmd FileType html,htmldjango.html setlocal tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType typescript setlocal tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType typescript let g:netrw_list_hide= '.*\.js,.*\.map$'
+    autocmd FileType python let g:netrw_list_hide= '.*\.pyc$'
     autocmd FileType java inoreabbrev <buffer> True true
     autocmd FileType java inoreabbrev <buffer> False false
     autocmd FileType java inoreabbrev <buffer> raise throw
-    autocmd FileType java setlocal foldmethod=syntax
-    autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 cinoptions+=+4s
     autocmd FileType python setlocal textwidth=79 colorcolumn=80 define=^\s*\\(def\\\\|class\\)
-    autocmd FileType python let g:netrw_list_hide= '.*\.pyc$'
     autocmd FileType python setlocal makeprg=tox\ -e\ py27\ --\ %
     autocmd FileType python setlocal efm=%ETraceback%.%#,%C\ \ File\ \"%f\"\\,\ line\ %l\\,\ in\ test%.%#,%Z%[%^\ ]%\\@=%m,%C%.%#
     autocmd FileType text setlocal textwidth=79 colorcolumn=80 formatoptions=qrn1ct
     autocmd FileType netrw setlocal bufhidden=wipe
-    autocmd FileType python setlocal nowrap
-    autocmd FileType html setlocal nowrap
+    autocmd FileType python,html setlocal nowrap
     autocmd BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
+    autocmd FileType json,ruby,yaml,javascript,xml,css,typescript,html,htmldjango.html :setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType javascript,xml,css,java,json :setlocal foldmethod=syntax
+    autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 cinoptions+=+4s
+    autocmd FileType html,css,javascript,javascript.jsx EmmetInstall
 augroup END
 
 " Tags
