@@ -219,6 +219,23 @@ Raises:
 """
 endsnippet
 
+snippet __getattribute__ "__getattribute__ Template" !b
+def __getattribute__(self, name):
+    import types
+    xxx = object.__getattribute__(self, name)
+    if isinstance(xxx, types.MethodType):
+        def yyy(*args, **kwargs):
+            print('C1', name)
+            return xxx(*args, **kwargs)
+        return yyy
+    return xxx
+endsnippet
+
+snippet while "while" !b
+while True:
+    ${1:${VISUAL:pass}}
+endsnippet
+
 snippet djangotest "Django test case" !b
 from django.core.urlresolvers import reverse
 from django.test import TestCase
