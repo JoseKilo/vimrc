@@ -428,10 +428,6 @@ augroup filetype_autocmd
     autocmd BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
 augroup END
 
-inoreabbrev @@@ jose.eduardo.gd@gmail.com
-inoreabbrev ccop Copyright, all rights reserved.
-inoreabbrev ssig --<cr>Jose Garcia (Jose Kilo)<cr>jose.eduardo.gd@gmail.com
-
 " Tags
 set tags=.tags
 augroup filetype_tag_command
