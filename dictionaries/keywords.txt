@@ -6,6 +6,7 @@ IndexError
 AttributeError
 continue
 isinstance
+issubclass
 NotImplemented
 KeyError
 reversed
