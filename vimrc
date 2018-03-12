@@ -229,7 +229,7 @@ nnoremap <Leader>h :set list!<CR>
 " Spelling
 augroup spelling
     autocmd!
-    autocmd FileType gitcommit,markdown,mkd,rst,text setlocal spell! spelllang=en
+    autocmd FileType gitcommit,markdown,mkd,rst,text setlocal spell spelllang=en
 augroup END
 
 nnoremap <Leader>ss :setlocal spell! spelllang=es<CR>
