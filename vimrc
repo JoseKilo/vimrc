@@ -393,7 +393,6 @@ let g:splitjoin_join_mapping  = 'zJ'
 " Grepper
 let g:grepper = {}
 let g:grepper.highlight = 1
-let g:grepper.switch = 0
 let g:grepper.dir = 'filecwd'
 let g:grepper.tools = ['ag', 'grep', 'git']
 let g:grepper.prompt_quote = 1
