@@ -324,7 +324,6 @@ augroup NeomakeOnWrite
     autocmd!
     autocmd BufWritePost * Neomake
 augroup END
-nnoremap <silent>gM :Neomake!<cr>
 
 let g:neomake_error_sign = {'text': '✗'}
 let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeomakeWarningSign'}
