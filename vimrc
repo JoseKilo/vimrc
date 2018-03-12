@@ -488,7 +488,7 @@ nnoremap \ zak<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ek :e $HOME/.vim/dictionaries/keywords.txt<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-command! -range=% Isort :<line1>,<line2>! isort -
+command! -bar -range=% Isort :<line1>,<line2>! isort -
 noremap <silent> gs :Isort<cr>
 nnoremap <silent> g/ :%s///gn<cr>
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
