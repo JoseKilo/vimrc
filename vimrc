@@ -446,7 +446,14 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 " Search visual selection
-xnoremap <silent> // y/<C-R>"<BS><CR>
+function! s:VSetSearch(cmdtype)
+	let temp = @s
+	norm! gv"sy
+	let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+	let @s = temp
+endfunction
+
+xnoremap <silent> // :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 
 let g:netrw_liststyle=3
 
