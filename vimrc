@@ -57,20 +57,15 @@ call dein#add('google/yapf', {'rtp': 'plugins/vim', 'on_ft': ['python']})
 call dein#add('neomake/neomake')
 call dein#add('SirVer/ultisnips')
 call dein#add('honza/vim-snippets')
-call dein#add('Yggdroot/indentLine')
 call dein#add('sjl/gundo.vim', {'on_cmd': 'GundoToggle'})
-call dein#add('joedicastro/DirDiff.vim', {'on_cmd' : 'DirDiff'})
 call dein#add('Shougo/vinarise.vim')  " Hexadecimal editor
-call dein#add('Rykka/easydigraph.vim')
 call dein#add('kshenoy/vim-signature')  " Marks in side bar
-call dein#add('tpope/vim-obsession')  " Continuously updated session files
 call dein#add('vim-scripts/loremipsum')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
 call dein#add('manasthakur/vim-vinegar')  " enhances netrw
 call dein#add('tpope/vim-characterize')  " character info => ga
 call dein#add('Raimondi/delimitMate')  " Autocompletion of (, [, {, ', \", ...
-call dein#add('tpope/vim-speeddating')  " Smart and fast date changer <c-a> <c-x>
 call dein#add('tpope/vim-repeat')  " extend repetitions by the 'dot' key
 call dein#add('tpope/vim-dispatch')  " asynchronous build and test dispatcher
 call dein#add('AndrewRadev/splitjoin.vim')  " zS zJ
