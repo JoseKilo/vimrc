@@ -506,6 +506,7 @@ nnoremap <leader>= `[v`]=
 nnoremap gy vi,o<esc>ysi,)i
 
 nnoremap gM :Make<cr>
+xnoremap <silent> gC :<c-u>set textwidth=72<cr>gvgq:<c-u>set textwidth=79<cr>
 
 if filereadable(".vimrc") && $PWD != $HOME
     source .vimrc
