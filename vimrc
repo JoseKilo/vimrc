@@ -176,6 +176,7 @@ set tabstop=4                  " a tab = four spaces
 set shiftwidth=4               " number of spaces for auto-indent
 set softtabstop=4              " a soft-tab of four spaces
 set autoindent nosmartindent   " set on the auto-indent
+set shiftround                 " >> indents to next multiple of 'shiftwidth'.
 set formatoptions=cqnl1j       " before qrn1ct - default tcq
 set textwidth=79
 set colorcolumn=80
