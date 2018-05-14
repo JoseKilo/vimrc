@@ -130,6 +130,7 @@ set shell=bash
 set scrolloff=3
 set nomodeline
 set foldlevel=99
+set updatetime=100
 
 runtime macros/matchit.vim
 
