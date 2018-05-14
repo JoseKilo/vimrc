@@ -325,3 +325,76 @@ def main():
 if __name__ == '__main__':
     main()
 endsnippet
+
+
+snippet branchandbound "Branch and Bound schema" !b
+class State(object):
+
+    def __init__(self):
+        pass
+
+    def is_possible(self):
+        return True
+
+    def is_solution(self):
+        return False
+
+    def score(self, k):
+        return 0
+
+    def children(self, k):
+        return []
+
+
+class BranchAndBound(object):
+
+	def __init__(self):
+        self.optimum = 0
+        self.state = None
+
+    def store(self, state, optimum):
+        self.state = state
+        self.optimum = optimum
+
+    def solution(self):
+        if self.state is not None and self.state.is_solution():
+            return self.state.cost
+        else:
+            return None
+
+    def run(self, state):
+        self.branch_and_bound(state, 0)
+
+    def branch_and_bound(self, state, k):
+        children = state.children(k)
+        while children:
+            state, k = children.pop()
+            score = state.score(k)
+            if state.is_possible(k) and score < self.optimum:
+                if state.is_solution():
+                    self.store(state, score)
+                else:
+                    self.branch_and_bound(state, k + 1)
+
+
+runner = BranchAndBound()
+state = State()
+runner.run(state)
+endsnippet
+
+snippet memoize "memoize decorator" !b
+def memoize(f):
+    cache = {}
+
+    def inner(*args):
+        try:
+            return cache[args]
+        except KeyError:
+            pass
+
+        ret = f(*args)
+        cache[args] = ret
+        return ret
+
+    return inner
+endsnippet
