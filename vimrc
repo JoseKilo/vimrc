@@ -415,7 +415,6 @@ augroup filetype_autocmd
     autocmd FileType json,ruby,yaml,javascript,xml,css,typescript,html,htmldjango.html :setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType javascript,xml,css,java,json :setlocal foldmethod=syntax
     autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 cinoptions+=+4s
-    autocmd FileType html,css,javascript,javascript.jsx EmmetInstall
 augroup END
 
 " Tags
