@@ -291,11 +291,14 @@ if __name__ == '__main__':
 endsnippet
 
 snippet main2 "Python script with main method and utility to read stdin" !b
+from __future__ import print_function
+
 import sys
 
 
 def line(cast=None, split=None):
     line = sys.stdin.readline()
+	line = line.strip()
     if isinstance(split, str):
         line = line.split(split)
         if cast is not None:
@@ -305,9 +308,9 @@ def line(cast=None, split=None):
     return line
 
 
-def process_line(i, things):
+def process_line(case, things):
     result = 42
-    print('Case #{}: {}'.format(i, result))
+    print('Case #{}: {}'.format(case, result))
 
 
 def main():
@@ -315,7 +318,7 @@ def main():
     for i in range(cases):
         N = line(int)
         things = line(int, ' ')
-        assert len(pizzas) == N
+        assert len(things) == N
         process_line(i + 1, things)
 
 
