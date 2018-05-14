@@ -74,6 +74,7 @@ call dein#add('AndrewRadev/linediff.vim')  " :Linediff :LinediffReset
 call dein#add('mhinz/vim-grepper')  " :Grepper
 call dein#add('tpope/tpope-vim-abolish')  " :%Subvert/facilit{y,ies}/building{,s}/g
 call dein#add('tpope/vim-repeat')
+call dein#add('AndrewRadev/switch.vim')
 
 " Python
 call dein#add('python-mode/python-mode', {'on_ft': ['python']})
