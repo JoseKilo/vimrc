@@ -249,17 +249,17 @@ let g:EasyDigraph_nmap = '<Leader>dd'
 
 " Fugitive
 nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <leader>ga :Gwrite<cr>
 nnoremap <Leader>go :Gread<CR>
 nnoremap <Leader>gR :Gremove<CR>
 nnoremap <Leader>gm :Gmove<Space>
-nnoremap <Leader>gc :Gcommit<CR>:setlocal spell! spelllang=en<CR>
+nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>ge :Gedit<CR>
-nnoremap <Leader>gE :Gedit<Space>
+
+set diffopt+=vertical
+
 nnoremap <Leader>gt :!tig<CR>:redraw!<CR>
-nnoremap <leader>ga :silent! Git add %<cr>:redraw!<cr>
 nnoremap <leader>gn :silent! Git commit --amend --no-edit -a<cr>:e %<cr>:redraw!<cr>
 nnoremap <Leader>gl :exe "silent Glog <Bar> copen"<CR>:redraw!<CR>
 nnoremap <Leader>gL :exe "silent Glog -- <Bar> copen"<CR>:redraw!<CR>
