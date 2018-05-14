@@ -394,6 +394,9 @@ let g:grepper.prompt_quote = 1
 " JavaScript
 let g:jsx_ext_required = 0
 
+" switch.vim
+let g:switch_mapping = "gS"
+
 augroup filetype_autocmd
     autocmd!
     autocmd FileType vim :setlocal foldmethod=marker
