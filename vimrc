@@ -486,7 +486,9 @@ nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ek :e $HOME/.vim/dictionaries/keywords.txt<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 command! -bar -range=% Isort :<line1>,<line2>! isort -
-nnoremap <silent> gs :Isort<cr>
+nnoremap <silent> gs m`:Isort<cr>``
+command! -bar -range=% Autopep8 :<line1>,<line2>! autopep8 -
+nnoremap <silent> gF m`:Autopep8<cr>``
 nnoremap <silent> g/ :%s///gn<cr>
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>B Oimport ipdb  # XXX<cr>ipdb.set_trace()<esc>
