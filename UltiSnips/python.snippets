@@ -236,6 +236,19 @@ while True:
     ${1:${VISUAL:pass}}
 endsnippet
 
+snippet param "Pytest's parametrize" !b
+@pytest.mark.parametrize("$1,$2", (
+	("$1", "$2"),
+))
+endsnippet
+
+snippet caplog "Pytest's caplog" !b
+with caplog.at_level(logging.${2:INFO}):
+    ${1:${VISUAL:pass}}
+
+assert [record.message for record in caplog.records] == []
+endsnippet
+
 snippet djangotest "Django test case" !b
 from django.core.urlresolvers import reverse
 from django.test import TestCase
