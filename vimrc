@@ -182,7 +182,7 @@ set textwidth=79
 set colorcolumn=80
 
 " Autocompletion
-set complete=.,w,b,u,k,kspell
+set complete=.,w,b,u,k,t,kspell
 set completeopt=menu,longest
 set dictionary=$HOME/.vim/dictionaries/keywords.txt
 
