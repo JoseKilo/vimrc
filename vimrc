@@ -34,6 +34,8 @@ call dein#add('Shougo/denite.nvim')
 call dein#add('joedicastro/vim-molokai256')
 call dein#add('jonathanfilip/vim-lucius')
 call dein#add('sjl/badwolf')
+call dein#add('dracula/vim')
+call dein#add('whatyouhide/vim-gotham')
 call dein#add('bling/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 
@@ -194,20 +196,25 @@ set suffixesadd=.py             " Look for Python files.
 syntax enable
 augroup color_all
     autocmd!
-    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred
+    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred guibg=darkred
     autocmd InsertLeave * match ExtraWhitespace /\v\s+$/
-    autocmd ColorScheme * highlight NeomakeErrorSign ctermfg=white ctermbg=darkred
-    autocmd ColorScheme * highlight NeomakeError ctermfg=white ctermbg=darkred
-    autocmd ColorScheme * highlight NeomakeWarningSign ctermfg=yellow
-    autocmd ColorScheme * highlight DeniteChar ctermbg=24
+    autocmd ColorScheme * highlight NeomakeErrorSign ctermfg=white ctermbg=darkred guibg=darkred
+    autocmd ColorScheme * highlight NeomakeError ctermfg=white ctermbg=darkred guibg=darkred
+    autocmd ColorScheme * highlight NeomakeWarningSign ctermfg=yellow guibg=darkred
+    autocmd ColorScheme * highlight DeniteChar ctermbg=darkblue guibg=darkblue
+    autocmd ColorScheme * highlight SpellBad cterm=underline
+    autocmd ColorScheme dracula highlight pythonSelf guifg=#FF79C6
 augroup END
 set background=dark
 set t_Co=256                   " 256 colors for the terminal
-colorscheme lucius             " molokai256 badwolf lucius
+set termguicolors
+
+" molokai256 lucius badwolf dracula gotham
+colorscheme dracula
 
 " Airline
 set noshowmode
-let g:airline_theme='lucius'
+let g:airline_theme='dracula'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
