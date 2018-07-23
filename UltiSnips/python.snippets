@@ -398,3 +398,10 @@ def memoize(f):
 
     return inner
 endsnippet
+
+snippet xtry "Try/Except" !b
+try:
+	${1:${VISUAL}}
+except ${2:Exception}:
+	pass
+endsnippet
