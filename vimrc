@@ -228,7 +228,7 @@ augroup END
 
 " Show hidden chars
 set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
-nnoremap <Leader>h :set list!<CR>
+nnoremap <Leader>h :setlocal list!<CR>
 
 " Spelling
 augroup spelling
