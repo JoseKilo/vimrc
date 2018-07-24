@@ -268,7 +268,6 @@ nnoremap <Leader>gb :Gblame<CR>
 set diffopt+=vertical
 
 nnoremap <Leader>gt :!tig<CR>:redraw!<CR>
-nnoremap <leader>gn :silent! Git commit --amend --no-edit -a<cr>:e %<cr>:redraw!<cr>
 nnoremap <Leader>gl :exe "silent Glog <Bar> copen"<CR>:redraw!<CR>
 nnoremap <Leader>gL :exe "silent Glog -- <Bar> copen"<CR>:redraw!<CR>
 
