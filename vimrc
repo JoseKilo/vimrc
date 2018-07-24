@@ -416,8 +416,6 @@ augroup filetype_autocmd
     autocmd FileType java inoreabbrev <buffer> False false
     autocmd FileType java inoreabbrev <buffer> raise throw
     autocmd FileType python setlocal textwidth=79 colorcolumn=80 define=^\s*\\(def\\\\|class\\)
-    autocmd FileType python setlocal makeprg=tox\ -e\ py27\ --\ %
-    autocmd FileType python setlocal efm=%ETraceback%.%#,%C\ \ File\ \"%f\"\\,\ line\ %l\\,\ in\ test%.%#,%Z%[%^\ ]%\\@=%m,%C%.%#
     autocmd FileType text setlocal textwidth=79 colorcolumn=80 formatoptions=qrn1ct
     autocmd FileType netrw setlocal bufhidden=wipe
     autocmd FileType python,html setlocal nowrap
