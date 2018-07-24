@@ -515,7 +515,7 @@ nnoremap gy vi,o<esc>ysi,)i
 
 nnoremap gM :Make<cr>
 
-xnoremap <silent> gC :<c-u>set textwidth=72<cr>gvgq:<c-u>set textwidth=79<cr>
+xnoremap <silent> gC :<c-u>setlocal textwidth=72<cr>gvgq:<c-u>setlocal textwidth=79<cr>
 
 noremap <Leader>q :%bd\|e#<cr>
 noremap <Leader>Q :bufdo bd<cr>
