@@ -80,6 +80,7 @@ call dein#add('AndrewRadev/switch.vim')
 call dein#add('python-mode/python-mode', {'on_ft': ['python']})
 call dein#add('tmhedberg/SimpylFold', {'on_ft': ['python']})
 call dein#add('google/yapf', {'rtp': 'plugins/vim', 'on_ft': ['python']})
+call dein#add('mgedmin/coverage-highlight.vim', {'on_ft': ['python']})
 
 " text-objects
 call dein#add('kana/vim-textobj-entire') " ae, ie
@@ -521,6 +522,11 @@ xnoremap <silent> gC :<c-u>set textwidth=72<cr>gvgq:<c-u>set textwidth=79<cr>
 
 noremap <Leader>q :%bd\|e#<cr>
 noremap <Leader>Q :bufdo bd<cr>
+
+" mgedmin/coverage-highlight.vim  :HighlightCoverage :HighlightCoverageOff
+nnoremap <silent>]w :NextUncovered<cr>
+nnoremap <silent>[w :PrevUncovered<cr>
+
 if filereadable(".vimrc") && $PWD != $HOME
     source .vimrc
 endif
