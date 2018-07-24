@@ -51,7 +51,6 @@ call dein#add('ekalinin/Dockerfile.vim', {'on_ft': ['Dockerfile']})
 call dein#add('othree/html5.vim', {'on_ft': ['html', 'xhttml', 'css']})
 call dein#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
 call dein#add('artur-shaik/vim-javacomplete2', {'on_ft': ['java']})
-call dein#add('google/yapf', {'rtp': 'plugins/vim', 'on_ft': ['python']})
 
 " Editor tools
 call dein#add('neomake/neomake')
@@ -81,6 +80,7 @@ call dein#add('AndrewRadev/switch.vim')
 " Python
 call dein#add('python-mode/python-mode', {'on_ft': ['python']})
 call dein#add('tmhedberg/SimpylFold', {'on_ft': ['python']})
+call dein#add('google/yapf', {'rtp': 'plugins/vim', 'on_ft': ['python']})
 
 " text-objects
 call dein#add('kana/vim-textobj-entire') " ae, ie
