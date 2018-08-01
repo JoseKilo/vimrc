@@ -405,3 +405,8 @@ try:
 except ${2:Exception}:
 	pass
 endsnippet
+
+snippet raises "Pytest raises" !b
+with pytest.raises(${1:Exception}) as exc:
+	${2:${VISUAL}}
+endsnippet
