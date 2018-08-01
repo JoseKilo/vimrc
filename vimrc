@@ -74,6 +74,7 @@ call dein#add('gorkunov/smartpairs.vim')  " vv vi{ va'
 call dein#add('AndrewRadev/linediff.vim')  " :Linediff :LinediffReset
 call dein#add('mhinz/vim-grepper')  " :Grepper
 call dein#add('tpope/tpope-vim-abolish')  " :%Subvert/facilit{y,ies}/building{,s}/g
+call dein#add('janko-m/vim-test')
 call dein#add('AndrewRadev/switch.vim')
 
 " Python
@@ -513,7 +514,12 @@ nnoremap <leader>= `[v`]=
 
 nnoremap gy vi,o<esc>ysi,)i
 
-nnoremap gM :Make<cr>
+nnoremap gM :Make %<cr>
+nnoremap tn :TestNearest<cr>
+nnoremap tf :TestFile<cr>
+nnoremap tl :TestLast<cr>
+nnoremap tv :TestVisit<cr>
+nnoremap ts :TestSuite<cr>
 
 xnoremap <silent> gC :<c-u>setlocal textwidth=72<cr>gvgq:<c-u>setlocal textwidth=79<cr>
 
@@ -523,6 +529,16 @@ noremap <Leader>Q :bufdo bd<cr>
 " mgedmin/coverage-highlight.vim  :HighlightCoverage :HighlightCoverageOff
 nnoremap <silent>]w :NextUncovered<cr>
 nnoremap <silent>[w :PrevUncovered<cr>
+
+" janko-m/vim-test
+let test#strategy = "dispatch"
+
+function! CustomStrategy(cmd)
+    execute 'Dispatch -- '.join(split(a:cmd, " ")[1:])
+endfunction
+
+let g:test#custom_strategies = {'Custom': function('CustomStrategy')}
+let g:test#strategy = 'Custom'
 
 if filereadable(".vimrc") && $PWD != $HOME
     source .vimrc
