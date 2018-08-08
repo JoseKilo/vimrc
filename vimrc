@@ -59,7 +59,6 @@ call dein#add('honza/vim-snippets')
 call dein#add('sjl/gundo.vim', {'on_cmd': 'GundoToggle'})
 call dein#add('Shougo/vinarise.vim')  " Hexadecimal editor
 call dein#add('kshenoy/vim-signature')  " Marks in side bar
-call dein#add('vim-scripts/loremipsum')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
 call dein#add('manasthakur/vim-vinegar')  " enhances netrw
@@ -71,7 +70,6 @@ call dein#add('AndrewRadev/splitjoin.vim')  " zS zJ
 call dein#add('tommcdo/vim-exchange')  " cxiw
 call dein#add('tpope/vim-unimpaired')  " ]b ]l ]q ...
 call dein#add('gorkunov/smartpairs.vim')  " vv vi{ va'
-call dein#add('AndrewRadev/linediff.vim')  " :Linediff :LinediffReset
 call dein#add('mhinz/vim-grepper')  " :Grepper
 call dein#add('tpope/tpope-vim-abolish')  " :%Subvert/facilit{y,ies}/building{,s}/g
 call dein#add('janko-m/vim-test')
@@ -253,9 +251,6 @@ augroup END
 " delimitmate
 let delimitMate_expand_space = 1
 
-" easydigraph
-let g:EasyDigraph_nmap = '<Leader>dd'
-
 " Fugitive
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <leader>ga :Gwrite<cr>
@@ -291,12 +286,6 @@ augroup END
 nnoremap <Leader>u :GundoToggle<CR>
 let g:gundo_prefer_python3 = 1
 let g:gundo_preview_bottom = 1
-
-" indentLine
-map <silent> <Leader>L :IndentLinesToggle<CR>
-let g:indentLine_enabled = 0
-let g:indentLine_char = '┊'
-let g:indentLine_color_term = 239
 
 " PythonMode
 let g:pymode_rope = 1
