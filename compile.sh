@@ -11,8 +11,9 @@ make clean
     --enable-rubyinterp=yes \
     --disable-gui \
     --enable-luainterp=yes \
-    --enable-pythoninterp=yes \
+    --enable-pythoninterp=no \
     --enable-python3interp=yes \
+    --with-python3-command=python3.6 \
     # --enable-gtk2-check \
     # --enable-gnome-check \
     # --enable-gui=gnome2 \
