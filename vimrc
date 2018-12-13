@@ -129,6 +129,7 @@ set nrformats-=octal            " Turn off octal increment / decrement so that
                                 " to 010
 set shell=bash
 set scrolloff=3
+set sidescrolloff=5
 set nomodeline
 set foldlevel=99
 set updatetime=100
