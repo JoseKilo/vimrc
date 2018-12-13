@@ -21,3 +21,4 @@ division
 OrderedDict
 ValueError
 unittest
+reveal_type
