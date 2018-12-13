@@ -524,6 +524,7 @@ nnoremap <silent>[w :PrevUncovered<cr>
 
 " janko-m/vim-test
 let test#strategy = "dispatch"
+let test#python#runner = 'pytest'
 
 function! CustomStrategy(cmd)
     execute 'Dispatch -- '.join(split(a:cmd, " ")[1:])
