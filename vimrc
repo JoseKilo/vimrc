@@ -204,6 +204,7 @@ augroup color_all
     autocmd ColorScheme * highlight DeniteChar ctermbg=darkblue guibg=darkblue
     autocmd ColorScheme * highlight SpellBad cterm=underline
     autocmd ColorScheme dracula highlight pythonSelf guifg=#FF79C6
+    " autocmd ColorScheme dracula highlight pythonSelf guifg=#50FA7B
 augroup END
 set background=dark
 set t_Co=256                   " 256 colors for the terminal
@@ -302,6 +303,7 @@ let g:pymode_folding = 0
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_regenerate_on_write = 0
 let g:pymode_rope_autoimport = 0
+let g:pymode_syntax = 1  " Needed to color 'self'
 
 " Neomake
 let g:neomake_python_enabled_makers = ['flake8']
