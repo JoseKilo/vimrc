@@ -22,3 +22,6 @@ OrderedDict
 ValueError
 unittest
 reveal_type
+callable
+StopAsyncIteration
+AssertionError
