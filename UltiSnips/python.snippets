@@ -165,6 +165,48 @@ snippet ee "print to stderr" !b
 print('C$1', file=sys.stderr)
 endsnippet
 
+snippet ll "logger call" !b
+logger.info('C$1')
+endsnippet
+
+snippet ff "log to file" !b
+with open("out.log", "a+") as ff:
+    ff.write("C1 {}\n".format(42))
+endsnippet
+
+snippet injector "injector class" !b
+class Injector:
+
+    def __init__(self, **kwargs):
+        self._objects = kwargs
+
+    async def get(self, name):
+        if name not in self._objects:
+            builder = getattr(self, "make_{}".format(name))
+            dependencies = set(inspect.signature(builder).parameters)
+            kwargs = {}
+            for dependency in dependencies:
+                kwargs[dependency] = await self.get(dependency)
+
+            if asyncio.iscoroutinefunction(builder):
+                result = await builder(**kwargs)
+            else:
+                result = builder(**kwargs)
+
+            self._objects[name] = result
+
+        return self._objects[name]
+endsnippet
+
+snippet getattribute "getattribute" !b
+def __getattribute__(self, name):
+	return object.__getattribute__(self, name)
+endsnippet
+
+snippet bound "bind method" !b
+setattr(obj, name, types.MethodType(func, obj))
+endsnippet
+
 snippet "" "docstring" !b
 """
 ${1}
