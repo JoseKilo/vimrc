@@ -7,103 +7,126 @@
 " Quien lleva 4 pesetas / Y un chorizo en la maleta
 " Y apuntá en una libreta / La estación de duseldó
 
-" Auto installing Dein
-let iCanHazDein=1
-let dein_readme = expand('~/.vim/dein/repos/github.com/Shougo/dein.vim/README.md')
-if !filereadable(dein_readme)
-    echo "Installing Dein..."
+" Auto installing minpac
+let minpac_downloaded = 0
+let minpac_readme = expand('~/.vim/pack/minpac/opt/minpac/README.md')
+if !filereadable(minpac_readme)
+    echo "Installing minpac ..."
     echo ""
-    silent !mkdir -p ~/.vim/dein
-    silent !git clone https://github.com/Shougo/dein.vim ~/.vim/dein/repos/github.com/Shougo/dein.vim
-    let iCanHazDein=0
+    silent !mkdir -p ~/.vim/pack/minpac/opt
+    silent !git clone https://github.com/k-takata/minpac ~/.vim/pack/minpac/opt/minpac
+    let minpac_downloaded = 1
 endif
 
-" Call Dein
-if has('vim_starting')
-    set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim
-endif
-call dein#begin(expand('~/.vim/dein'))
+packadd minpac
 
-" It is better if Dein rules Dein (needed!)
-call dein#add('Shougo/dein.vim')
+call minpac#init()
+
+call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 " Denite
-call dein#add('Shougo/denite.nvim')
+call minpac#add('Shougo/denite.nvim')
 
 " Color schemes
-call dein#add('joedicastro/vim-molokai256')
-call dein#add('jonathanfilip/vim-lucius')
-call dein#add('sjl/badwolf')
-call dein#add('dracula/vim')
-call dein#add('whatyouhide/vim-gotham')
-call dein#add('bling/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
+call minpac#add('joedicastro/vim-molokai256')
+call minpac#add('jonathanfilip/vim-lucius')
+call minpac#add('sjl/badwolf')
+call minpac#add('dracula/vim')
+call minpac#add('whatyouhide/vim-gotham')
+call minpac#add('bling/vim-airline')
+call minpac#add('vim-airline/vim-airline-themes')
 
 " Git
-call dein#add('tpope/vim-fugitive')
-call dein#add('airblade/vim-gitgutter')  " Changes in side bar
-call dein#add('gregsexton/gitv', {'depends': ['tpope/vim-fugitive']})
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('airblade/vim-gitgutter')  " Changes in side bar
+call minpac#add('gregsexton/gitv')
 
 " Custom Syntax
-call dein#add('plasticboy/vim-markdown')
-call dein#add('chase/vim-ansible-yaml')
-call dein#add('ekalinin/Dockerfile.vim', {'on_ft': ['Dockerfile']})
-call dein#add('othree/html5.vim', {'on_ft': ['html', 'xhttml', 'css']})
-call dein#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
-call dein#add('artur-shaik/vim-javacomplete2', {'on_ft': ['java']})
+call minpac#add('plasticboy/vim-markdown')
+call minpac#add('chase/vim-ansible-yaml')
+call minpac#add('ekalinin/Dockerfile.vim', {'on_ft': ['Dockerfile']})
+call minpac#add('othree/html5.vim', {'on_ft': ['html', 'xhtml', 'css']})
+call minpac#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
+call minpac#add('artur-shaik/vim-javacomplete2', {'on_ft': ['java']})
 
 " Editor tools
-call dein#add('neomake/neomake')
-call dein#add('SirVer/ultisnips')
-call dein#add('honza/vim-snippets')
-call dein#add('sjl/gundo.vim', {'on_cmd': 'GundoToggle'})
-call dein#add('Shougo/vinarise.vim')  " Hexadecimal editor
-call dein#add('kshenoy/vim-signature')  " Marks in side bar
-call dein#add('tpope/vim-commentary')
-call dein#add('tpope/vim-surround')
-call dein#add('manasthakur/vim-vinegar')  " enhances netrw
-call dein#add('tpope/vim-characterize')  " character info => ga
-call dein#add('Raimondi/delimitMate')  " Autocompletion of (, [, {, ', \", ...
-call dein#add('tpope/vim-repeat')  " extend repetitions by the 'dot' key
-call dein#add('tpope/vim-dispatch')  " asynchronous build and test dispatcher
-call dein#add('AndrewRadev/splitjoin.vim')  " zS zJ
-call dein#add('tommcdo/vim-exchange')  " cxiw
-call dein#add('tpope/vim-unimpaired')  " ]b ]l ]q ...
-call dein#add('gorkunov/smartpairs.vim')  " vv vi{ va'
-call dein#add('mhinz/vim-grepper')  " :Grepper
-call dein#add('tpope/tpope-vim-abolish')  " :%Subvert/facilit{y,ies}/building{,s}/g
-call dein#add('janko-m/vim-test')
-call dein#add('AndrewRadev/switch.vim')
+call minpac#add('neomake/neomake')
+call minpac#add('SirVer/ultisnips')
+call minpac#add('honza/vim-snippets')
+call minpac#add('sjl/gundo.vim')
+call minpac#add('mbbill/undotree')
+call minpac#add('Shougo/vinarise.vim')  " Hexadecimal editor
+call minpac#add('kshenoy/vim-signature')  " Marks in side bar
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-surround')
+call minpac#add('manasthakur/vim-vinegar')  " enhances netrw
+call minpac#add('tpope/vim-characterize')  " character info => ga
+call minpac#add('Raimondi/delimitMate')  " Autocompletion of (, [, {, ', \", ...
+call minpac#add('tpope/vim-repeat')  " extend repetitions by the 'dot' key
+call minpac#add('tpope/vim-dispatch')  " asynchronous build and test dispatcher
+call minpac#add('AndrewRadev/splitjoin.vim')  " zS zJ
+call minpac#add('tommcdo/vim-exchange')  " cxiw
+call minpac#add('tpope/vim-unimpaired')  " ]b ]l ]q ...
+call minpac#add('gorkunov/smartpairs.vim')  " vv vi{ va'
+call minpac#add('mhinz/vim-grepper')  " :Grepper
+call minpac#add('tpope/tpope-vim-abolish')  " :%Subvert/facilit{y,ies}/building{,s}/g
+call minpac#add('janko-m/vim-test')
+call minpac#add('AndrewRadev/switch.vim')
 
 " Python
-call dein#add('python-mode/python-mode', {'on_ft': ['python']})
-call dein#add('tmhedberg/SimpylFold', {'on_ft': ['python']})
-call dein#add('google/yapf', {'rtp': 'plugins/vim', 'on_ft': ['python']})
-call dein#add('mgedmin/coverage-highlight.vim', {'on_ft': ['python']})
+call minpac#add('python-mode/python-mode', {'type': 'opt'})
+call minpac#add('tmhedberg/SimpylFold', {'type': 'opt'})
+call minpac#add('google/yapf', {'type': 'opt'})
+call minpac#add('mgedmin/coverage-highlight.vim', {'type': 'opt'})
 
 " text-objects
-call dein#add('kana/vim-textobj-entire') " ae, ie
-call dein#add('kana/vim-textobj-indent') " ai, ii, aI, iI
-call dein#add('kana/vim-textobj-lastpat') " a/, i/, a?, i?
-call dein#add('kana/vim-textobj-line') " al, il
-call dein#add('kana/vim-textobj-underscore') " a_, i_
-call dein#add('kana/vim-textobj-user')
-call dein#add('PeterRincker/vim-argumentative')
+call minpac#add('kana/vim-textobj-entire') " ae, ie
+call minpac#add('kana/vim-textobj-indent') " ai, ii, aI, iI
+call minpac#add('kana/vim-textobj-lastpat') " a/, i/, a?, i?
+call minpac#add('kana/vim-textobj-line') " al, il
+call minpac#add('kana/vim-textobj-underscore') " a_, i_
+call minpac#add('kana/vim-textobj-user')
+call minpac#add('PeterRincker/vim-argumentative')
 
-call dein#end()
+augroup minpac_plugins
+    autocmd!
+    autocmd FileType python packadd python-mode
+    autocmd FileType python packadd SimpylFold
+    autocmd FileType python packadd coverage-highlight.vim
+    autocmd FileType python packadd yapf/plugins/vim
 
-" First-time plugins installation
-if iCanHazDein == 0
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    set nomore
-    call dein#install()
+    autocmd FileType java packadd vim-javacomplete2
+    autocmd FileType typescript packadd typescript-vim
+    autocmd FileType html,xhtml,css packadd html5.vim
+    autocmd FileType Dockerfile packadd Dockerfile.vim
+augroup END
+
+function! s:minipac_update()
+    let g:minpac_updated = 0
+    call minpac#update('', {'do': 'let g:minpac_updated = 1'})
+    while g:minpac_updated == 0
+        echo 'Updating ... '
+        sleep 1
+    endwhile
+endfunction
+
+function! s:minpac_need_to_update()
+    for l:name in keys(minpac#getpluglist())
+        let l:pluginfo = g:minpac#pluglist[l:name]
+        let l:dir = l:pluginfo.dir
+        if !isdirectory(l:dir)
+            return 1
+        endif
+    endfor
+
+    return 0
+endfunction
+
+if minpac_downloaded || s:minpac_need_to_update()
+    call s:minipac_update()
 endif
 
-" Check if all of the plugins are already installed
-if dein#check_install()
-    call dein#install()
-endif
+packloadall
 
 filetype plugin indent on      " Indent and plugins by filetype
 let mapleader = ','
