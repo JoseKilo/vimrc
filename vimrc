@@ -24,9 +24,6 @@ call minpac#init()
 
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-" Denite
-call minpac#add('Shougo/denite.nvim')
-
 " Color schemes
 call minpac#add('joedicastro/vim-molokai256')
 call minpac#add('jonathanfilip/vim-lucius')
@@ -194,6 +191,8 @@ set wildmode=list:longest,full      " Shows all the options
 set wildignore+=*.sw?                                 " Vim swap files
 set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~           " Backup files
 set wildignore+=*.class,*.luac,*.jar,*.pyc,*.stats    " Temporal files
+set wildignore+=node_modules/*,bower_components/*     " JS dependencies
+set wildignore+=**/_build/**                          " Sphinx generated files
 
 " Tabs, space and wrapping
 set expandtab                  " spaces instead of tabs
@@ -224,7 +223,6 @@ augroup color_all
     autocmd ColorScheme * highlight NeomakeErrorSign ctermfg=white ctermbg=darkred guibg=darkred
     autocmd ColorScheme * highlight NeomakeError ctermfg=white ctermbg=darkred guibg=darkred
     autocmd ColorScheme * highlight NeomakeWarningSign ctermfg=yellow guibg=darkred
-    autocmd ColorScheme * highlight DeniteChar ctermbg=darkblue guibg=darkblue
     autocmd ColorScheme * highlight SpellBad cterm=underline
     autocmd ColorScheme dracula highlight pythonSelf guifg=#FF79C6
     " autocmd ColorScheme dracula highlight pythonSelf guifg=#50FA7B
@@ -349,23 +347,6 @@ let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeomakeWarningSign'}
 let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
 let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
 
-" Denite
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files'])
-call denite#custom#option('default', 'prompt', '>>>')
-call denite#custom#option('default', 'mode', 'normal')
-call denite#custom#option('default', 'winheight', '15')
-call denite#custom#option('default', 'cursor_wrap', 1)
-call denite#custom#option('default', 'highlight_matched_char', 'DeniteChar')
-call denite#custom#option('default', 'highlight_matched_range', 'nonexistent')
-call denite#custom#option('default', 'highlight_mode_insert', 'CursorLine')
-call denite#custom#option('default', 'highlight_mode_normal', 'Visual')
-call denite#custom#option('default', 'statusline', 0)
-
-nnoremap <silent><Leader>o :Denite -mode=insert file_rec<CR>
-nnoremap <silent><Leader>O :Denite -mode=insert file_rec/git<CR>
-nnoremap <silent><Leader>T :Denite -mode=insert -path=tests/ file_rec/git<CR>
-nnoremap <silent><Leader>i :Denite outline<CR>
 nnoremap <silent><leader>? :Grepper -open -switch -query 'TODO\|FIXME'<cr>
 nnoremap <silent><Leader>sa :Grepper -open -switch -prompt<CR>
 nnoremap <silent><leader>* :Grepper -jump -cword -noprompt<cr>
@@ -473,6 +454,11 @@ let g:netrw_liststyle=3
 noremap <Leader>r :checkt<CR>
 nnoremap <c-j> :tabe<space>
 nnoremap <c-t>t :tabn<cr>
+
+" nnoremap <leader>O :e **/*
+nnoremap <leader>O :find<space>
+nnoremap <leader>T :find tests/**/*
+nnoremap <leader>D :find docs/**/*
 
 " Allow to repeat in visual mode
 xnoremap . :norm.<CR>
