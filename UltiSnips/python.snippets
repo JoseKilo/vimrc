@@ -333,7 +333,7 @@ if __name__ == '__main__':
 endsnippet
 
 snippet main2 "Python script with main method and utility to read stdin" !b
-from __future__ import print_function
+from __future__ import division, print_function
 
 import sys
 
@@ -350,7 +350,7 @@ def line(cast=None, split=None):
     return line
 
 
-def process_line(case, things):
+def process_case(case, things):
     result = 42
     print('Case #{}: {}'.format(case, result))
 
@@ -361,7 +361,7 @@ def main():
         N = line(int)
         things = line(int, ' ')
         assert len(things) == N
-        process_line(i + 1, things)
+        process_case(i + 1, things)
 
 
 if __name__ == '__main__':
@@ -407,7 +407,7 @@ class BranchAndBound(object):
     def run(self, state):
         self.branch_and_bound(state, 0)
 
-    def branch_and_bound(self, state, k):
+    def _branch_and_bound(self, state, k):
         children = state.children(k)
         while children:
             state, k = children.pop()
@@ -417,6 +417,39 @@ class BranchAndBound(object):
                     self.store(state, score)
                 else:
                     self.branch_and_bound(state, k + 1)
+
+    def _branch_and_bound(self, state):
+        children = state.children()
+        while children:
+            state = children.pop()
+            score = state.score()
+            if state.is_possible() and score > self.optimum:
+                if state.is_solution():
+                    self.store(state, score)
+                else:
+                    new_children = state.children()
+                    new_children += children
+                    children = new_children
+
+    def branch_and_bound(self, state):
+		# 1)
+        queue = []
+        for child in state.children():
+            heapq.heappush(queue, (- child.score() - child.heuristic(), child))
+
+		# 2)
+        queue = [state]
+
+        while queue:
+            _, state = heapq.heappop(queue)
+            score = state.score()
+            heuristic = state.heuristic()
+            if state.is_possible() and score + heuristic > self.optimum:
+                if state.is_solution():
+                    self.store(state, score)
+                else:
+                    for child in state.children():
+                        heapq.heappush(queue, (- child.score() - child.heuristic(), child))
 
 
 runner = BranchAndBound()
@@ -451,4 +484,439 @@ endsnippet
 snippet raises "Pytest raises" !b
 with pytest.raises(${1:Exception}) as exc:
 	${2:${VISUAL}}
+endsnippet
+
+snippet grouper "Itertools grouper recipe" !b
+def grouper(iterable, n, fillvalue=None):
+    "Collect data into fixed-length chunks or blocks"
+    # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx"
+    args = [iter(iterable)] * n
+    return itertools.zip_longest(*args, fillvalue=fillvalue)
+endsnippet
+
+snippet setup "Minimal setup.py" !b
+#!/usr/bin/env python
+import setuptools
+
+
+setuptools.setup(
+    name="my-package",
+    version="0.0.1",
+    url="https://github.com/.../...",
+    author="...",
+    author_email="...@.......",
+    packages=setuptools.find_packages(include=("my_package*",)),
+)
+endsnippet
+
+snippet spp "dijkstra" !b
+INF = 10 ** 100
+
+def process_case(sequences):
+    nodes = {}
+    for i, a in enumerate(sequences):
+        nodes[i] = []
+        for j, b in enumerate(sequences):
+            if is_valid(a, b):
+                nodes[i].append(j)
+
+    distances = [INF for _ in range(len(sequences))]
+    prev = [None for _ in range(len(sequences))]
+    distances[0] = 0
+    processed = set()
+
+    queue = [(0, 0)]
+    while queue:
+        _, a = heapq.heappop(queue)
+
+        if a in processed:
+            continue
+
+        processed.add(a)
+
+        for b in nodes[a]:
+            if distances[a] + 1 < distances[b]:
+                distances[b] = distances[a] + 1
+                heapq.heappush(queue, (-distances[b], b))  # no - ?
+                prev[b] = a
+
+    result = [sequences[1]]
+    x = prev[1]
+    while x is not None:
+        result.append(sequences[x])
+        x = prev[x]
+
+    result = '->'.join(reversed(result))
+
+    print(result)
+endsnippet
+
+snippet telnet "telnet" !b
+def process_case(strings):
+    return 42
+
+
+HOST = '__IP__'
+PORT = 1234
+
+
+def main(phase):
+    with Telnet(HOST, PORT) as telnet:
+        read = telnet.read_until(b'Please, provide "TEST" or "SUBMIT"\n')
+        telnet.write('{}\n'.format(phase).encode())
+        read = telnet.read_until(b'Start!\n')
+        while True:
+            try:
+                read = telnet.read_until(b'\n')
+            except EOFError:
+                return read.decode().strip()
+
+            read = read.decode().strip().split(' ')
+            result = process_case(read)
+            result = ','.join(map(str, (i + 1 for i in result)))
+            telnet.write('{}\n'.format(result).encode())
+
+            read = telnet.read_until(b'\n')
+
+
+if __name__ == '__main__':
+    print(main('TEST'))
+    print(main('SUBMIT'))
+endsnippet
+
+snippet backtracking "backtracking" !b
+class Backtracking(object):
+
+    def __init__(self, nodes):
+        self.marked = defaultdict(bool)
+        self.indegree = defaultdict(int)
+
+        for u, vs in nodes.items():
+            self.marked[u] = False
+            self.indegree[u]
+
+            for v in vs:
+                self.indegree[v] += 1
+
+        self.nodes = nodes
+        self.solution = []
+        self._solutions = []
+
+    def solutions(self):
+        return self._solutions
+
+    def solve(self):
+        flag = False
+
+        for u in self.nodes:
+            if not self.marked[u] and self.indegree[u] == 0:
+
+                self.marked[u] = True
+                for v in self.nodes[u]:
+                    self.indegree[v] -= 1
+                self.solution.append(u)
+
+                self.solve()
+
+                self.marked[u] = False
+                for v in self.nodes[u]:
+                    self.indegree[v] += 1
+                self.solution.remove(u)
+
+                flag = True
+
+        if not flag:
+            self._solutions.append(list(self.solution))
+
+
+nodes = {}
+backtracking = Backtracking(nodes)
+backtracking.solve()
+solutions = backtracking.solutions()
+endsnippet
+
+snippet trie "trie" !b
+dictionary = defaultdict(dict)
+with open(filename) as dictionary_file:
+    for word in dictionary_file.read().split('\n'):
+        word = word.strip()
+
+        node = dictionary[0]
+        for char in word:
+            if char in node:
+                idx = node[char]
+            else:
+                idx = len(dictionary)
+                node[char] = idx
+
+            node = dictionary[idx]
+
+        node['*'] = True
+
+
+def is_prefix(prefix):
+    node = dictionary[0]
+    for char in prefix:
+        if char not in node:
+            return False
+
+        idx = node[char]
+        node = dictionary[idx]
+
+    return True
+
+
+def is_word(prefix):
+    node = dictionary[0]
+    for char in prefix:
+        if char not in node:
+            return False
+
+        idx = node[char]
+        node = dictionary[idx]
+
+    return '*' in node
+endsnippet
+
+snippet knapsack "knapsack" !b
+def process_case(W, weights, productions):
+    TAB = [
+        [0 for j in range(W + 1)]
+        for i in range(len(weights) + 1)
+    ]
+
+    for i in range(1, len(weights) + 1):
+        for j in range(0, W + 1):
+            if weights[i - 1] > j:
+                TAB[i][j] = TAB[i - 1][j]
+            else:
+                TAB[i][j] = max(
+                    TAB[i - 1][j],
+                    TAB[i - 1][j - weights[i - 1]] + productions[i - 1],
+                )
+
+    result = TAB[len(weights)][W]
+    print(result)
+endsnippet
+
+snippet max-submatrix "max-submatrix" !b
+N = len(table)
+M = len(table[0])
+
+sum_table = [[0 for _ in range(M)] for _ in range(N)]
+
+for x in range(N):
+	for y in range(M):
+		sum_table[x][y] = table[x][y]
+		if y > 0:
+			sum_table[x][y] += sum_table[x][y - 1]
+
+result = 0
+for L in range(0, OM):
+	for R in range(L, M):
+		this_sum = 0
+		for row in range(N):
+			rowSum = sum_table[row][R]
+			if L > 0:
+				rowSum -= sum_table[row][L - 1]
+
+			this_sum += rowSum
+			result = max(this_sum, result)
+			this_sum = max(this_sum, 0)
+endsnippet
+
+snippet BFS "BFS" !b
+def load():
+    initial = tuple(range(9))
+    distances = {initial: 0}
+
+    queue = [initial]
+    while queue:
+        a = queue.pop()
+        for b in neighbors(a):
+            if b not in distances:
+                distances[b] = distances[a] + 1
+                queue.insert(0, b)
+
+    return distances
+endsnippet
+
+snippet pickle "pickle" !b
+def write(distances):
+    with open('ch8.data', 'wb') as data_file:
+        pickle.dump(distances, data_file, pickle.HIGHEST_PROTOCOL)
+
+
+def read():
+    with open('ch8.data', 'rb') as data_file:
+        return pickle.load(data_file)
+endsnippet
+
+snippet metaclass "metaclass" !b
+class MyMeta(abc.ABCMeta):
+
+    def __new__(cls, name, bases, attrs):
+        new_cls = super().__new__(cls, name, bases, attrs)
+
+        return new_cls
+endsnippet
+
+snippet pillow "pillow" !b
+from __future__ import division, print_function
+
+from PIL import Image
+
+
+def main():
+    image = Image.open('CANTTF.png')
+
+    pixels = image.load()
+
+    width, height = image.size
+
+    for x in range(height):
+        for y in range(width):
+            pixel = pixels[y, x]
+            print('C1', pixel)
+
+
+if __name__ == '__main__':
+    main()
+endsnippet
+
+snippet powerset "powerset" !b
+def powerset(iterable, min_size=0, max_size=None):
+    "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
+
+    s = list(iterable)
+
+    if max_size is None:
+        max_size = len(s)
+
+    return itertools.chain.from_iterable(
+        itertools.combinations(s, r)
+        for r in range(min_size, max_size + 1)
+    )
+endsnippet
+
+snippet frozencounter "frozencounter" !b
+class FrozenCounter(Counter):
+
+    def __hash__(self):
+        # return hash(tuple(sorted(self.items())))
+        return hash(frozenset(self.items()))
+endsnippet
+
+snippet superinit "superinit" !b
+def __init__(self, *args, **kwargs):
+	super().__init__(*args, **kwargs)
+endsnippet
+
+snippet init "init" !b
+def __init__(self):
+	pass
+endsnippet
+
+snippet maxflow "maxflow" !b
+INF = 10 ** 100
+
+
+class NetworkFlow(object):
+
+    def __init__(self, edges, start, end):
+        self.edges = edges
+        self.start = start
+        self.end = end
+        self.solution = 0
+
+        self.f = None
+        self.p = None
+
+    def augment(self, v, min_edge):
+        if v == self.start:
+            self.f = min_edge
+        elif self.p[v] != -1:
+            self.augment(self.p[v], min(min_edge, self.edges[self.p[v]][v]))
+            self.edges[self.p[v]][v] -= self.f
+            self.edges[v][self.p[v]] += self.f
+
+    def run(self):
+        while True:
+            self.f = 0
+            self.p = defaultdict(lambda: -1)
+            dist = defaultdict(lambda: INF)
+            dist[self.start] = 0
+            queue = [self.start]
+
+            while queue:
+                u = queue.pop()
+                if u == self.end:
+                    break
+
+                for v, weight in self.edges[u].items():
+                    if weight > 0 and dist[v] == INF:
+                        dist[v] = dist[u] + 1
+                        queue.insert(0, v)
+                        self.p[v] = u
+
+            self.augment(self.end, INF)
+
+            if self.f == 0:
+                break
+
+            self.solution += self.f
+
+
+edges = defaultdict(dict)
+
+for origin, destination, kind, lanes in roads:
+	lanes = int(lanes)
+	weight = lanes * (S if kind == 'normal' else D)
+	edges[origin][destination] = weight
+
+for u, vs in edges.items():
+	for v in vs.keys():
+		edges[v].setdefault(u, 0)
+
+start = name
+end = 'AwesomeVille'
+
+solver = NetworkFlow(edges, start, end)
+solver.run()
+endsnippet
+
+snippet spfa "Shortest path faster algorithm" !b
+INF = 10 ** 100
+
+
+def process_case(V, start, end, edges):
+    nodes = defaultdict(dict)
+    for u, v, w in edges:
+        nodes[u][v] = int(w)
+
+    dist = defaultdict(lambda: INF)
+    dist[start] = 0
+    in_queue = {start}
+    times = Counter()
+    times[start] += 1
+
+    queue = [start]
+    while queue:
+        u = queue.pop()
+        in_queue.discard(u)
+
+        for v, w in nodes[u].items():
+            if dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+                if v not in in_queue:
+                    queue.insert(0, v)
+                    in_queue.add(v)
+                    times[v] += 1
+
+                    if times[v] >= V:
+                        return 'BAZINGA'
+
+    result = dist[end]
+
+    return result
 endsnippet
