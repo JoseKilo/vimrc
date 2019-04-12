@@ -98,30 +98,30 @@ augroup minpac_plugins
     autocmd FileType Dockerfile packadd Dockerfile.vim
 augroup END
 
-function! s:minipac_update()
+function! s:minipac_update(name)
     let g:minpac_updated = 0
-    call minpac#update('', {'do': 'let g:minpac_updated = 1'})
+    call minpac#update(a:name, {'do': 'let g:minpac_updated = 1'})
     while g:minpac_updated == 0
         echo 'Updating ... '
         sleep 1
     endwhile
 endfunction
 
-function! s:minpac_need_to_update()
+function! s:minpac_install_new()
     for l:name in keys(minpac#getpluglist())
         let l:pluginfo = g:minpac#pluglist[l:name]
         let l:dir = l:pluginfo.dir
         if !isdirectory(l:dir)
-            return 1
+            call s:minipac_update(l:name)
         endif
     endfor
-
-    return 0
 endfunction
 
-if minpac_downloaded || s:minpac_need_to_update()
-    call s:minipac_update()
+if minpac_downloaded
+    call s:minipac_update('')
 endif
+
+call s:minpac_install_new()
 
 packloadall
 
