@@ -463,8 +463,10 @@ nnoremap <c-j> :tabe<space>
 nnoremap <c-t>t :tabn<cr>
 
 " nnoremap <leader>O :e **/*
+nnoremap <leader>E :e<space>
 nnoremap <leader>O :find<space>
-nnoremap <leader>T :find tests/**/*
+nnoremap <leader>o :b<space>
+nnoremap <leader>T :find test_
 nnoremap <leader>D :find docs/**/*
 
 " Allow to repeat in visual mode
@@ -621,7 +623,7 @@ let g:noiseCommand = 'play --no-show-progress -c 2 --null synth 01:00 ' .
             \ 'brownnoise band -n 100 499 tremolo 0.1 43 reverb 19 bass ' .
             \ '-11 treble -1 vol 14dB repeat 59'
 nnoremap <silent> <leader>ppp :call RunBackgroundCommand(g:noiseCommand)<CR>
-nnoremap <silent> <leader>ooo :call job_stop(g:backgroundCommandJob)<CR>
+nnoremap <silent> <leader>ppp2 :call job_stop(g:backgroundCommandJob)<CR>
 
 " Go to last change when opening a file
 augroup last_change
