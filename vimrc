@@ -440,6 +440,12 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" Emojis 🙃🎉🤔🙈
+inoremap <left> <C-v>U0001F643
+inoremap <right> <C-v>U0001F389
+inoremap <up> <C-v>U0001F914
+inoremap <down> <C-v>U0001F648
+
 " Search visual selection
 function! s:VSetSearch(cmdtype)
     let temp = @s
