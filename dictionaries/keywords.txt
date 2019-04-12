@@ -23,5 +23,6 @@ ValueError
 unittest
 reveal_type
 callable
+StopIteration
 StopAsyncIteration
 AssertionError
