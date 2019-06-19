@@ -923,3 +923,8 @@ def process_case(V, start, end, edges):
 
     return result
 endsnippet
+
+snippet freeze "freezegun" !b
+from freezegun import freeze_time
+@freeze_time("1980-01-01T00:00:01.0123456789")
+endsnippet
