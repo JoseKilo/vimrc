@@ -363,13 +363,6 @@ if executable('ag')
     if !empty($VIRTUAL_ENV)
       let g:ag_options .= ' --ignore-dir $VIRTUAL_ENV'
     endif
-
-    call denite#custom#var('grep', 'command', ['ag'])
-    call denite#custom#var('grep', 'default_opts', split(g:ag_options, ' '))
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
 endif
 
 " vim-ansible-yaml
