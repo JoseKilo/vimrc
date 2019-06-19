@@ -928,3 +928,16 @@ snippet freeze "freezegun" !b
 from freezegun import freeze_time
 @freeze_time("1980-01-01T00:00:01.0123456789")
 endsnippet
+
+snippet asyncmain "asyncmain" !b
+import asyncio
+
+
+async def main():
+    pass
+
+
+if __name__ == '__main__':
+	loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
+endsnippet
