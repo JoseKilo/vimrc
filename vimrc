@@ -37,6 +37,7 @@ call minpac#add('vim-airline/vim-airline-themes')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('airblade/vim-gitgutter')  " Changes in side bar
 call minpac#add('gregsexton/gitv')
+call minpac#add('tpope/vim-rhubarb')
 
 " Custom Syntax
 call minpac#add('plasticboy/vim-markdown')
