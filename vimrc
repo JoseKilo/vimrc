@@ -213,8 +213,8 @@ set complete=.,w,b,u,k,t,kspell
 set completeopt=menu,longest
 set dictionary=$HOME/.vim/dictionaries/keywords.txt
 
-set path=**;.git                " Search the files under the run location.
-set suffixesadd=.py             " Look for Python files.
+set path=**                    " Search the files under the run location.
+set suffixesadd=.py            " Look for Python files.
 
 " Colorscheme
 syntax enable
