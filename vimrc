@@ -227,7 +227,6 @@ augroup color_all
     autocmd ColorScheme * highlight NeomakeWarningSign ctermfg=yellow guibg=darkred
     autocmd ColorScheme * highlight SpellBad cterm=underline
     autocmd ColorScheme dracula highlight pythonSelf guifg=#FF79C6
-    " autocmd ColorScheme dracula highlight pythonSelf guifg=#50FA7B
 augroup END
 set background=dark
 set t_Co=256                   " 256 colors for the terminal
