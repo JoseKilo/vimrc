@@ -453,7 +453,8 @@ xnoremap <silent> // :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 let g:netrw_liststyle=3
 
 noremap <Leader>r :checkt<CR>
-nnoremap <c-j> :tabe<space>
+nnoremap <c-j> :tabe %
+nnoremap <c-k> :tabfind<space>
 nnoremap <c-t>t :tabn<cr>
 
 " nnoremap <leader>O :e **/*
