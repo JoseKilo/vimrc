@@ -347,22 +347,6 @@ let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeomakeWarningSign'}
 let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
 let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
 
-nnoremap <silent><leader>? :Grepper -open -switch -query 'TODO\|FIXME'<cr>
-nnoremap <silent><Leader>sa :Grepper -open -switch -prompt<CR>
-nnoremap <silent><leader>* :Grepper -jump -cword -noprompt<cr>
-nnoremap <silent><leader>s/ :Grepper -jump -noprompt -query '<c-r>/'<cr>
-nnoremap gS <plug>(GrepperOperator)
-xnoremap gS <plug>(GrepperOperator)
-
-if executable('ag')
-    let g:ag_options = '--nocolor --nogroup -S -i --line-numbers ' .
-        \ '--ignore-dir node_modules --ignore-dir migrations ' .
-        \ '--ignore-dir static --ignore-dir media --vimgrep'
-    if !empty($VIRTUAL_ENV)
-      let g:ag_options .= ' --ignore-dir $VIRTUAL_ENV'
-    endif
-endif
-
 " vim-ansible-yaml
 let g:ansible_options = {'ignore_blank_lines': 0}
 
@@ -382,11 +366,20 @@ let g:splitjoin_split_mapping = 'zS'
 let g:splitjoin_join_mapping  = 'zJ'
 
 " Grepper
-let g:grepper = {}
+runtime plugin/grepper.vim
 let g:grepper.highlight = 1
 let g:grepper.dir = 'filecwd'
 let g:grepper.tools = ['ag', 'grep', 'git']
 let g:grepper.prompt_quote = 1
+
+let g:grepper.prompt_text = '$t> '
+let g:grepper.ag.grepprg .= ' --ignore-dir *egg* --ignore-dir _build ' .
+    \ '--ignore-dir static --ignore-dir media --ignore-dir node_modules'
+
+nnoremap <silent><Leader>sa :Grepper -open -switch -prompt<CR>
+nnoremap <silent><leader>* :Grepper -jump -cword -noprompt<cr>
+nmap gz <plug>(GrepperOperator)
+xmap gz <plug>(GrepperOperator)
 
 " JavaScript
 let g:jsx_ext_required = 0
