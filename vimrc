@@ -69,7 +69,6 @@ call minpac#add('gorkunov/smartpairs.vim')  " vv vi{ va'
 call minpac#add('mhinz/vim-grepper')  " :Grepper
 call minpac#add('tpope/tpope-vim-abolish')  " :%Subvert/facilit{y,ies}/building{,s}/g
 call minpac#add('janko-m/vim-test')
-call minpac#add('AndrewRadev/switch.vim')
 
 " Python
 call minpac#add('python-mode/python-mode', {'type': 'opt'})
@@ -392,8 +391,22 @@ let g:grepper.prompt_quote = 1
 " JavaScript
 let g:jsx_ext_required = 0
 
-" switch.vim
-let g:switch_mapping = "gS"
+" Switch
+function! <SID>switch_bool()
+    let l:word = expand('<cword>')
+    if l:word ==# 'False'
+        let l:new = 'True'
+    elseif l:word ==# 'True'
+        let l:new = 'False'
+    elseif l:word ==# 'false'
+        let l:new = 'true'
+    elseif l:word ==# 'true'
+        let l:new = 'false'
+    endif
+
+    exe "normal! ciw" . l:new . "\<esc>`["
+endfunction
+nnoremap <silent> gZ :call <SID>switch_bool()<cr>
 
 augroup filetype_autocmd
     autocmd!
