@@ -30,6 +30,7 @@ call minpac#add('jonathanfilip/vim-lucius')
 call minpac#add('sjl/badwolf')
 call minpac#add('dracula/vim')
 call minpac#add('whatyouhide/vim-gotham')
+call minpac#add('cocopon/iceberg.vim')
 call minpac#add('bling/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
 
@@ -231,12 +232,12 @@ set background=dark
 set t_Co=256                   " 256 colors for the terminal
 set termguicolors
 
-" molokai256 lucius badwolf dracula gotham
-colorscheme dracula
+" molokai256 lucius badwolf dracula gotham iceberg
+colorscheme iceberg
 
 " Airline
 set noshowmode
-let g:airline_theme='dracula'
+let g:airline_theme='iceberg'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
