@@ -44,8 +44,8 @@ call minpac#add('tpope/vim-rhubarb')
 call minpac#add('plasticboy/vim-markdown')
 call minpac#add('othree/html5.vim', {'on_ft': ['html', 'xhtml', 'css']})
 call minpac#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
-call minpac#add('artur-shaik/vim-javacomplete2', {'on_ft': ['java']})
 call minpac#add('ekalinin/Dockerfile.vim', {'type': 'opt'})
+call minpac#add('artur-shaik/vim-javacomplete2', {'type': 'opt'})
 
 " Editor tools
 call minpac#add('neomake/neomake')
