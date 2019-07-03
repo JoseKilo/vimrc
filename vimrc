@@ -42,7 +42,6 @@ call minpac#add('tpope/vim-rhubarb')
 
 " Custom Syntax
 call minpac#add('plasticboy/vim-markdown')
-call minpac#add('chase/vim-ansible-yaml')
 call minpac#add('ekalinin/Dockerfile.vim', {'on_ft': ['Dockerfile']})
 call minpac#add('othree/html5.vim', {'on_ft': ['html', 'xhtml', 'css']})
 call minpac#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
@@ -347,9 +346,6 @@ let g:neomake_error_sign = {'text': '✗'}
 let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeomakeWarningSign'}
 let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
 let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
-
-" vim-ansible-yaml
-let g:ansible_options = {'ignore_blank_lines': 0}
 
 " javacomplete2
 nnoremap <F5> <Plug>(JavaComplete-Imports-Add)
