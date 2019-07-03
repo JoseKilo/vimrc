@@ -41,9 +41,9 @@ call minpac#add('gregsexton/gitv')
 call minpac#add('tpope/vim-rhubarb')
 
 " Custom Syntax
-call minpac#add('plasticboy/vim-markdown')
 call minpac#add('othree/html5.vim', {'on_ft': ['html', 'xhtml', 'css']})
 call minpac#add('leafgarland/typescript-vim', {'on_ft': ['typescript']})
+call minpac#add('plasticboy/vim-markdown', {'type': 'opt'})
 call minpac#add('ekalinin/Dockerfile.vim', {'type': 'opt'})
 call minpac#add('artur-shaik/vim-javacomplete2', {'type': 'opt'})
 
@@ -96,6 +96,7 @@ augroup minpac_plugins
     autocmd FileType typescript packadd typescript-vim
     autocmd FileType html,xhtml,css packadd html5.vim
     autocmd FileType Dockerfile packadd Dockerfile.vim
+    autocmd FileType markdown packadd vim-markdown
 augroup END
 
 function! s:minpac_update(name)
