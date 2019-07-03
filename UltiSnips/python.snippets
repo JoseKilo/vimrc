@@ -811,3 +811,9 @@ snippet new "__new__" !b
         instance = super().__new__(cls, *args, **kwargs)
         return instance
 endsnippet
+
+
+snippet stack "stack" !b
+import traceback
+traceback.print_stack()
+endsnippet
