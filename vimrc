@@ -425,6 +425,9 @@ set tags=.tags
 augroup filetype_tag_command
     autocmd FileType python command! Ctags !ctags --exclude=**/.tox --exclude=**/.venv --languages=python -f .tags -R $(python -c "import sys; print(' '.join(sys.path))")
     autocmd FileType java command! Ctags !ctags --languages=java -f .tags -R .
+    autocmd FileType javascript command! Ctags !ctags --exclude=**/node_modules --languages=javascript -f .tags -R .
+    autocmd FileType c command! Ctags !ctags --languages=c -f .tags -R .
+    autocmd FileType go command! Ctags !ctags --languages=go -f .tags -R .
 augroup END
 
 " inoremap <esc> <nop>
