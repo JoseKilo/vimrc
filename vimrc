@@ -224,6 +224,8 @@ augroup color_all
     autocmd ColorScheme * highlight NeomakeError ctermfg=white ctermbg=darkred guibg=darkred
     autocmd ColorScheme * highlight NeomakeWarningSign ctermfg=yellow guibg=darkred
     autocmd ColorScheme * highlight SpellBad cterm=underline
+    autocmd ColorScheme * highlight NonText guifg=#FFFFFF
+    autocmd ColorScheme * highlight SpecialKey guifg=#FFFFFF
     autocmd ColorScheme dracula highlight pythonSelf guifg=#FF79C6
 augroup END
 set background=dark
@@ -248,8 +250,8 @@ augroup vim_resize
 augroup END
 
 " Show hidden chars
-set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
-nnoremap <Leader>h :setlocal list!<CR>
+set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶,space:·
+nnoremap <Leader>H :setlocal list!<CR>
 
 " Spelling
 augroup spelling
