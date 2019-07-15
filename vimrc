@@ -372,7 +372,8 @@ let g:grepper.prompt_quote = 1
 
 let g:grepper.prompt_text = '$t> '
 let g:grepper.ag.grepprg .= ' --ignore-dir *egg* --ignore-dir _build ' .
-    \ '--ignore-dir static --ignore-dir media --ignore-dir node_modules'
+    \ '--ignore-dir static --ignore-dir media --ignore-dir node_modules ' .
+    \ '--ignore-dir vendor'
 
 nnoremap <silent><Leader>sa :Grepper -open -switch -prompt<CR>
 nnoremap <silent><leader>* :Grepper -jump -cword -noprompt<cr>
