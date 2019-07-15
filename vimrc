@@ -412,12 +412,13 @@ augroup filetype_autocmd
     autocmd FileType python setlocal textwidth=79 colorcolumn=80 define=^\s*\\(def\\\\|class\\)
     autocmd FileType text setlocal textwidth=79 colorcolumn=80 formatoptions=qrn1ct
     autocmd FileType netrw setlocal bufhidden=wipe
-    autocmd FileType python,html setlocal nowrap
+    autocmd FileType python,html,go setlocal nowrap
     autocmd BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
     autocmd BufRead,BufNewFile *.pyi setlocal filetype=python
     autocmd FileType json,ruby,yaml,javascript,xml,css,typescript,html,htmldjango.html :setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType javascript,xml,css,java,json :setlocal foldmethod=syntax
     autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 cinoptions+=+4s
+    autocmd FileType go setlocal noexpandtab foldmethod=syntax
 augroup END
 
 " Tags
