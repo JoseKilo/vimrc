@@ -190,7 +190,7 @@ set wildmode=list:longest,full      " Shows all the options
 set wildignore+=*.sw?                                 " Vim swap files
 set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~           " Backup files
 set wildignore+=*.class,*.luac,*.jar,*.pyc,*.stats    " Temporal files
-set wildignore+=node_modules/*,bower_components/*     " JS dependencies
+set wildignore+=**/node_modules/*,bower_components/*  " JS dependencies
 set wildignore+=**/_build/**                          " Sphinx generated files
 set wildignore+=*/__pycache__/*                       " Python cache
 
