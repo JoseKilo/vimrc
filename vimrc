@@ -406,8 +406,6 @@ augroup filetype_autocmd
     autocmd FileType json :setlocal formatprg=python\ -m\ json.tool
     autocmd FileType json :setlocal equalprg=python\ -m\ json.tool
     autocmd FileType html,htmldjango.html inoreabbrev <buffer> --- &mdash;
-    autocmd FileType typescript let g:netrw_list_hide= '.*\.js,.*\.map$'
-    autocmd FileType python let g:netrw_list_hide= '.*\.pyc$'
     autocmd FileType java inoreabbrev <buffer> True true
     autocmd FileType java inoreabbrev <buffer> False false
     autocmd FileType java inoreabbrev <buffer> raise throw
@@ -456,6 +454,7 @@ endfunction
 xnoremap <silent> // :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 
 let g:netrw_liststyle=3
+let g:netrw_list_hide = netrw_gitignore#Hide()
 
 noremap <Leader>r :checkt<CR>
 nnoremap <c-j> :tabe %
