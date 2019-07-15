@@ -503,8 +503,6 @@ nnoremap \ zak<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ek :e $HOME/.vim/dictionaries/keywords.txt<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-command! -bar -range=% Isort :<line1>,<line2>! isort -
-nnoremap <silent> gs m`:Isort<cr>``
 command! -bar -range=% Autopep8 :<line1>,<line2>! autopep8 -
 nnoremap <silent> gA m`:Autopep8<cr>``
 xnoremap <silent> gA <esc>m`gv:Autopep8<cr>``
@@ -514,6 +512,19 @@ nnoremap <leader>B Oimport ipdb  # XXX<cr>ipdb.set_trace()<esc>
 nnoremap <leader>V Ofrom IPython import embed<cr>embed()<esc>
 nnoremap <leader>V Oimport traceback<cr>traceback.print_exc()<esc>
 noremap <silent> gY :call yapf#YAPF()<cr>
+
+augroup filetype_format
+    autocmd!
+
+    autocmd FileType python command! -buffer -bar -range=% Isort :<line1>,<line2>! isort -
+    autocmd FileType python nnoremap <silent> <buffer> gs m`:Isort<cr>``
+
+    autocmd FileType go command! -buffer -bar -range=% GoFMT :<line1>,<line2>! gofmt
+    autocmd FileType go nnoremap <silent> <buffer> gs m`:GoFMT<cr>``
+
+    autocmd FileType javascript nnoremap <silent> <buffer> gs m`gg=G<cr>``
+augroup END
+
 
 command! Today pu=strftime('%Y/%m/%d')
 command! Now pu=strftime('%Y/%m/%d %H:%M:%S')
