@@ -268,8 +268,8 @@ augroup plugin_commentary
     autocmd!
     autocmd FileType python setlocal commentstring=#%s
     autocmd FileType htmldjango setlocal commentstring={#\ %s\ #}
-    autocmd FileType puppet setlocal commentstring=#\ %s
-    autocmd FileType xquery setlocal commentstring=(:\ %s\ :)
+    autocmd FileType c setlocal commentstring=//%s
+    autocmd FileType asm setlocal commentstring=;%s
 augroup END
 
 " delimitmate
