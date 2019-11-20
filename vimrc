@@ -471,6 +471,7 @@ nnoremap <leader>O :find<space>
 nnoremap <leader>o :b<space>
 nnoremap <leader>T :find test_
 nnoremap <leader>D :find docs/**/*
+nnoremap <leader>L :tag<space>
 
 " Allow to repeat in visual mode
 xnoremap . :norm.<CR>
