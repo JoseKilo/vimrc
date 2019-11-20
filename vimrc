@@ -233,11 +233,11 @@ set t_Co=256                   " 256 colors for the terminal
 set termguicolors
 
 " molokai256 lucius badwolf dracula gotham iceberg
-colorscheme iceberg
+colorscheme dracula
 
 " Airline
 set noshowmode
-let g:airline_theme='iceberg'
+let g:airline_theme='dracula'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
