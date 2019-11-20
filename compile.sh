@@ -1,6 +1,8 @@
 set -e
 
 # sudo apt-get install libxpm-dev libxt-dev
+# sudo ln -s /usr/include/lua5.3 /usr/include/lua
+# sudo ln -s /usr/lib/x86_64-linux-gnu/liblua5.3.so /usr/local/lib/liblua.so
 
 make clean
 
