@@ -70,7 +70,6 @@ call minpac#add('tpope/tpope-vim-abolish')  " :%Subvert/facilit{y,ies}/building{
 call minpac#add('janko-m/vim-test')
 
 " Python
-call minpac#add('python-mode/python-mode', {'type': 'opt'})
 call minpac#add('tmhedberg/SimpylFold', {'type': 'opt'})
 call minpac#add('google/yapf', {'type': 'opt'})
 call minpac#add('mgedmin/coverage-highlight.vim', {'type': 'opt'})
@@ -310,22 +309,6 @@ augroup END
 nnoremap <Leader>u :GundoToggle<CR>
 let g:gundo_prefer_python3 = 1
 let g:gundo_preview_bottom = 1
-
-" PythonMode
-let g:pymode_rope = 1
-let g:pymode_breakpoint = 0
-let g:pymode_virtualenv = 1
-let g:pymode_trim_whitespaces = 1
-let g:pymode_rope_completion = 1
-let g:pymode_doc = 0
-let g:pymode_run = 0
-let g:pymode_lint = 0
-let g:pymode_options = 0
-let g:pymode_folding = 0
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_regenerate_on_write = 0
-let g:pymode_rope_autoimport = 0
-let g:pymode_syntax = 1  " Needed to color 'self'
 
 " Neomake
 let g:neomake_python_enabled_makers = ['flake8']
