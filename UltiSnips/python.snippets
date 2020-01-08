@@ -812,8 +812,31 @@ snippet new "__new__" !b
         return instance
 endsnippet
 
-
 snippet stack "stack" !b
 import traceback
 traceback.print_stack()
+endsnippet
+
+snippet setter "setter" !b
+@property
+def my_attr(self):
+	pass
+
+@my_attr.setter
+def my_attr(self, value):
+	pass
+endsnippet
+
+snippet tofile "tofile" !b
+import os
+
+
+def pp(*args):
+    with open('tests.log', 'a+') as ff:
+        args = (os.getpid(),) + (args)
+        ff.write(' '.join(map(str, args)) + '\n')
+endsnippet
+
+snippet permutations "permutations" !b
+itertools.permutations([])
 endsnippet
