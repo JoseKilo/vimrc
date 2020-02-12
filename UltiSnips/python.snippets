@@ -148,6 +148,19 @@ snippet param "Pytest's parametrize" !b
 ))
 endsnippet
 
+snippet parame "parameterized" !b
+@parameterized.expand(
+    [
+        "$1",
+        "$2",
+    ]
+)
+endsnippet
+
+snippet utf "utf" !b
+# -*- coding: utf-8 -*-
+endsnippet
+
 snippet caplog "Pytest's caplog" !b
 with caplog.at_level(logging.${2:INFO}):
     ${1:${VISUAL:pass}}
