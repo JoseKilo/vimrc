@@ -68,6 +68,7 @@ call minpac#add('gorkunov/smartpairs.vim')  " vv vi{ va'
 call minpac#add('mhinz/vim-grepper')  " :Grepper
 call minpac#add('tpope/tpope-vim-abolish')  " :%Subvert/facilit{y,ies}/building{,s}/g
 call minpac#add('janko-m/vim-test')
+call minpac#add('junegunn/vim-after-object')  " ca=  change after =
 
 " Python
 call minpac#add('tmhedberg/SimpylFold', {'type': 'opt'})
@@ -534,6 +535,12 @@ xnoremap <silent> gC :<c-u>setlocal textwidth=72<cr>gvgq:<c-u>setlocal textwidth
 
 noremap <Leader>q :%bd\|e#<cr>
 noremap <Leader>Q :bufdo bd<cr>
+
+" vim-after-object
+augroup after_object
+    autocmd!
+    autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
+augroup END
 
 " mgedmin/coverage-highlight.vim  :HighlightCoverage :HighlightCoverageOff
 nnoremap <silent>]w :NextUncovered<cr>
