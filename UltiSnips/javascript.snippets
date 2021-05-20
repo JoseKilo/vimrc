@@ -29,7 +29,9 @@ endsnippet
 snippet const "constructor" !b
 constructor(props) {
 	super(props);
-	$1
+	this.state = {
+		$1
+	};
 }
 endsnippet
 
@@ -94,4 +96,83 @@ define([
         });
     });
 });
+endsnippet
+
+snippet comp "React.js class component" !b
+import React from 'react';
+
+class $1 extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+    };
+  }
+
+  render() {
+    return (
+      <div>$1</div>
+    );
+  }
+}
+
+export default $1;
+endsnippet
+
+snippet func "React.js function component" !b
+import React from 'react';
+
+export default function $1 (props) {
+  return (
+    <div>$1</div>
+  )
+}
+endsnippet
+
+snippet tt "setTimeout" !b
+setTimeout(() => {
+  ${1:${VISUAL}}
+}, ${2:500});
+endsnippet
+
+snippet emoji "Emoji template" !b
+<span role="img" aria-label="Sparkles">
+✨
+</span>
+endsnippet
+
+snippet test "Test template" !b
+test('$1', () => {
+  ${2:${VISUAL:expect(42).toEqual(42);}}
+});
+endsnippet
+
+snippet each "Test each template" !b
+each([
+  ['a', 'b'],
+]).test('$1: %s => %s', (a, b) => {
+  ${2:${VISUAL:expect(42).toEqual(42);}}
+});
+endsnippet
+
+snippet snapshot "Test snapshot template" !b
+import React from 'react';
+import { act, render } from '../setupTests';
+
+test('${1:snapshot}', async () => {
+  await act(async () => {
+    render(<${2:Component} />);
+  });
+
+  expect(document.body.firstChild).toMatchSnapshot();
+});
+endsnippet
+
+snippet imp "Import template" !b
+import $1 from './$1';
+endsnippet
+
+snippet t "Translate" !b
+{t("${1:${VISUAL}}")}
 endsnippet
