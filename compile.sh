@@ -10,12 +10,12 @@ make clean
     --enable-fail-if-missing \
     --with-x \
     --enable-multibyte \
-    --enable-rubyinterp=yes \
     --disable-gui \
     --enable-luainterp=yes \
     --enable-pythoninterp=no \
     --enable-python3interp=yes \
-    --with-python3-command=python3.6 \
+    --with-python3-command=python3.6
+    # --enable-rubyinterp=yes \
     # --enable-gtk2-check \
     # --enable-gnome-check \
     # --enable-gui=gnome2 \
@@ -26,6 +26,7 @@ make clean
     # --enable-gui=gtk2 \
     # --enable-cscope \
     # --prefix=/usr
+
 # make VIMRUNTIMEDIR=/usr/share/vim/vim74/
 make VIMRUNTIMEDIR=~/workspace/vim/runtime/
 
