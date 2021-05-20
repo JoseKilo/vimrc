@@ -385,6 +385,9 @@ function! <SID>switch_bool()
 endfunction
 nnoremap <silent> gZ :call <SID>switch_bool()<cr>
 
+inoreabbrev shrug ¯\_(ツ)_/¯
+inoreabbrev lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
 augroup filetype_autocmd
     autocmd!
     autocmd FileType vim :setlocal foldmethod=marker
