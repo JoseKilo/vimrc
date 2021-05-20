@@ -205,6 +205,7 @@ set formatoptions=cqnl1j       " before qrn1ct - default tcq
 set textwidth=79
 set colorcolumn=80
 set linebreak                  " Don't break words when wrapping text
+set nojoinspaces               " Don't insert 2 spaces after '.' when joining
 
 " Autocompletion
 set complete=.,w,b,u,k,t,kspell
