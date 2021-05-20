@@ -397,6 +397,7 @@ augroup filetype_autocmd
     autocmd FileType java inoreabbrev <buffer> True true
     autocmd FileType java inoreabbrev <buffer> False false
     autocmd FileType java inoreabbrev <buffer> raise throw
+    autocmd FileType python inoreabbrev <buffer> aaa *args, **kwargs
     autocmd FileType python setlocal textwidth=79 colorcolumn=80 define=^\s*\\(def\\\\|class\\)
     autocmd FileType text setlocal textwidth=79 colorcolumn=80 formatoptions=qrn1ct
     autocmd FileType netrw setlocal bufhidden=wipe
