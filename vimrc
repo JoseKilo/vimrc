@@ -414,7 +414,7 @@ augroup filetype_autocmd
     autocmd FileType json,ruby,yaml,javascript,javascriptreact,xml,css,typescript,html,htmldjango.html :setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType javascript,javascriptreact,xml,css,java,json :setlocal foldmethod=syntax
     autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 cinoptions+=+4s
-    autocmd FileType go setlocal noexpandtab foldmethod=syntax
+    autocmd FileType go,c,cpp setlocal noexpandtab tabstop=8 shiftwidth=8 softtabstop=8 foldmethod=syntax foldnestmax=1
 augroup END
 
 " Tags
@@ -424,6 +424,7 @@ augroup filetype_tag_command
     autocmd FileType java command! Ctags !ctags --languages=java -f .tags -R .
     autocmd FileType javascript,javascriptreact command! Ctags !ctags --exclude=**/node_modules --languages=javascript -f .tags -R .
     autocmd FileType c command! Ctags !ctags --languages=c -f .tags -R .
+    autocmd FileType cpp command! Ctags !ctags --languages=c++ -f .tags -R .
     autocmd FileType go command! Ctags !ctags --languages=go -f .tags -R .
 augroup END
 
@@ -525,6 +526,8 @@ augroup filetype_format
 
     autocmd FileType javascript,javascriptreact command! -buffer -bar -range=% Prettier :<line1>,<line2>! npx prettier --single-quote --parser flow
     autocmd FileType javascript,javascriptreact nnoremap <silent> <buffer> gs m`:Prettier<cr>``
+
+    autocmd FileType c nnoremap <silent> <buffer> gs m`gg=G``
 augroup END
 
 
