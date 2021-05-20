@@ -75,6 +75,10 @@ call minpac#add('tmhedberg/SimpylFold', {'type': 'opt'})
 call minpac#add('google/yapf', {'type': 'opt'})
 call minpac#add('mgedmin/coverage-highlight.vim', {'type': 'opt'})
 
+" JavaScript
+call minpac#add('pangloss/vim-javascript', {'type': 'opt'})
+call minpac#add('MaxMEllon/vim-jsx-pretty', {'type': 'opt'})
+
 " text-objects
 call minpac#add('kana/vim-textobj-entire') " ae, ie
 call minpac#add('kana/vim-textobj-indent') " ai, ii, aI, iI
@@ -90,6 +94,9 @@ augroup minpac_plugins
     autocmd FileType python packadd SimpylFold
     autocmd FileType python packadd coverage-highlight.vim
     autocmd FileType python packadd yapf/plugins/vim
+
+    autocmd FileType javascript,javascriptreact packadd vim-javascript
+    autocmd FileType javascript,javascriptreact packadd vim-jsx-pretty
 
     autocmd FileType java packadd vim-javacomplete2
     autocmd FileType html,xhtml,css packadd html5.vim
@@ -404,8 +411,8 @@ augroup filetype_autocmd
     autocmd FileType python,html,go setlocal nowrap
     autocmd BufRead,BufNewFile */templates/*.html setlocal filetype=htmldjango.html
     autocmd BufRead,BufNewFile *.pyi setlocal filetype=python
-    autocmd FileType json,ruby,yaml,javascript,xml,css,typescript,html,htmldjango.html :setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd FileType javascript,xml,css,java,json :setlocal foldmethod=syntax
+    autocmd FileType json,ruby,yaml,javascript,javascriptreact,xml,css,typescript,html,htmldjango.html :setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType javascript,javascriptreact,xml,css,java,json :setlocal foldmethod=syntax
     autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 cinoptions+=+4s
     autocmd FileType go setlocal noexpandtab foldmethod=syntax
 augroup END
@@ -415,7 +422,7 @@ set tags=.tags
 augroup filetype_tag_command
     autocmd FileType python command! Ctags !ctags --exclude=**/.tox --exclude=**/.venv --languages=python -f .tags -R $(python -c "import sys; print(' '.join(sys.path))")
     autocmd FileType java command! Ctags !ctags --languages=java -f .tags -R .
-    autocmd FileType javascript command! Ctags !ctags --exclude=**/node_modules --languages=javascript -f .tags -R .
+    autocmd FileType javascript,javascriptreact command! Ctags !ctags --exclude=**/node_modules --languages=javascript -f .tags -R .
     autocmd FileType c command! Ctags !ctags --languages=c -f .tags -R .
     autocmd FileType go command! Ctags !ctags --languages=go -f .tags -R .
 augroup END
@@ -516,7 +523,8 @@ augroup filetype_format
     autocmd FileType go command! -buffer -bar -range=% GoFMT :<line1>,<line2>! gofmt
     autocmd FileType go nnoremap <silent> <buffer> gs m`:GoFMT<cr>``
 
-    autocmd FileType javascript nnoremap <silent> <buffer> gs m`gg=G<cr>``
+    autocmd FileType javascript,javascriptreact command! -buffer -bar -range=% Prettier :<line1>,<line2>! npx prettier --single-quote --parser flow
+    autocmd FileType javascript,javascriptreact nnoremap <silent> <buffer> gs m`:Prettier<cr>``
 augroup END
 
 
