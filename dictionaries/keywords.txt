@@ -26,3 +26,4 @@ callable
 StopIteration
 StopAsyncIteration
 AssertionError
+FileNotFoundError
