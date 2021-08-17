@@ -398,8 +398,8 @@ inoreabbrev lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d
 augroup filetype_autocmd
     autocmd!
     autocmd FileType vim :setlocal foldmethod=marker
-    autocmd FileType json :setlocal formatprg=python\ -m\ json.tool
-    autocmd FileType json :setlocal equalprg=python\ -m\ json.tool
+    autocmd FileType json :setlocal formatprg=jsonlint
+    autocmd FileType json :setlocal equalprg=jsonlint
     autocmd FileType html,htmldjango.html inoreabbrev <buffer> --- &mdash;
     autocmd FileType java inoreabbrev <buffer> True true
     autocmd FileType java inoreabbrev <buffer> False false
