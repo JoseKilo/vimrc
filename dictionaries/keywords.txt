@@ -1,5 +1,8 @@
 enumerate
 class
+classmethod
+global
+nonlocal
 collections
 prefetch_related
 IndexError
