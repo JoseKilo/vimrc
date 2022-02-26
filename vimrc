@@ -284,20 +284,20 @@ augroup END
 let delimitMate_expand_space = 1
 
 " Fugitive
-nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gs :Git<CR>
 nnoremap <leader>ga :Gwrite<cr>
 nnoremap <Leader>go :Gread<CR>
 nnoremap <Leader>gR :Gremove<CR>
 nnoremap <Leader>gm :Gmove<Space>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gb :Git blame<CR>
 
 set diffopt+=vertical
 
 nnoremap <Leader>gt :!tig<CR>:redraw!<CR>
-nnoremap <Leader>gl :exe "silent Glog <Bar> copen"<CR>:redraw!<CR>
-nnoremap <Leader>gL :exe "silent Glog -- <Bar> copen"<CR>:redraw!<CR>
+nnoremap <Leader>gl :exe "silent Gclog <Bar> copen"<CR>:redraw!<CR>
+nnoremap <Leader>gL :exe "silent Gclog -- <Bar> copen"<CR>:redraw!<CR>
 
 nnoremap <Leader>ggc :silent! Ggrep -i<Space>
 nnoremap <Leader>gg :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>copen<CR>
