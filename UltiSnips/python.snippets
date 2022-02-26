@@ -846,6 +846,11 @@ from freezegun import freeze_time
 @freeze_time("1980-01-01T00:00:01.0123456789")
 endsnippet
 
+snippet travel "time_machine" !b
+import time_machine
+@time_machine.travel("1980-01-01T00:00:01.0123456789", tick=False)
+endsnippet
+
 snippet asyncmain "asyncmain" !b
 import asyncio
 
