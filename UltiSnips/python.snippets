@@ -273,6 +273,18 @@ if __name__ == '__main__':
     main()
 endsnippet
 
+snippet main4 "Minimalist Python script" !b
+import sys
+
+
+def main():
+    numbers = sorted(map(int, sys.stdin.readlines()))
+	print(len(numbers))
+
+
+if __name__ == '__main__':
+    main()
+endsnippet
 
 snippet branchandbound "Branch and Bound schema" !b
 class State(object):
