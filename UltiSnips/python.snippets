@@ -1122,3 +1122,44 @@ snippet manhattan "manhattan" !b
 def manhattan(x1, y1, x2, y2):
     return abs(x1 - x2) + abs(y1 - y2)
 endsnippet
+
+snippet http_server "http server" !b
+import json
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
+
+class HTTPRequestHandler(BaseHTTPRequestHandler):
+    RESPONSES = {
+        ("GET", "/"): {},
+    }
+
+    def do_GET(self):
+        self.do_request("GET")
+
+    def do_POST(self):
+        self.do_request("POST")
+
+    def do_request(self, method):
+        try:
+            body = self.RESPONSES[(method, self.path)]
+        except KeyError:
+            body = f"Method: '{method}' Path: '{self.path}' not registered"
+            status_code = 500
+        else:
+            status_code = 200
+
+        self.send_response(status_code)
+        self.end_headers()
+        self.wfile.write(json.dumps(body).encode())
+        self.wfile.write(b"")
+
+
+def main(handler, port=8123):
+    server_address = ("", port)
+    httpd = HTTPServer(server_address, handler)
+    httpd.serve_forever()
+
+
+if __name__ == "__main__":
+    main(handler=HTTPRequestHandler)
+endsnippet
