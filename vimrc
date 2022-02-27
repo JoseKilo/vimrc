@@ -655,3 +655,6 @@ augroup last_change
                 \   exe "normal! g`\"" |
                 \ endif
 augroup END
+
+" Zeal support
+nnoremap gz :!zeal "<cword>" > /dev/null 2>&1 &<CR><CR>
