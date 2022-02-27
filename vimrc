@@ -222,6 +222,12 @@ set dictionary=$HOME/.vim/dictionaries/keywords.txt
 set path=**                    " Search the files under the run location.
 set suffixesadd=.py,.js        " Look for Python and JavaScript files.
 
+" If it looks like a JavaScript project, include only relevant
+" directories in the path, searching local `node_modules` is too slow.
+if filereadable("package.json")
+    set path=.,,src/**,public/**,packages/**
+endif
+
 " Colorscheme
 syntax enable
 augroup color_all
