@@ -220,7 +220,7 @@ set completeopt=menu,longest
 set dictionary=$HOME/.vim/dictionaries/keywords.txt
 
 set path=**                    " Search the files under the run location.
-set suffixesadd=.py            " Look for Python files.
+set suffixesadd=.py,.js        " Look for Python and JavaScript files.
 
 " Colorscheme
 syntax enable
