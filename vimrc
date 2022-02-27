@@ -528,6 +528,8 @@ augroup filetype_format
     autocmd FileType javascript,javascriptreact nnoremap <silent> <buffer> gs m`:Prettier<cr>``
 
     autocmd FileType c nnoremap <silent> <buffer> gs m`gg=G``
+
+    autocmd FileType netrw nnoremap <buffer> - :execute "normal gg\r"<cr>
 augroup END
 
 
