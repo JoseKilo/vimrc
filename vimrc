@@ -297,6 +297,7 @@ nnoremap <Leader>gR :Gremove<CR>
 nnoremap <Leader>gm :Gmove<Space>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gD :Git difftool<CR>
 nnoremap <Leader>gb :Git blame<CR>
 
 set diffopt+=vertical
