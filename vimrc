@@ -31,7 +31,7 @@ call minpac#add('sjl/badwolf')
 call minpac#add('dracula/vim')
 call minpac#add('whatyouhide/vim-gotham')
 call minpac#add('cocopon/iceberg.vim')
-call minpac#add('bling/vim-airline')
+call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
 
 " Git
