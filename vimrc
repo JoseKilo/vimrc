@@ -200,6 +200,9 @@ set wildignore+=*.class,*.luac,*.jar,*.pyc,*.stats    " Temporal files
 set wildignore+=**/node_modules/*,bower_components/*  " JS dependencies
 set wildignore+=**/_build/**                          " Sphinx generated files
 set wildignore+=*/__pycache__/*                       " Python cache
+set wildignore+=*/media/*                             " Django media folder
+set wildignore+=*/static/*                            " Django static folder
+set wildignore+=*/node_modules/*                      " JS dependencies
 
 " Tabs, space and wrapping
 set expandtab                  " spaces instead of tabs
