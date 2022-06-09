@@ -228,7 +228,7 @@ set suffixesadd=.py,.js        " Look for Python and JavaScript files.
 " If it looks like a JavaScript project, include only relevant
 " directories in the path, searching local `node_modules` is too slow.
 if filereadable("package.json")
-    set path=.,,src/**,public/**,packages/**
+    set path=.,,src/**,public/**,packages/**,docs/**
 endif
 
 " Colorscheme
