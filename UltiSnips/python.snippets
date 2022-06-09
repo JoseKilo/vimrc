@@ -165,6 +165,12 @@ snippet param "Pytest's parametrize" !b
 ))
 endsnippet
 
+snippet param1 "Pytest's parametrize with only 1 parameter" !b
+@pytest.mark.parametrize('$1', (
+    '$1',
+))
+endsnippet
+
 snippet parame "parameterized" !b
 @parameterized.expand(
     [
