@@ -409,6 +409,11 @@ with pytest.raises(${1:Exception}) as exc:
 	${2:${VISUAL}}
 endsnippet
 
+snippet suppress "contextlib suppress" !b
+with contextlib.suppress(${1:Exception}):
+	${2:${VISUAL}}
+endsnippet
+
 snippet grouper "Itertools grouper recipe" !b
 def grouper(iterable, n, fillvalue=None):
     "Collect data into fixed-length chunks or blocks"
