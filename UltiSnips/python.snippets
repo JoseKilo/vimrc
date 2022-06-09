@@ -1181,3 +1181,8 @@ def all_subclasses(cls):
         s for c in cls.__subclasses__() for s in all_subclasses(c)
     }
 endsnippet
+
+snippet test "basic test_foo" !b
+def test_${1:${VISUAL:foo}}():
+    result = $1()
+endsnippet
