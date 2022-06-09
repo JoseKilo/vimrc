@@ -274,6 +274,7 @@ nnoremap <Leader>H :setlocal list!<CR>
 augroup spelling
     autocmd!
     autocmd FileType gitcommit,markdown,mkd,rst,text setlocal spell spelllang=en
+    autocmd FileType gitcommit,markdown,mkd,rst,text setlocal keywordprg=dict
 augroup END
 
 nnoremap <Leader>ss :setlocal spell! spelllang=es<CR>
