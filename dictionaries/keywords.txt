@@ -30,3 +30,7 @@ StopIteration
 StopAsyncIteration
 AssertionError
 FileNotFoundError
+KeyboardInterrupt
+SystemExit
+staticmethod
+__UNKNOWN__
