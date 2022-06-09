@@ -67,7 +67,7 @@ call minpac#add('tpope/vim-unimpaired')  " ]b ]l ]q ...
 call minpac#add('gorkunov/smartpairs.vim')  " vv vi{ va'
 call minpac#add('mhinz/vim-grepper')  " :Grepper
 call minpac#add('tpope/tpope-vim-abolish')  " :%Subvert/facilit{y,ies}/building{,s}/g
-call minpac#add('janko-m/vim-test')
+call minpac#add('vim-test/vim-test')
 call minpac#add('junegunn/vim-after-object')  " ca=  change after =
 
 " Python
@@ -571,12 +571,12 @@ augroup END
 nnoremap <silent>]w :NextUncovered<cr>
 nnoremap <silent>[w :PrevUncovered<cr>
 
-" janko-m/vim-test
+" vim-test
 let test#strategy = "dispatch"
 let test#python#runner = 'pytest'
 
 function! CustomStrategy(cmd)
-    execute 'Dispatch -- '.join(split(a:cmd, " ")[1:])
+    execute 'Dispatch -- '.join(split(a:cmd, " ")[3:])
 endfunction
 
 let g:test#custom_strategies = {'Custom': function('CustomStrategy')}
