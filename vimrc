@@ -67,6 +67,7 @@ call minpac#add('tpope/vim-unimpaired')  " ]b ]l ]q ...
 call minpac#add('gorkunov/smartpairs.vim')  " vv vi{ va'
 call minpac#add('mhinz/vim-grepper')  " :Grepper
 call minpac#add('tpope/tpope-vim-abolish')  " :%Subvert/facilit{y,ies}/building{,s}/g
+call minpac#add('arthurxavierx/vim-caser')  " cd_iw cdce
 call minpac#add('vim-test/vim-test')
 call minpac#add('junegunn/vim-after-object')  " ca=  change after =
 
@@ -384,6 +385,9 @@ xmap gz <plug>(GrepperOperator)
 
 " JavaScript
 let g:jsx_ext_required = 0
+
+" vim-caser
+let g:caser_prefix = 'cd'
 
 " Switch
 function! <SID>switch_bool()
