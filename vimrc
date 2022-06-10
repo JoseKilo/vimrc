@@ -129,8 +129,6 @@ endif
 
 call s:minpac_install_new()
 
-packloadall
-
 filetype plugin indent on      " Indent and plugins by filetype
 let mapleader = ','
 let maplocalleader = ' '
@@ -367,6 +365,7 @@ let g:splitjoin_split_mapping = 'zS'
 let g:splitjoin_join_mapping  = 'zJ'
 
 " Grepper
+packadd vim-grepper
 runtime plugin/grepper.vim
 let g:grepper.highlight = 1
 let g:grepper.dir = 'filecwd'
@@ -672,3 +671,5 @@ augroup END
 
 " Zeal support
 nnoremap gz :!zeal "<cword>" > /dev/null 2>&1 &<CR><CR>
+
+packloadall
