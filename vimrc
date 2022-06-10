@@ -530,6 +530,8 @@ augroup filetype_format
 
     autocmd FileType python command! -buffer -bar -range=% Isort :<line1>,<line2>! isort -
     autocmd FileType python nnoremap <silent> <buffer> gs m`:Isort<cr>``
+    " Isort auto add word under cursor
+    autocmd FileType python nnoremap gS :update \| !isort --add-import "<cword>" %<cr><cr>
 
     autocmd FileType go command! -buffer -bar -range=% GoFMT :<line1>,<line2>! gofmt
     autocmd FileType go nnoremap <silent> <buffer> gs m`:GoFMT<cr>``
