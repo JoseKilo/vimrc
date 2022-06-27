@@ -23,6 +23,19 @@ def managed_resource(*args, **kwargs):
         release_resource(resource)
 endsnippet
 
+snippet context_manager_2 "Python class-based context manager" !b
+from types import TracebackType
+
+class ContextManager:
+    def __enter__(self) -> None:
+        # Code to acquire resource, e.g.:
+        return acquire_resource(*args, **kwargs)
+
+    def __exit__(self, type_: type, value: Any, traceback: TracebackType) -> None:
+        # Code to release resource, e.g.:
+        release_resource(resource)
+endsnippet
+
 snippet set "Django settings" !b
 from django.conf import settings
 endsnippet
