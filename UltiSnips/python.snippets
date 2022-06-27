@@ -9,13 +9,13 @@ def my_decorator(f):
     return wrapper
 endsnippet
 
-snippet context_manager "Python standard context manager" !b
+snippet context_manager "Python function-based context manager" !b
 from contextlib import contextmanager
 
 @contextmanager
-def managed_resource(*args, **kwds):
+def managed_resource(*args, **kwargs):
     # Code to acquire resource, e.g.:
-    resource = acquire_resource(*args, **kwds)
+    resource = acquire_resource(*args, **kwargs)
     try:
         yield resource
     finally:
