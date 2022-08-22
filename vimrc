@@ -687,4 +687,13 @@ augroup surround_customizing
     autocmd FileType markdown let b:surround_{char2nr("l")} = "[\r]()"
 augroup END
 
+" Show syntax highlighting groups for word under cursor
+nmap <C-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 packloadall
