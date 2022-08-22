@@ -333,7 +333,7 @@ let g:gundo_preview_bottom = 1
 
 " Neomake
 let g:neomake_python_enabled_makers = ['flake8']
-let g:neomake_json_enabled_makers = ['jsonlint']
+let g:neomake_json_enabled_makers = ['eslint']
 let g:neomake_javascript_enabled_makers = ['eslint']
 if filereadable(".jscsrc")
     call add(g:neomake_javascript_enabled_makers, 'jscs')
