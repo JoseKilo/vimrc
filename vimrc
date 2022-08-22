@@ -332,7 +332,8 @@ let g:gundo_prefer_python3 = 1
 let g:gundo_preview_bottom = 1
 
 " Neomake
-let g:neomake_python_enabled_makers = ['flake8']
+let g:neomake_python_enabled_makers = ['flake8', 'mypy']
+let g:neomake_python_mypy_args = ['--show-column-numbers', '--show-error-codes', '--check-untyped-defs']
 let g:neomake_json_enabled_makers = ['eslint']
 let g:neomake_javascript_enabled_makers = ['eslint']
 if filereadable(".jscsrc")
@@ -535,7 +536,9 @@ augroup filetype_format
     autocmd!
 
     autocmd FileType python command! -buffer -bar -range=% Isort :<line1>,<line2>! isort -
-    autocmd FileType python nnoremap <silent> <buffer> gs m`:Isort<cr>``
+    autocmd FileType python command! -buffer -bar -range=% Black :<line1>,<line2>! black --quiet -
+    autocmd FileType python command! -buffer -bar -range=% AddTrailingComma :<line1>,<line2>! add-trailing-comma --py36-plus --exit-zero-even-if-changed -
+    autocmd FileType python nnoremap <silent> <buffer> gs m`:Isort<cr>:Black<cr>:AddTrailingComma<cr>``
     " Isort auto add word under cursor
     autocmd FileType python nnoremap gS :update \| !isort --add-import "<cword>" %<cr><cr>
 
