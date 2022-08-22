@@ -429,6 +429,7 @@ augroup filetype_autocmd
     autocmd FileType javascript,javascriptreact,xml,css,java,json :setlocal foldmethod=syntax
     autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 cinoptions+=+4s
     autocmd FileType go,c,cpp setlocal noexpandtab tabstop=8 shiftwidth=8 softtabstop=8 foldmethod=syntax foldnestmax=1
+    autocmd BufNewFile,BufReadPost *.mq[h45] setlocal filetype=cpp
 augroup END
 
 " Tags
