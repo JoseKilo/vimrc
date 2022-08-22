@@ -676,4 +676,12 @@ augroup END
 " Zeal support
 nnoremap gz :!zeal "<cword>" > /dev/null 2>&1 &<CR><CR>
 
+" :help surround-customizing
+let g:surround_{char2nr("m")} = "__\r__"
+
+augroup surround_customizing
+    autocmd FileType markdown let b:surround_{char2nr("*")} = "**\r**"
+    autocmd FileType markdown let b:surround_{char2nr("l")} = "[\r]()"
+augroup END
+
 packloadall
