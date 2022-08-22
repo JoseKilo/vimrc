@@ -242,6 +242,8 @@ augroup color_all
     autocmd ColorScheme * highlight SpellBad cterm=underline
     autocmd ColorScheme * highlight NonText guifg=#FFFFFF
     autocmd ColorScheme * highlight SpecialKey guifg=#FFFFFF
+
+    autocmd FileType python syn keyword pythonSelf self cls
     autocmd ColorScheme dracula highlight pythonSelf guifg=#FF79C6
 augroup END
 set background=dark
