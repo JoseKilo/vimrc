@@ -445,6 +445,7 @@ augroup filetype_tag_command
     autocmd FileType c command! Ctags !ctags --languages=c -f .tags -R .
     autocmd FileType cpp command! Ctags !ctags --languages=c++ -f .tags -R .
     autocmd FileType go command! Ctags !ctags --languages=go -f .tags -R .
+    autocmd FileType rust command! Ctags !ctags --languages=rust -f .tags -R .
 augroup END
 
 " inoremap <esc> <nop>
@@ -542,6 +543,9 @@ augroup filetype_format
 
     autocmd FileType go command! -buffer -bar -range=% GoFMT :<line1>,<line2>! gofmt
     autocmd FileType go nnoremap <silent> <buffer> gs m`:GoFMT<cr>``
+
+    autocmd FileType rust command! -buffer -bar RustFMT :update | ! rustfmt %
+    autocmd FileType rust nnoremap <silent> <buffer> gs m`:RustFMT<cr>``
 
     autocmd FileType javascript,javascriptreact command! -buffer -bar -range=% Prettier :<line1>,<line2>! npx prettier --single-quote --parser flow
     autocmd FileType javascript,javascriptreact nnoremap <silent> <buffer> gs m`:Prettier<cr>``
