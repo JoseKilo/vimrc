@@ -73,7 +73,6 @@ call minpac#add('junegunn/vim-after-object')  " ca=  change after =
 
 " Python
 call minpac#add('tmhedberg/SimpylFold', {'type': 'opt'})
-call minpac#add('google/yapf', {'type': 'opt'})
 call minpac#add('mgedmin/coverage-highlight.vim', {'type': 'opt'})
 
 " JavaScript
@@ -94,7 +93,6 @@ augroup minpac_plugins
     autocmd FileType python packadd python-mode
     autocmd FileType python packadd SimpylFold
     autocmd FileType python packadd coverage-highlight.vim
-    autocmd FileType python packadd yapf/plugins/vim
 
     autocmd FileType javascript,javascriptreact packadd vim-javascript
     autocmd FileType javascript,javascriptreact packadd vim-jsx-pretty
@@ -531,7 +529,6 @@ nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>B Oimport ipdb  # XXX<cr>ipdb.set_trace()<esc>
 nnoremap <leader>V Ofrom IPython import embed<cr>embed()<esc>
 nnoremap <leader>V Oimport traceback<cr>traceback.print_exc()<esc>
-noremap <silent> gY :call yapf#YAPF()<cr>
 
 augroup filetype_format
     autocmd!
