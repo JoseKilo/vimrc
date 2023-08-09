@@ -526,8 +526,6 @@ nnoremap \ zak<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ek :e $HOME/.vim/dictionaries/keywords.txt<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-command! -bar Autoflake :update | ! autoflake --in-place % | edit
-nnoremap <silent> gA m`:Autoflake<cr>``
 nnoremap <silent> g/ :%s///gn<cr>
 nnoremap <leader>; :execute "normal! m`A;\e``"<cr>
 nnoremap <leader>B Oimport ipdb  # XXX<cr>ipdb.set_trace()<esc>
