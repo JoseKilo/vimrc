@@ -337,7 +337,7 @@ if len(exepath("mypy")) > 0
     let g:neomake_python_enabled_makers += ['mypy']
 endif
 let g:neomake_python_mypy_args = ['--show-column-numbers', '--show-error-codes', '--check-untyped-defs']
-let g:neomake_json_enabled_makers = ['eslint']
+let g:neomake_json_enabled_makers = ['jsonlint']
 let g:neomake_javascript_enabled_makers = ['eslint']
 if filereadable(".jscsrc")
     call add(g:neomake_javascript_enabled_makers, 'jscs')
