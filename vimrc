@@ -552,6 +552,11 @@ augroup filetype_format
 
     autocmd FileType c nnoremap <silent> <buffer> gs m`gg=G``
 
+    autocmd FileType sql,python command! -buffer -bar -range=% SQLFormat :<line1>,<line2>!
+                \ pg_format --comma-break --comma-end --function-case 2
+                \ --keyword-case 2 --type-case 1 --nogrouping --no-extra-line --spaces 4
+    autocmd FileType sql nnoremap <silent> <buffer> gs m`:SQLFormat<cr>``
+
     autocmd FileType netrw nnoremap <buffer> - :execute "normal gg\r"<cr>
 augroup END
 
