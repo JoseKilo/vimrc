@@ -534,9 +534,9 @@ nnoremap <leader>V Oimport traceback<cr>traceback.print_exc()<esc>
 augroup filetype_format
     autocmd!
 
-    autocmd FileType python command! -buffer -bar -range=% Isort :<line1>,<line2>! isort -
-    autocmd FileType python command! -buffer -bar -range=% Black :<line1>,<line2>! black --quiet -
-    autocmd FileType python command! -buffer -bar -range=% AddTrailingComma :<line1>,<line2>! add-trailing-comma --py36-plus --exit-zero-even-if-changed -
+    autocmd FileType python command! -buffer -bar -range=% Isort :<line1>,<line2>! isort --filename % -
+    autocmd FileType python command! -buffer -bar -range=% Black :<line1>,<line2>! black --quiet --stdin-filename % -
+    autocmd FileType python command! -buffer -bar -range=% AddTrailingComma :<line1>,<line2>! add-trailing-comma --exit-zero-even-if-changed -
     autocmd FileType python nnoremap <silent> <buffer> gs m`:Isort<cr>:Black<cr>:AddTrailingComma<cr>``
     " Isort auto add word under cursor
     autocmd FileType python nnoremap gS :update \| !isort --add-import "<cword>" %<cr><cr>
