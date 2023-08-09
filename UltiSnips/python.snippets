@@ -173,15 +173,15 @@ while True:
 endsnippet
 
 snippet param "Pytest's parametrize" !b
-@pytest.mark.parametrize(('$1', '$2'), (
+@pytest.mark.parametrize(('$1', '$2'), [
 	('$1', '$2'),
-))
+])
 endsnippet
 
 snippet param1 "Pytest's parametrize with only 1 parameter" !b
-@pytest.mark.parametrize('$1', (
+@pytest.mark.parametrize('$1', [
     '$1',
-))
+])
 endsnippet
 
 snippet parame "parameterized" !b
@@ -306,28 +306,43 @@ if __name__ == '__main__':
 endsnippet
 
 snippet branchandbound "Branch and Bound schema" !b
-class State(object):
+import heapq
+import sys
+import time
 
+
+class State:
     def __init__(self):
         pass
 
-    def is_possible(self):
-        return True
+    def __hash__(self):
+        return hash(
+            (
+            ),
+        )
+
+    def copy(self):
+        return State(
+        )
 
     def is_solution(self):
-        return False
+        return True
 
-    def score(self, k):
+    def score(self):
         return 0
 
-    def children(self, k):
-        return []
+    def heuristic(self):
+        return 0
+
+    def children(self):
+        result = []
+
+        return result
 
 
-class BranchAndBound(object):
-
-	def __init__(self):
-        self.optimum = 0
+class BranchAndBound:
+    def __init__(self):
+        self.optimum = sys.maxsize
         self.state = None
 
     def store(self, state, optimum):
@@ -341,55 +356,52 @@ class BranchAndBound(object):
             return None
 
     def run(self, state):
-        self.branch_and_bound(state, 0)
-
-    def _branch_and_bound(self, state, k):
-        children = state.children(k)
-        while children:
-            state, k = children.pop()
-            score = state.score(k)
-            if state.is_possible(k) and score < self.optimum:
-                if state.is_solution():
-                    self.store(state, score)
-                else:
-                    self.branch_and_bound(state, k + 1)
-
-    def _branch_and_bound(self, state):
-        children = state.children()
-        while children:
-            state = children.pop()
-            score = state.score()
-            if state.is_possible() and score > self.optimum:
-                if state.is_solution():
-                    self.store(state, score)
-                else:
-                    new_children = state.children()
-                    new_children += children
-                    children = new_children
+        self.branch_and_bound(state)
 
     def branch_and_bound(self, state):
-		# 1)
-        queue = []
-        for child in state.children():
-            heapq.heappush(queue, (- child.score() - child.heuristic(), child))
+        queue = [(0, 0, 0, state)]
 
-		# 2)
-        queue = [state]
+        seen = set()
 
         while queue:
-            _, state = heapq.heappop(queue)
+            _, _, _, state = heapq.heappop(queue)
             score = state.score()
             heuristic = state.heuristic()
-            if state.is_possible() and score + heuristic > self.optimum:
-                if state.is_solution():
+
+            key = hash(state)
+            if key in seen:
+                continue
+            seen.add(key)
+
+            print("C1", len(queue), self.optimum)
+
+            if score + heuristic >= self.optimum:
+                continue
+
+            if state.is_solution():
+                if score < self.optimum:
                     self.store(state, score)
-                else:
-                    for child in state.children():
-                        heapq.heappush(queue, (- child.score() - child.heuristic(), child))
+            else:
+                for child in state.children():
+                    if child.score() + child.heuristic() >= self.optimum:
+                        continue
+
+                    heapq.heappush(
+                        queue,
+                        (
+                            # 0,
+                            # +child.score() + child.heuristic(),
+                            +child.score(),
+                            +child.heuristic(),
+                            time.time_ns(),
+                            child,
+                        ),
+                    )
 
 
 runner = BranchAndBound()
-state = State()
+state = State(
+)
 runner.run(state)
 endsnippet
 
@@ -414,6 +426,13 @@ snippet xtry "Try/Except" !b
 try:
 	${1:${VISUAL}}
 except ${2:Exception}:
+	pass
+endsnippet
+
+snippet finally "Finally" !b
+try:
+	${1:${VISUAL}}
+finally:
 	pass
 endsnippet
 
@@ -758,6 +777,16 @@ endsnippet
 
 snippet init "init" !b
 def __init__(self):
+	pass
+endsnippet
+
+snippet superpostinit "superpostinit" !b
+def __post_init__(self):
+	super().__post_init__()
+endsnippet
+
+snippet postinit "postinit" !b
+def __post_init__(self):
 	pass
 endsnippet
 
@@ -1197,4 +1226,75 @@ endsnippet
 snippet test "basic test_foo" !b
 def test_${1:${VISUAL:foo}}():
     result = $1()
+endsnippet
+
+snippet rdb "rdb" !b
+from celery.contrib import rdb
+rdb.set_trace()
+endsnippet
+
+snippet transpose "transpose" !b
+def transpose(_list):
+    return list(map(list, zip(*_list)))
+endsnippet
+
+snippet pillow "pillow" !b
+from PIL import Image
+img = Image.new('RGB', (width, height), background)
+pixels = img.load()
+
+pixels[x, y] = (255, 0, 0)
+
+img.show()
+endsnippet
+
+snippet window "sliding window" !b
+def sliding_window(iterable, n):
+    # sliding_window('ABCDEFG', 4) --> ABCD BCDE CDEF DEFG
+    it = iter(iterable)
+    window = collections.deque(itertools.islice(it, n), maxlen=n)
+    if len(window) == n:
+        yield tuple(window)
+    for x in it:
+        window.append(x)
+        yield tuple(window)
+endsnippet
+
+snippet shortest_paths "Floyd–Warshall algorithm" !b
+distances = defaultdict(lambda: INF)
+for node, neighbors in nodes.items():
+	distances[(node, node)] = 0
+	for neighbor in neighbors:
+		distances[(node, neighbor)] = 1
+for k in nodes:
+	for i in nodes:
+		for j in nodes:
+			if distances[(i, j)] > distances[(i, k)] + distances[(k, j)]:
+				distances[(i, j)] = distances[(i, k)] + distances[(k, j)]
+endsnippet
+
+snippet slugify "Slugify" !b
+def slugify(value, allow_unicode=False):
+    """
+    Convert to ASCII if 'allow_unicode' is False. Convert spaces or repeated
+    dashes to single dashes. Remove characters that aren't alphanumerics,
+    underscores, or hyphens. Convert to lowercase. Also strip leading and
+    trailing whitespace, dashes, and underscores.
+    """
+    value = str(value)
+    if allow_unicode:
+        value = unicodedata.normalize("NFKC", value)
+    else:
+        value = (
+            unicodedata.normalize("NFKD", value)
+            .encode("ascii", "ignore")
+            .decode("ascii")
+        )
+    value = re.sub(r"[^\w\s-]", "", value.lower())
+    return re.sub(r"[-\s]+", "-", value).strip("-_")
+endsnippet
+
+snippet 1985 "1985" !
+hill_valley_tz = ZoneInfo("America/Los_Angeles")
+mc_fly_dt = datetime(1985, 10, 26, 1, 24, 42, 53, tzinfo=hill_valley_tz)
 endsnippet
