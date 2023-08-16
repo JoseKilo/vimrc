@@ -439,7 +439,7 @@ augroup END
 " Tags
 set tags=.tags
 augroup filetype_tag_command
-    autocmd FileType python command! Ctags !ctags --exclude=**/.tox --exclude=**/.venv --languages=python -f .tags -R $(python -c "import sys; print(' '.join(sys.path))")
+    autocmd FileType python command! Ctags !ctags --exclude=**/.tox --exclude=**/.venv --languages=python -f .tags -R . $(python -c "import sys; print(' '.join(sys.path))")
     autocmd FileType java command! Ctags !ctags --languages=java -f .tags -R .
     autocmd FileType javascript,javascriptreact command! Ctags !ctags --exclude=**/node_modules --languages=javascript -f .tags -R .
     autocmd FileType c command! Ctags !ctags --languages=c -f .tags -R .
